@@ -1,0 +1,16 @@
+{
+  "name": "image-cropper-tool",
+  "version": "1.0.0",
+  "description": "A tool that crops images to certain sizes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "image",
+    "crop"
+  ],
+  "author": "Ben Lowbridge",
+  "license": "ISC",
+  "devDependencies": {}
+}

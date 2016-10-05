@@ -2,6 +2,8 @@ $(function () {
 
   'use strict';
 
+  $(".navbar").sticky({topSpacing:0});
+
   function getCheckedBoxesOptions(chkboxName) {
     var checkboxes = document.getElementsByName(chkboxName);
     var checkboxesChecked = [];
@@ -54,7 +56,6 @@ $(function () {
       $('.dynamicImages').hide();
       $('.select-message').remove();
       $('.multiCrop').show();
-      $('.selectCrop').show();
     } else {
       $('.dynamicOptions').attr('disabled',false);
       $('.dynamicButton').attr('disabled',false);
@@ -62,7 +63,6 @@ $(function () {
       $('.aspectRatio').hide();
       $('.dynamicImages').show();
       $('.multiCrop').hide();
-      $('.selectCrop').hide();
       if ($(".dynamicImages").length < 1){
           $('#croppingArea').append('<h2 class="select-message">Please select an aspect ratio</h2>');
       } else {
@@ -74,18 +74,26 @@ $(function () {
   $('.helpButton').click(function(){
     $('#helpModal').modal();
   });
+  $('.singleImage').click(function(){
+    $('#singleHelp').fadeIn(500);
+    $('#multiHelp').hide();
+  });
+  $('.multipleImages').click(function(){
+    $('#singleHelp').hide();
+    $('#multiHelp').fadeIn(500);
+  });
 
   // dynamic variables
   var imageRatio;
   var cropperData = [];
   var cropperOptions = [];
-  var ratioList = ['two','three','four','five'];
+  var ratioList = ['two','three','four','five','six'];
 
   // checks for new aspect ratio and adds it to html
   $('input[name="dynamicOptions"]').change(function(){
     var checking = [];
     imageRatio = getCheckedBoxesDynamic('dynamicOptions');
-    // $('.dynamicImages').remove();
+
     for (var i = 0;i < imageRatio[0].length;i++){
 
       if ($('.'+imageRatio[0][i]).length<1){
@@ -279,6 +287,7 @@ $(function () {
     var dynamicResult = [];
     var manyResult;
     var multipleResult = [];
+    var dynamicMultiple = [];
 
     if ($this.prop('disabled') || $this.hasClass('disabled')) {
       return;
@@ -312,7 +321,14 @@ $(function () {
       else if (data.multiple === "Yes"){
           var boxes = getCheckedBoxesOptions('imageSize');
           for (var i = 0;i<boxes.length;i++){
-            multipleResult[i] = $image.cropper(data.method, boxes[i], data.secondOption);
+            if (document.getElementById('yes').checked){
+              for (var x = 0;x < cropperData.length;x++){
+                dynamicMultiple.push(cropperData[x].cropper(data.method, boxes[i], data.secondOption));
+                console.log(dynamicMultiple);
+              }
+            } else {
+              multipleResult[i] = $image.cropper(data.method, boxes[i], data.secondOption);
+            }
           }
       }
       // grabs the size, converts to canvas
@@ -347,7 +363,12 @@ $(function () {
             allResult = [];
           }
           if (data.multiple === "Yes"){
-            $('#getCroppedCanvasModal').modal().find('.modal-body').html(multipleResult);
+            if (document.getElementById('yes').checked){
+              $('#getCroppedCanvasModal').modal().find('.modal-body').html(dynamicMultiple);
+            } else {
+              $('#getCroppedCanvasModal').modal().find('.modal-body').html(multipleResult);
+            }
+            // $('#getCroppedCanvasModal').modal().find('.modal-body').html(multipleResult);
             // download code
           }
           else {
@@ -446,7 +467,7 @@ $(function () {
 
           $inputImage.val('');
         } else {
-          window.alert('Please choose an image file.');
+          swal('Whoops!','Please choose an image file','error');
         }
       }
     });

@@ -7,10 +7,14 @@
   <meta name="description" content="The CCQ Image Cropping Tool">
   <meta name="keywords" content="HTML, CSS, JS, JavaScript, jQuery plugin, image cropping, image crop, image move, image zoom, image rotate, image scale, front-end, frontend, web development">
   <meta name="author" content="CCQ Digital">
+
+  <link rel='shortcut icon' type='image/x-icon' href='img/favicon.ico' />
+
   <title>CCQ Cropper</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/cropper.min.css">
+  <link rel="stylesheet" href="css/sweetalert.css">
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -19,7 +23,7 @@
   <header class="navbar navbar-static-top docs-header" id="top">
     <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand">Cropper</a>
+        <a class="navbar-brand" href="javascript:window.location.reload();">Cropper</a>
         <a class="navbar-brand helpButton">Help</a>
       </div>
     </div>
@@ -28,7 +32,7 @@
   <!-- Jumbotron -->
   <div class="jumbotron docs-jumbotron">
     <div class="container">
-      <h1>CCQ Image Cropper</h1>
+      <h1>Image Cropper</h1>
           <h2>Cropping Options</h2>
     </div>
     <div style="display:flex;">
@@ -36,7 +40,7 @@
         <form>
           <p class="lead">Multiple Images</p>
           <input type="radio" name="dynamic" id="yes" value="Yes"> Yes <br />
-          <input type="radio" name="dynamic" id="no" value="NO" checked> No
+          <input type="radio" name="dynamic" id="no" value="No" checked> No
         </form>
       </div>
       <div class="container">
@@ -57,6 +61,10 @@
           <label class="checkbox-inline">
             <input type="checkbox" name="dynamicOptions" class="dynamicOptions" value="2:3" data-number="five" data-ratio=0.666666666666666666666 disabled>
             2 : 3
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" name="dynamicOptions" class="dynamicOptions" value="Free" data-number="six" data-ratio=NaN disabled>
+            Free
           </label>
         </form>
       </div>
@@ -81,6 +89,7 @@
 
         <!-- Data - Crop Information -->
         <div class="docs-data">
+          <h2>Image Information</h2>
           <div class="input-group input-group-sm">
             <label class="input-group-addon" for="dataX">X</label>
             <input type="text" class="form-control" id="dataX" placeholder="x">
@@ -107,11 +116,11 @@
             <span class="input-group-addon">deg</span>
           </div>
           <div class="input-group input-group-sm">
-            <label class="input-group-addon" for="dataScaleX">ScaleX</label>
+            <label class="input-group-addon" for="dataScaleX">Horizontal</label>
             <input type="text" class="form-control" id="dataScaleX" placeholder="scaleX">
           </div>
           <div class="input-group input-group-sm">
-            <label class="input-group-addon" for="dataScaleY">ScaleY</label>
+            <label class="input-group-addon" for="dataScaleY">Vertical</label>
             <input type="text" class="form-control" id="dataScaleY" placeholder="scaleY">
           </div>
         </div>
@@ -134,7 +143,7 @@
           </button>
           <label class="btn btn-primary btn-upload" for="inputImage" title="Upload image file">
             <input type="file" class="sr-only" id="inputImage" name="file" accept="image/*">
-            <span class="docs-tooltip" data-toggle="tooltip" title="Import image with Blob URLs">
+            <span class="docs-tooltip" data-toggle="tooltip" title="Upload New Image">
               <span class="fa fa-upload"></span>
             </span>
           </label>
@@ -181,12 +190,12 @@
         <!-- Buttons - Rotate Image -->
         <div class="btn-group">
           <button type="button" class="btn btn-primary" data-method="rotate" data-option="-45" title="Rotate Left">
-            <span class="docs-tooltip" data-toggle="tooltip" title="Rotate Left 45º">
+            <span class="docs-tooltip" data-toggle="tooltip" title="Rotate Image Left 45º">
               <span class="fa fa-rotate-left"></span>
             </span>
           </button>
           <button type="button" class="btn btn-primary" data-method="rotate" data-option="45" title="Rotate Right">
-            <span class="docs-tooltip" data-toggle="tooltip" title="Rotate Right 45º">
+            <span class="docs-tooltip" data-toggle="tooltip" title="Rotate Image Right 45º">
               <span class="fa fa-rotate-right"></span>
             </span>
           </button>
@@ -206,45 +215,6 @@
           </button>
         </div>
 
-        <div class="btn-group" style="display:none;">
-          <button type="button" class="btn btn-primary" data-method="crop" title="Crop">
-            <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;crop&quot;)">
-              <span class="fa fa-check"></span>
-            </span>
-          </button>
-          <button type="button" class="btn btn-primary" data-method="clear" title="Clear">
-            <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;clear&quot;)">
-              <span class="fa fa-remove"></span>
-            </span>
-          </button>
-        </div>
-
-        <div class="btn-group" style="display:none;">
-          <button type="button" class="btn btn-primary" data-method="disable" title="Disable">
-            <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;disable&quot;)">
-              <span class="fa fa-lock"></span>
-            </span>
-          </button>
-          <button type="button" class="btn btn-primary" data-method="enable" title="Enable">
-            <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;enable&quot;)">
-              <span class="fa fa-unlock"></span>
-            </span>
-          </button>
-        </div>
-
-        <div class="btn-group" style="display:none;">
-          <button type="button" class="btn btn-primary" data-method="reset" title="Reset">
-            <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;reset&quot;)">
-              <span class="fa fa-refresh"></span>
-            </span>
-          </button>
-          <button type="button" class="btn btn-primary" data-method="destroy" title="Destroy">
-            <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;destroy&quot;)">
-              <span class="fa fa-power-off"></span>
-            </span>
-          </button>
-        </div>
-
         <!-- Buttons - Crop Images -->
         <div class="btn-group btn-group-crop">
           <button type="button" class="btn btn-primary" data-method="getCroppedCanvas">
@@ -257,12 +227,12 @@
         <!-- Buttons - Crop Multiple Images -->
         <div class="btn-group multiCrop">
           <button type="button" class="btn btn-primary" data-method="getCroppedCanvas" data-multiple="many">
-            <span class="docs-tooltip" data-toggle="tooltip" title="Crop Images">
+            <span class="docs-tooltip" data-toggle="tooltip" title="Save Image">
               Save Image
             </span>
           </button>
           <button type="button" class="btn btn-primary" data-method="getCroppedCanvas" data-multiple="all">
-            <span class="docs-tooltip" data-toggle="tooltip" title="Crop Images">
+            <span class="docs-tooltip" data-toggle="tooltip" title="Crop Saved Images">
               Crop All
             </span>
           </button>
@@ -276,62 +246,81 @@
             </span>
           </button>
           <button type="button" class="btn btn-primary dropdown-toggle" id="imageSizes" data-toggle="dropdown" aria-expanded="true">
+            <span class="docs-tooltip" data-toggle="tooltip" title="Image Sizes">
             Image Sizes
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" role="menu" aria-labelledby="toggleOptions">
             <li role="presentation">
+              <p class="sizesHeading">Website Images</p>
+            </li>
+            <li role="presentation">
               <label class="checkbox-inline">
-                <input type="checkbox" name="imageSize" value="feature Image" checked data-option="{ &quot;width&quot;: 572, &quot;height&quot;: 150 }">
+                <input type="checkbox" name="imageSize" value="feature Image" data-option="{ &quot;width&quot;: 572, &quot;height&quot;: 150 }">
                 Small Feature Image - 572&times;150
               </label>
             </li>
             <li role="presentation">
               <label class="checkbox-inline">
-                <input type="checkbox" name="imageSize" value="email Image" checked data-option="{ &quot;width&quot;: 273, &quot;height&quot;: 227 }">
+                <input type="checkbox" name="imageSize" value="MREC Image" data-option="{ &quot;width&quot;: 273, &quot;height&quot;: 227 }">
                 MREC Image - 273&times;227
               </label>
             </li>
             <li role="presentation">
               <label class="checkbox-inline">
-                <input type="checkbox" name="imageSize" value="email Image" checked data-option="{ &quot;width&quot;: 800, &quot;height&quot;: 210 }">
+                <input type="checkbox" name="imageSize" value="medium feature Image" data-option="{ &quot;width&quot;: 800, &quot;height&quot;: 210 }">
                 Medium Feature Image - 800&times;210
               </label>
             </li>
             <li role="presentation">
               <label class="checkbox-inline">
-                <input type="checkbox" name="imageSize" value="email Image" checked data-option="{ &quot;width&quot;: 1200, &quot;height&quot;: 420 }">
+                <input type="checkbox" name="imageSize" value="homepage slideshow Image" data-option="{ &quot;width&quot;: 1200, &quot;height&quot;: 420 }">
                 Homepage Sildeshow Image - 1200&times;420
               </label>
             </li>
             <li role="presentation">
               <label class="checkbox-inline">
-                <input type="checkbox" name="imageSize" value="email Image" checked data-option="{ &quot;width&quot;: 390, &quot;height&quot;: 155 }">
+                <input type="checkbox" name="imageSize" value="focus zone Image" data-option="{ &quot;width&quot;: 390, &quot;height&quot;: 155 }">
                 Focus Zone Image - 390&times;155
               </label>
             </li>
             <li role="presentation">
               <label class="checkbox-inline">
-                <input type="checkbox" name="imageSize" value="email Image" checked data-option="{ &quot;width&quot;: 572, &quot;height&quot;: 150 }">
+                <input type="checkbox" name="imageSize" value="news/whats on Image" data-option="{ &quot;width&quot;: 572, &quot;height&quot;: 150 }">
                 Latest News/What's On Image - 572&times;150
               </label>
             </li>
             <li role="presentation">
               <label class="checkbox-inline">
-                <input type="checkbox" name="imageSize" value="email Image" checked data-option="{ &quot;width&quot;: 870, &quot;height&quot;: 230 }">
+                <input type="checkbox" name="imageSize" value="large feature Image" data-option="{ &quot;width&quot;: 870, &quot;height&quot;: 230 }">
                 Large Feature Image - 870&times;230
               </label>
             </li>
             <li role="presentation">
               <label class="checkbox-inline">
-                <input type="checkbox" name="imageSize" value="email Image" checked data-option="{ &quot;width&quot;: 270, &quot;height&quot;: 230 }">
+                <input type="checkbox" name="imageSize" value="support Image" data-option="{ &quot;width&quot;: 270, &quot;height&quot;: 230 }">
                 Support Image - 270&times;230
               </label>
             </li>
             <li role="presentation">
               <label class="checkbox-inline">
-                <input type="checkbox" name="imageSize" value="email Image" checked data-option="{ &quot;width&quot;: 800, &quot;height&quot;: 370 }">
+                <input type="checkbox" name="imageSize" value="event Image" data-option="{ &quot;width&quot;: 800, &quot;height&quot;: 370 }">
                 Event Image - 800&times;370
+              </label>
+            </li>
+            <li role="presentation">
+              <p class="sizesHeading">Email Images</p>
+            </li>
+            <li role="presentation">
+              <label class="checkbox-inline">
+                <input type="checkbox" name="imageSize" value="full width Image" data-option="{ &quot;width&quot;: 580, &quot;height&quot;: 190 }">
+                Full Width Image - 580&times;190
+              </label>
+            </li>
+            <li role="presentation">
+              <label class="checkbox-inline">
+                <input type="checkbox" name="imageSize" value="half width Image" data-option="{ &quot;width&quot;: 290, &quot;height&quot;: 150 }">
+                Half Width Image - 290&times;150
               </label>
             </li>
           </ul>
@@ -366,7 +355,30 @@
               <div class="modal-body help-body">
                 <h1>Hi There!</h1>
                 <h3>What can we help you with</h3>
+                <br>
                 <p><span class="singleImage helpOption">Single Image</span> <span class="multipleImages helpOption">Multiple Images</span></p>
+                <div id="singleHelp" class="helpInfo" style="display:none;">
+                  <h2>Crop canvas</h2>
+                  <p >Crops what is currently selected in the display</p>
+                  <h2>Save Image</h2>
+                  <p>Saves what is in the display into memory</p>
+                  <h2>Crop All</h2>
+                  <p>Crops all images that have been saved into memory</p>
+                  <h2>Image Sizes</h2>
+                  <p>Select which sizes you want to crop too</p>
+                  <h2>Crop Images</h2>
+                  <p>Crops what is in the display into the sizes selected</p>
+                  <p><strong>NOTE:</strong> if the height of the display is more than the selected size, the width will be match to the selected and the height will scale</p>
+                </div>
+                <div id="multiHelp" class="helpInfo" style="display:none;">
+                  <h2>Crop canvas</h2>
+                  <p>Crops what is selected in each of the displays</p>
+                  <h2>Image Sizes</h2>
+                  <p>Select which sizes you want to crop each of the ratio's too</p>
+                  <h2>Crop Images</h2>
+                  <p>Crops what is displayed in each ratio into the sizes selected</p>
+                  <p><strong>NOTE:</strong> if the height of the display is more than the selected size, the width will be match to the selected and the height will scale</p>
+                </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -375,65 +387,6 @@
           </div>
         </div><!-- /.modal -->
 
-
-        <div style="display:none;">
-          <button type="button" class="btn btn-primary" data-method="getData" data-option data-target="#putData">
-            <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;getData&quot;)">
-              Get Data
-            </span>
-          </button>
-          <button type="button" class="btn btn-primary" data-method="setData" data-target="#putData">
-            <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;setData&quot;, data)">
-              Set Data
-            </span>
-          </button>
-          <button type="button" class="btn btn-primary" data-method="getContainerData" data-option data-target="#putData">
-            <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;getContainerData&quot;)">
-              Get Container Data
-            </span>
-          </button>
-          <button type="button" class="btn btn-primary" data-method="getImageData" data-option data-target="#putData">
-            <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;getImageData&quot;)">
-              Get Image Data
-            </span>
-          </button>
-          <button type="button" class="btn btn-primary" data-method="getCanvasData" data-option data-target="#putData">
-            <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;getCanvasData&quot;)">
-              Get Canvas Data
-            </span>
-          </button>
-          <button type="button" class="btn btn-primary" data-method="setCanvasData" data-target="#putData">
-            <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;setCanvasData&quot;, data)">
-              Set Canvas Data
-            </span>
-          </button>
-          <button type="button" class="btn btn-primary" data-method="getCropBoxData" data-option data-target="#putData">
-            <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;getCropBoxData&quot;)">
-              Get Crop Box Data
-            </span>
-          </button>
-          <button type="button" class="btn btn-primary" data-method="setCropBoxData" data-target="#putData">
-            <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;setCropBoxData&quot;, data)">
-              Set Crop Box Data
-            </span>
-          </button>
-          <button type="button" class="btn btn-primary" data-method="moveTo" data-option="0">
-            <span class="docs-tooltip" data-toggle="tooltip" title="cropper.moveTo(0)">
-              0,0
-            </span>
-          </button>
-          <button type="button" class="btn btn-primary" data-method="zoomTo" data-option="1">
-            <span class="docs-tooltip" data-toggle="tooltip" title="cropper.zoomTo(1)">
-              100%
-            </span>
-          </button>
-          <button type="button" class="btn btn-primary" data-method="rotateTo" data-option="180">
-            <span class="docs-tooltip" data-toggle="tooltip" title="cropper.rotateTo(180)">
-              180°
-            </span>
-          </button>
-          <input type="text" class="form-control" id="putData" placeholder="Get data to here or set data with this value">
-        </div>
 
       </div><!-- /.docs-buttons -->
 
@@ -472,157 +425,7 @@
           </label>
         </div>
 
-        <div class="btn-group btn-group-justified" data-toggle="buttons" style="display:none;">
-          <label class="btn btn-primary active">
-            <input type="radio" class="sr-only" id="viewMode0" name="viewMode" value="0" checked>
-            <span class="docs-tooltip" data-toggle="tooltip" title="View Mode 0">
-              VM0
-            </span>
-          </label>
-          <label class="btn btn-primary">
-            <input type="radio" class="sr-only" id="viewMode1" name="viewMode" value="1">
-            <span class="docs-tooltip" data-toggle="tooltip" title="View Mode 1">
-              VM1
-            </span>
-          </label>
-          <label class="btn btn-primary">
-            <input type="radio" class="sr-only" id="viewMode2" name="viewMode" value="2">
-            <span class="docs-tooltip" data-toggle="tooltip" title="View Mode 2">
-              VM2
-            </span>
-          </label>
-          <label class="btn btn-primary">
-            <input type="radio" class="sr-only" id="viewMode3" name="viewMode" value="3">
-            <span class="docs-tooltip" data-toggle="tooltip" title="View Mode 3">
-              VM3
-            </span>
-          </label>
-        </div>
 
-        <div class="dropdown dropup docs-options" style="display:none;">
-          <button type="button" class="btn btn-primary btn-block dropdown-toggle" id="toggleOptions" data-toggle="dropdown" aria-expanded="true">
-            Toggle Options
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="toggleOptions" role="menu">
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="responsive" checked>
-                responsive
-              </label>
-            </li>
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="restore" checked>
-                restore
-              </label>
-            </li>
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="checkCrossOrigin" checked>
-                checkCrossOrigin
-              </label>
-            </li>
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="checkOrientation" checked>
-                checkOrientation
-              </label>
-            </li>
-
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="modal" checked>
-                modal
-              </label>
-            </li>
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="guides" checked>
-                guides
-              </label>
-            </li>
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="center" checked>
-                center
-              </label>
-            </li>
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="highlight" checked>
-                highlight
-              </label>
-            </li>
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="background" checked>
-                background
-              </label>
-            </li>
-
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="autoCrop" checked>
-                autoCrop
-              </label>
-            </li>
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="movable" checked>
-                movable
-              </label>
-            </li>
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="rotatable" checked>
-                rotatable
-              </label>
-            </li>
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="scalable" checked>
-                scalable
-              </label>
-            </li>
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="zoomable" checked>
-                zoomable
-              </label>
-            </li>
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="zoomOnTouch" checked>
-                zoomOnTouch
-              </label>
-            </li>
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="zoomOnWheel" checked>
-                zoomOnWheel
-              </label>
-            </li>
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="cropBoxMovable" checked>
-                cropBoxMovable
-              </label>
-            </li>
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="cropBoxResizable" checked>
-                cropBoxResizable
-              </label>
-            </li>
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="toggleDragModeOnDblclick" checked>
-                toggleDragModeOnDblclick
-              </label>
-            </li>
-          </ul>
-        </div><!-- /.dropdown -->
       </div><!-- /.docs-toggles -->
     </div>
   </div>
@@ -636,7 +439,9 @@
 
   <!-- Scripts -->
   <script src="js/jquery.min.js"></script>
+  <script src="js/jquery.sticky.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  <script src="js/sweetalert.min.js"></script>
   <script src="js/cropper.js"></script>
   <script src="js/main.js"></script>
 </body>

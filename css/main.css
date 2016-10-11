@@ -34,10 +34,52 @@
 }
 
 .lead {
-  font-weight: 300 !important;
+  font-weight: 400;
 }
 
 
+/* Size Options */
+
+.sizes {
+  margin-bottom: 10px;
+}
+
+.sizeUse {
+  font-weight: 400;
+}
+
+.sizeHeading {
+  padding: 10px 0;
+  width: 100%;
+}
+
+.sizeHeading h3 {
+  width:185px;
+  padding-right:40px;
+  padding: 10px 0;
+}
+
+.sizeOptions {
+  padding: 5px 5px;
+  background: #ccc;
+}
+
+.sizeOptions:hover {
+  background: #adadad;
+}
+
+.sizeOptions:nth-of-type(2n) {
+  background: #eee;
+}
+
+.sizeOptions:nth-of-type(2n):hover {
+  background: #ddd;
+}
+
+.checkbox {
+  font-weight: 300 !important;
+  margin-left:20px;
+}
 
 
 
@@ -79,17 +121,54 @@ body {
   color: #fff;
 }
 
-.docs-jumbotron .version {
-  font-size: 14px;
-  color: #fff;
-  filter: alpha(opacity=50);
-  opacity: 0.5;
+.logo {
+  width:300px;
+  height:127px;
 }
 
-
 /* Content */
-.img-container:nth-of-type(2n + 3){
-  margin-left: 6%;
+
+/* Sizes */
+
+.sizeInstructions {
+  font-weight: 300;
+}
+
+/* Upload */
+
+.uploadArea {
+  padding: 10px;
+  background: #ccc;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.uploadBtn {
+  margin-right: 10px;
+  height: 35px;
+  margin-top: 3px;
+} 
+
+.uploadInstructions {
+  width:85%;
+  margin: 0 10px;
+  font-weight: 300;
+}
+
+/* Export */
+
+.exportInstructions {
+  font-weight: 300;
+}
+
+/* Cropping Area */
+
+img {
+  max-width:100%;
+}
+
+.img-container {
+  max-width:720px;
 }
 
 .cropperImg {
@@ -97,9 +176,8 @@ body {
 }
 
 .img-container,
-.img-preview {
+.img-preview, .dynamic-preview {
   background-color: #f7f7f7;
-  width: 100%;
   text-align: center;
 }
 
@@ -107,6 +185,16 @@ body {
   min-height: 200px;
   max-height: 516px;
   margin-bottom: 20px;
+  margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+  .uploadBtn {
+    margin-top: 20px;
+  }
+  .uploadInstructions{
+    width: 70%;
+  }
 }
 
 @media (min-width: 768px) {
@@ -123,36 +211,20 @@ body {
   margin-right: -15px;
 }
 
-.img-preview {
-  float: left;
+.img-preview, .dynamic-preview {
   margin-right: 10px;
   margin-bottom: 10px;
   overflow: hidden;
+  display:block;
 }
 
-.img-preview > img {
+.img-preview > img, .dynamic-preview > img {
   max-width: 100%;
 }
 
 .preview-lg {
-  width: 263px;
-  height: 148px;
-}
-
-.preview-md {
-  width: 139px;
-  height: 78px;
-}
-
-.preview-sm {
-  width: 69px;
-  height: 39px;
-}
-
-.preview-xs {
-  width: 35px;
-  height: 20px;
-  margin-right: 0;
+  width: 400px;
+  height: 224px;
 }
 
 .docs-data > .input-group {

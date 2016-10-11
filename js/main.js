@@ -2,202 +2,148 @@ $(function () {
 
   'use strict';
 
-  $(".navbar").sticky({topSpacing:0});
-
-  function getCheckedBoxesOptions(chkboxName) {
-    var checkboxes = document.getElementsByName(chkboxName);
-    var checkboxesChecked = [];
-    // loop over them all
-    for (var i=0; i<checkboxes.length; i++) {
-       // And stick the checked ones onto an array...
-       if (checkboxes[i].checked) {
-          checkboxesChecked.push($(checkboxes[i]).data('option'));
-       }
-    }
-    // Return the array if it is non-empty, or null
-    return checkboxesChecked.length > 0 ? checkboxesChecked : null;
-  }
-
-  function addCropperHTML(number){
+  /**
+   * Appends cropper html into the page
+   * @param {string} number
+   * @param {int} width
+   * @param {int} height
+   */
+  function addCropperHTMLSize(number, width, height){
     if (number){
-      $('#croppingArea').append('<div id="' + number + '" class="img-container ' + number + ' cropperImg dynamicImages"><img id="image" src="img/cat-pouncing.jpg" alt="Picture"></div>');
+      $('#croppingArea').append('<div id="' + number + '" class="img-w-preview dynamicImages" style="display:flex;flex-wrap:wrap;"><div class="sizeHeading"><h2>' + width + ' &times; ' + height + ' px</h2></div><div class="img-container ' + number + '"><img id="image" src="img/cat-pouncing.jpg" alt="Picture"></div><div class="dynamic-preview img-preview-' + number + ' preview-lg"></div></div>');
     }
   }
 
-  function getCheckedBoxesDynamic(chkboxName) {
+  /**
+   * Searchs through selected size options
+   * @param {string} chkboxName
+   * @returns {string array} checkboxesNumber
+   * @returns {int array} checkBoxesUpper
+   * @returns {int array} checkBoxesLower
+   * @returns {string array} cropperObjects
+   */
+  function getCheckBoxesSize(chkboxName) {
     var checkboxes = document.getElementsByName(chkboxName);
     var checkboxesNumber = [];
-    var checkBoxesRatio = [];
+    var checkBoxesUpper = [];
+    var checkBoxesLower = [];
     var cropperObjects = [];
     // loop over them all
     for (var i=0; i<checkboxes.length; i++) {
        // And stick the checked ones onto an array...
        if (checkboxes[i].checked) {
           checkboxesNumber.push( $( checkboxes[i] ).data( 'number' ) );
-          checkBoxesRatio.push( $( checkboxes[i] ).data( 'ratio' ) );
+          checkBoxesUpper.push( $( checkboxes[i] ).data( 'upper' ) );
+          checkBoxesLower.push( $( checkboxes[i] ).data( 'lower' ) );
           cropperObjects.push( '.' + $( checkboxes[i] ).data( 'number' ) + ' > img' );
        }
     }
     // Return the arrays
     return [
       checkboxesNumber,
-      checkBoxesRatio,
+      checkBoxesUpper,
+      checkBoxesLower,
       cropperObjects
       ]
   }
 
-  // checks if in dynamic mode
-  $('input[type="radio"]').change(function(){
-    if(document.getElementById('no').checked) {
-      $('.dynamicOptions').attr('disabled',true);
-      $('.dynamicButton').attr('disabled',true);
-      $('.img-container').show();
-      $('.aspectRatio').show();
-      $('.dynamicImages').hide();
-      $('.select-message').remove();
-      $('.multiCrop').show();
-    } else {
-      $('.dynamicOptions').attr('disabled',false);
-      $('.dynamicButton').attr('disabled',false);
-      $('.img-container').hide();
-      $('.aspectRatio').hide();
-      $('.dynamicImages').show();
-      $('.multiCrop').hide();
-      if ($(".dynamicImages").length < 1){
-          $('#croppingArea').append('<h2 class="select-message">Please select an aspect ratio</h2>');
-      } else {
-        $('.select-message').remove();
-      }
-    }
-  });
-
+  // opens the helper Modal
   $('.helpButton').click(function(){
     $('#helpModal').modal();
   });
-  $('.singleImage').click(function(){
-    $('#singleHelp').fadeIn(500);
-    $('#multiHelp').hide();
-  });
-  $('.multipleImages').click(function(){
-    $('#singleHelp').hide();
-    $('#multiHelp').fadeIn(500);
-  });
 
   // dynamic variables
-  var imageRatio;
-  var cropperData = [];
-  var cropperOptions = [];
-  var ratioList = ['two','three','four','five','six'];
+  var imageSize;
+  var cropperSizeData = [];
+  var cropperSizeOptions = [];
+  var ratioList = ['one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve'];
 
-  // checks for new aspect ratio and adds it to html
-  $('input[name="dynamicOptions"]').change(function(){
+  // checks for new sizes and adds it to html
+  $('input[name="dynamicSizes"]').change(function(){
+
     var checking = [];
-    imageRatio = getCheckedBoxesDynamic('dynamicOptions');
+    imageSize = getCheckBoxesSize('dynamicSizes');
 
-    for (var i = 0;i < imageRatio[0].length;i++){
-
-      if ($('.'+imageRatio[0][i]).length<1){
-        addCropperHTML(imageRatio[0][i]);
+    // checks if size already on screen
+    for (var i = 0;i < imageSize[0].length;i++){
+      if ($('.'+imageSize[0][i]).length<1){
+        addCropperHTMLSize(imageSize[0][i], imageSize[1][i],imageSize[2][i]);
       } else  {
-        console.log("element " + imageRatio[0][i] + " exists");
+        console.log("element number " + imageSize[0][i] + " exists");
       }
-
-      for (var x = 0;x < ratioList.length;x++){
-        if (document.getElementById(ratioList[x])){
-          if (checking.includes(ratioList[x])){
-            console.log('already in array');
-          } else {
-            checking.push(ratioList[x]);
-          }
-        }
-      }
-
-      for (var t = 0;t <checking.length;t++){
-        if(!imageRatio[0].includes(checking[t])){
-          $('#'+checking[t]).remove();
-        }
-      }
-
     }
 
-    if (imageRatio[0].length == 0){
+    // checks for on screen sizes
+    for (var x = 0;x < ratioList.length;x++){
+      if (document.getElementById(ratioList[x])){
+        if (checking.includes(ratioList[x])){
+          console.log('already in array');
+        } else {
+          checking.push(ratioList[x]);
+        }
+      }
+    }
+
+    // removes sizes if no longer selected
+    for (var t = 0;t <checking.length;t++){
+      if(!imageSize[0].includes(checking[t])){
+        $('#'+checking[t]).remove();
+      }
+    }
+
+    // removes all remaining sizes if none selected
+    if (imageSize[0].length == 0){
       $('.dynamicImages').remove();
     }
 
-
+    // checks if there are any cropper objects. Appends Select message if false
     if ($(".dynamicImages").length < 1){
-      $('#croppingArea').append('<h2 class="select-message">Please Select an aspect ratio</h2>');
+      $('#croppingArea').append('<h2 class="select-message">Please select an image size</h2>');
     } else {
       $('.select-message').remove();
     }
 
+
   });
 
-  $('input[name="dynamicOptions"]').change(function(){
-    for (var i = 0;i<imageRatio[0].length;i++){
-      cropperData[i] = $(imageRatio[2][i]);
-      cropperOptions[i] = {
-          aspectRatio: imageRatio[1][i],
-          preview: '.img-preview',
-          crop: function (e) {
-            $dataX.val(Math.round(e.x));
-            $dataY.val(Math.round(e.y));
-            $dataHeight.val(Math.round(e.height));
-            $dataWidth.val(Math.round(e.width));
-            $dataRotate.val(e.rotate);
-            $dataScaleX.val(e.scaleX);
-            $dataScaleY.val(e.scaleY);
-          }
-        };
-      cropperData[i].on({
-        'build.cropper': function (e) {
-          console.log(e.type);
-        },
-        'built.cropper': function (e) {
-          console.log(e.type);
-        },
-        'cropstart.cropper': function (e) {
-          console.log(e.type, e.action);
-        },
-        'cropmove.cropper': function (e) {
-          console.log(e.type, e.action);
-        },
-        'cropend.cropper': function (e) {
-          console.log(e.type, e.action);
-        },
-        'crop.cropper': function (e) {
-          console.log(e.type, e.x, e.y, e.width, e.height, e.rotate, e.scaleX, e.scaleY);
-        },
-        'zoom.cropper': function (e) {
-          console.log(e.type, e.ratio);
-        }
-      }).cropper(cropperOptions[i]);
+  // adds cropper objects onto the html
+  $('input[name="dynamicSizes"]').change(function(){
+    for (var i = 0;i < imageSize[0].length;i++) {
+      cropperSizeData[i] = $(imageSize[3][i]);
+      cropperSizeOptions[i] = {
+        aspectRatio: imageSize[1][i] / imageSize[2][i],
+        preview: '.img-preview-' + imageSize[0][i],
+        minCropBoxWidth: imageSize[1][i],
+        minCropBoxHeight: imageSize[2][i],
+        dragMode: 'move',
+        // cropBoxMovable: false,
+        cropBoxResizable: false
+      }
+      // initialises cropper objects
+      cropperSizeData[i].cropper(cropperSizeOptions[i]);
+
+
+      if (blobURL){
+        var new_blobURL = URL.createObjectURL(file);
+        cropperSizeData[i].one('built.cropper', function () {
+        }).cropper('reset').cropper('replace', new_blobURL);
+      }
 
     }
+    
+    
   });
 
-  var console = window.console || { log: function () {} };
+  // creates the initial cropper object
   var $image = $('.one > img');
   var $download = $('#download');
-  var $dataX = $('#dataX');
-  var $dataY = $('#dataY');
-  var $dataHeight = $('#dataHeight');
-  var $dataWidth = $('#dataWidth');
-  var $dataRotate = $('#dataRotate');
-  var $dataScaleX = $('#dataScaleX');
-  var $dataScaleY = $('#dataScaleY');
   var options = {
-        aspectRatio: 16 / 9,
-        preview: '.img-preview',
-        crop: function (e) {
-          $dataX.val(Math.round(e.x));
-          $dataY.val(Math.round(e.y));
-          $dataHeight.val(Math.round(e.height));
-          $dataWidth.val(Math.round(e.width));
-          $dataRotate.val(e.rotate);
-          $dataScaleX.val(e.scaleX);
-          $dataScaleY.val(e.scaleY);
-        }
+        aspectRatio: 572 / 150,
+        preview: '.img-preview-one',
+        minCropBoxWidth: 572,
+        dragMode: 'move',
+        cropBoxResizable: false,
+        // cropBoxMovable: false
       };
 
 
@@ -205,30 +151,8 @@ $(function () {
   $('[data-toggle="tooltip"]').tooltip();
 
 
-  // Cropper
-  $image.on({
-    'build.cropper': function (e) {
-      console.log(e.type);
-    },
-    'built.cropper': function (e) {
-      console.log(e.type);
-    },
-    'cropstart.cropper': function (e) {
-      console.log(e.type, e.action);
-    },
-    'cropmove.cropper': function (e) {
-      console.log(e.type, e.action);
-    },
-    'cropend.cropper': function (e) {
-      console.log(e.type, e.action);
-    },
-    'crop.cropper': function (e) {
-      console.log(e.type, e.x, e.y, e.width, e.height, e.rotate, e.scaleX, e.scaleY);
-    },
-    'zoom.cropper': function (e) {
-      console.log(e.type, e.ratio);
-    }
-  }).cropper(options);
+  // initialises first cropper
+  $image.cropper(options);
 
 
   // Buttons
@@ -285,9 +209,6 @@ $(function () {
     var $target;
     var result;
     var dynamicResult = [];
-    var manyResult;
-    var multipleResult = [];
-    var dynamicMultiple = [];
 
     if ($this.prop('disabled') || $this.hasClass('disabled')) {
       return;
@@ -312,35 +233,12 @@ $(function () {
         $image.cropper('clear');
       }
 
-      // adds image canvas to array on click or button
-      if (data.multiple === "many" || data.multiple === "all"){
-        manyResult = $image.cropper(data.method, data.option, data.secondOption);
-        allResult.push(manyResult);
-      }
-      // checks image size list, grabs sizes, makes selected image scale to that size
-      else if (data.multiple === "Yes"){
-          var boxes = getCheckedBoxesOptions('imageSize');
-          for (var i = 0;i<boxes.length;i++){
-            if (document.getElementById('yes').checked){
-              for (var x = 0;x < cropperData.length;x++){
-                dynamicMultiple.push(cropperData[x].cropper(data.method, boxes[i], data.secondOption));
-                console.log(dynamicMultiple);
-              }
-            } else {
-              multipleResult[i] = $image.cropper(data.method, boxes[i], data.secondOption);
-            }
-          }
-      }
-      // grabs the size, converts to canvas
-      else {
-
-        if (document.getElementById('yes').checked){
-          for (var i = 0;i<imageRatio[0].length;i++){
-            dynamicResult[i] = cropperData[i].cropper(data.method, data.option, data.secondOption);
-          }
-        } else {
-          result = $image.cropper(data.method, data.option, data.secondOption);
+      if (imageSize){
+        for (var i = 0;i<imageSize[0].length;i++){
+          dynamicResult.push(cropperSizeData[i].cropper(data.method, data.option, data.secondOption));
         }
+      } else {
+        result = $image.cropper(data.method, data.option, data.secondOption);
       }
 
       if (data.method === 'rotate') {
@@ -354,33 +252,12 @@ $(function () {
           break;
 
         case 'getCroppedCanvas':
-          if (data.multiple === 'many'){
-            $('#getCroppedCanvasModal').stopPropagation();
-          }
-          if (data.multiple === 'all'){
-            $('#getCroppedCanvasModal').modal().find('.modal-body').html(allResult);
-            // download code
-            allResult = [];
-          }
-          if (data.multiple === "Yes"){
-            if (document.getElementById('yes').checked){
-              $('#getCroppedCanvasModal').modal().find('.modal-body').html(dynamicMultiple);
-            } else {
-              $('#getCroppedCanvasModal').modal().find('.modal-body').html(multipleResult);
-            }
-            // $('#getCroppedCanvasModal').modal().find('.modal-body').html(multipleResult);
-            // download code
-          }
-          else {
-            if (document.getElementById('yes').checked){
+
+            if (imageSize){
               $('#getCroppedCanvasModal').modal().find('.modal-body').html(dynamicResult);
             } else {
               $('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
             }
-            // if (!download.disabled) {
-            //   download.href = result.toDataURL('image/jpeg');
-            // }
-          }
 
           break;
       }
@@ -397,47 +274,16 @@ $(function () {
   });
 
 
-  // Keyboard
-  $(document.body).on('keydown', function (e) {
-
-    if (!$image.data('cropper') || this.scrollTop > 300) {
-      return;
-    }
-
-    switch (e.which) {
-      case 37:
-        e.preventDefault();
-        $image.cropper('move', -1, 0);
-        break;
-
-      case 38:
-        e.preventDefault();
-        $image.cropper('move', 0, -1);
-        break;
-
-      case 39:
-        e.preventDefault();
-        $image.cropper('move', 1, 0);
-        break;
-
-      case 40:
-        e.preventDefault();
-        $image.cropper('move', 0, 1);
-        break;
-    }
-
-  });
-
-
   // Import image
   var $inputImage = $('#inputImage');
   var URL = window.URL || window.webkitURL;
   var blobURL;
+  var files;
+  var file;
 
   if (URL) {
     $inputImage.change(function () {
-      var files = this.files;
-      var file;
+      files = this.files;
 
       if (!$image.data('cropper')) {
         return;
@@ -448,22 +294,21 @@ $(function () {
 
         if (/^image\/\w+$/.test(file.type)) {
           blobURL = URL.createObjectURL(file);
+            if (imageSize){
+              for (var i = 0;i<imageSize[0].length;i++){
+                cropperSizeData[i].one('built.cropper', function () {
 
-          if (document.getElementById('yes').checked){
-            for (var i = 0;i<imageRatio[0].length;i++){
-              cropperData[i].one('built.cropper', function () {
+                  // Revoke when load complete
+                  URL.revokeObjectURL(blobURL);
+                }).cropper('replace', blobURL);
+              }
+            } else {
+              $image.one('built.cropper', function () {
 
                 // Revoke when load complete
                 URL.revokeObjectURL(blobURL);
-              }).cropper('reset').cropper('replace', blobURL);
+              }).cropper('replace', blobURL);
             }
-          } else {
-            $image.one('built.cropper', function () {
-
-              // Revoke when load complete
-              URL.revokeObjectURL(blobURL);
-            }).cropper('reset').cropper('replace', blobURL);
-          }
 
           $inputImage.val('');
         } else {

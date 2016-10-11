@@ -5,12 +5,12 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="The CCQ Image Cropping Tool">
-  <meta name="keywords" content="HTML, CSS, JS, JavaScript, jQuery plugin, image cropping, image crop, image move, image zoom, image rotate, image scale, front-end, frontend, web development">
+  <meta name="keywords" content="HTML, CSS, JavaScript, jQuery plugin, image cropping, image crop, image scale, front-end, frontend, web development">
   <meta name="author" content="CCQ Digital">
 
   <link rel='shortcut icon' type='image/x-icon' href='img/favicon.ico' />
+  <title>CCQ Image Cropper</title>
 
-  <title>CCQ Cropper</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/cropper.min.css">
@@ -24,306 +24,144 @@
     <div class="container">
       <div class="navbar-header">
         <a class="navbar-brand" href="javascript:window.location.reload();">Cropper</a>
-        <a class="navbar-brand helpButton">Help</a>
+        <a class="navbar-brand helpButton">Help</a> 
       </div>
     </div>
   </header>
 
-  <!-- Jumbotron -->
-  <div class="jumbotron docs-jumbotron">
+   <!--Jumbotron -->
+   <div class="jumbotron docs-jumbotron">
     <div class="container">
       <h1>Image Cropper</h1>
-          <h2>Cropping Options</h2>
-    </div>
-    <div style="display:flex;">
-      <div class="container" style="width:30%;margin-left:366px;">
-        <form>
-          <p class="lead">Multiple Images</p>
-          <input type="radio" name="dynamic" id="yes" value="Yes"> Yes <br />
-          <input type="radio" name="dynamic" id="no" value="No" checked> No
-        </form>
-      </div>
-      <div class="container">
-        <form id="options">
-          <p class="lead">Dynamic Options</p>
-          <label class="checkbox-inline">
-            <input type="checkbox" name="dynamicOptions" class="dynamicOptions" value="16:9" data-number="two" data-ratio=1.77777777777777777777 disabled>
-            16 : 9
-          </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" name="dynamicOptions" class="dynamicOptions" value="4:3" data-number="three" data-ratio=1.33333333333333333333 disabled>
-            4 : 3
-          </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" name="dynamicOptions" class="dynamicOptions" value="1:1" data-number="four" data-ratio=1 disabled>
-            1 : 1
-          </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" name="dynamicOptions" class="dynamicOptions" value="2:3" data-number="five" data-ratio=0.666666666666666666666 disabled>
-            2 : 3
-          </label>
-          <label class="checkbox-inline">
-            <input type="checkbox" name="dynamicOptions" class="dynamicOptions" value="Free" data-number="six" data-ratio=NaN disabled>
-            Free
-          </label>
-        </form>
-      </div>
     </div>
   </div>
 
+  <!-- Cropper Sizes -->
+  <div class="container sizes">
+    <form id="options">
+      <h2>Sizes</h2>
+      <p class="sizeInstructions">Cookie cotton candy donut lemon drops cake jelly-o powder. Lemon drops fruitcake bonbon bear claw powder. Croissant tiramisu caramels fruitcake liquorice lollipop toffee halvah halvah. Croissant candy candy canes.</p>
+      <div class="sizeOptions">
+        <label class="checkbox">
+          <input type="checkbox" name="dynamicSizes" class="dynamicSizes" value="572x150" data-number="one" data-upper=572 data-lower=150 checked>
+          572&times;150px &mdash; Small Feature Image
+          <span class="sizeUse">USE:</span> On the website with both left and right sidebars
+        </label>
+      </div>
+      <div class="sizeOptions">
+        <label class="checkbox">
+          <input type="checkbox" name="dynamicSizes" class="dynamicSizes" value="800x210" data-number="two" data-upper=800 data-lower=210>
+          800&times;210px &mdash; Medium Feature Image
+          <span class="sizeUse">USE:</span> As a webpage feature image with no left sidebar
+        </label>
+      </div>
+      <div class="sizeOptions">
+        <label class="checkbox">
+          <input type="checkbox" name="dynamicSizes" class="dynamicSizes" value="870x230" data-number="three" data-upper=870 data-lower=230>
+          870&times;230px &mdash; Large Feature Image
+          <span class="sizeUse">USE:</span> As a webpage feature image with no left sidebar
+        </label>
+      </div>
+      <div class="sizeOptions">
+        <label class="checkbox">
+          <input type="checkbox" name="dynamicSizes" class="dynamicSizes" value="273x227" data-number="four" data-upper=273 data-lower=227>
+          273&times;227px &mdash; MREC Image
+          <span class="sizeUse">USE:</span> As a Promotional Image on the left handside of the website
+        </label>
+      </div>
+      <div class="sizeOptions">
+        <label class="checkbox">
+          <input type="checkbox" name="dynamicSizes" class="dynamicSizes" value="390x155" data-number="five" data-upper=390 data-lower=155>
+          390&times;155px &mdash; Focus Zone Image
+          <span class="sizeUse">USE:</span> On the homepage on the CCQ website under the sliding banner
+        </label>
+      </div>
+      <div class="sizeOptions">
+        <label class="checkbox">
+          <input type="checkbox" name="dynamicSizes" class="dynamicSizes" value="270x230" data-number="six" data-upper=270 data-lower=230>
+          270&times;230px &mdash; Support Image
+          <span class="sizeUse">USE:</span> Within page content on webpages
+        </label>
+      </div>
+      <div class="sizeOptions">
+        <label class="checkbox">
+          <input type="checkbox" name="dynamicSizes" class="dynamicSizes" value="800x370" data-number="seven" data-upper=800 data-lower=370>
+          800&times;370px &mdash; Featured Event Image
+          <span class="sizeUse">USE:</span> As a Featured Event Image
+        </label>
+      </div>
+      <div class="sizeOptions">
+        <label class="checkbox">
+          <input type="checkbox" name="dynamicSizes" class="dynamicSizes" value="520x190" data-number="eight" data-upper=520 data-lower=190>
+          520&times;190px &mdash; EDM Hero Image
+          <span class="sizeUse">USE:</span> A hero image for an EDM 
+        </label>
+      </div>
+      <div class="sizeOptions">
+        <label class="checkbox">
+          <input type="checkbox" name="dynamicSizes" class="dynamicSizes" value="290x150" data-number="nine" data-upper=290 data-lower=150>
+          290&times;150px &mdash; EDM Support Image
+          <span class="sizeUse">USE:</span> A support image for an EDM 
+        </label>
+      </div>
+    </form>
+  </div>
 
-  <!-- Content -->
+  <div class="container">
+    <hr>
+  </div>
+
+  <!-- Upload -->
+  <div class="container">
+    <div class="uploadArea">
+      <label class="btn btn-primary btn-upload uploadBtn" for="inputImage" title="Upload image file">
+        <input type="file" class="sr-only" id="inputImage" name="file" accept="image/*">
+        <span class="docs-tooltip" data-toggle="tooltip" title="Upload New Image">
+          <span class="fa fa-upload"></span> Upload Image
+        </span>
+      </label>
+      <p class="uploadInstructions">Cookie cotton candy donut lemon drops cake jelly-o powder. Lemon drops fruitcake bonbon bear claw powder. Croissant tiramisu caramels fruitcake liquorice lollipop toffee halvah halvah. Croissant candy candy canes.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <hr>
+  </div>
+
+  <!-- Cropper -->
   <div class="container">
     <div class="row">
-      <div id="croppingArea" class="col-md-9" style="display:flex;flex-wrap:wrap;width:75%;">
-        <div class="img-container one">
-          <img id="image" src="img/cat-pouncing.jpg" alt="Picture">
+      <div id="croppingArea" class="col-md-9" style="display:flex;flex-wrap:wrap;width:100%;">
+        <div class="sizeHeading dynamicImages">
+          <h2>572 &times; 150 px</h2>
         </div>
-      </div>
-      <div class="col-md-3">
-        <!-- Image - Previews -->
-        <div class="docs-preview clearfix" style="display:none;">
-          <div class="img-preview preview-lg"></div>
-          <div class="img-preview preview-md"></div>
-        </div>
-
-        <!-- Data - Crop Information -->
-        <div class="docs-data">
-          <h2>Image Information</h2>
-          <div class="input-group input-group-sm">
-            <label class="input-group-addon" for="dataX">X</label>
-            <input type="text" class="form-control" id="dataX" placeholder="x">
-            <span class="input-group-addon">px</span>
+        <div id="one" class="img-w-preview dynamicImages" style="display:flex;flex-wrap:wrap;clear:both;">
+          <div class="img-container one">
+            <img id="image" src="img/cat-pouncing.jpg" alt="Picture">
           </div>
-          <div class="input-group input-group-sm">
-            <label class="input-group-addon" for="dataY">Y</label>
-            <input type="text" class="form-control" id="dataY" placeholder="y">
-            <span class="input-group-addon">px</span>
-          </div>
-          <div class="input-group input-group-sm">
-            <label class="input-group-addon" for="dataWidth">Width</label>
-            <input type="text" class="form-control" id="dataWidth" placeholder="width">
-            <span class="input-group-addon">px</span>
-          </div>
-          <div class="input-group input-group-sm">
-            <label class="input-group-addon" for="dataHeight">Height</label>
-            <input type="text" class="form-control" id="dataHeight" placeholder="height">
-            <span class="input-group-addon">px</span>
-          </div>
-          <div class="input-group input-group-sm">
-            <label class="input-group-addon" for="dataRotate">Rotate</label>
-            <input type="text" class="form-control" id="dataRotate" placeholder="rotate">
-            <span class="input-group-addon">deg</span>
-          </div>
-          <div class="input-group input-group-sm">
-            <label class="input-group-addon" for="dataScaleX">Horizontal</label>
-            <input type="text" class="form-control" id="dataScaleX" placeholder="scaleX">
-          </div>
-          <div class="input-group input-group-sm">
-            <label class="input-group-addon" for="dataScaleY">Vertical</label>
-            <input type="text" class="form-control" id="dataScaleY" placeholder="scaleY">
-          </div>
+          <div class="dynamic-preview img-preview-one preview-lg"></div>
         </div>
       </div>
     </div>
 
+    <hr>
+
     <!-- Buttons - Crop Tools -->
     <div class="row">
+      <div class="container">
+        <p class="exportInstructions">Cookie cotton candy donut lemon drops cake jelly-o powder. Lemon drops fruitcake bonbon bear claw powder. Croissant tiramisu caramels fruitcake liquorice lollipop toffee halvah halvah. Croissant candy candy canes.</p>
+      </div>
+          
       <div class="col-md-9 docs-buttons">
-        <div class="btn-group">
-          <button type="button" class="btn btn-primary" data-method="setDragMode" data-option="move" title="Move">
-            <span class="docs-tooltip" data-toggle="tooltip" title="Move Image/Crop box">
-              <span class="fa fa-arrows"></span>
-            </span>
-          </button>
-          <button type="button" class="btn btn-primary" data-method="setDragMode" data-option="crop" title="Crop">
-            <span class="docs-tooltip" data-toggle="tooltip" title="New Crop Box">
-              <span class="fa fa-crop"></span>
-            </span>
-          </button>
-          <label class="btn btn-primary btn-upload" for="inputImage" title="Upload image file">
-            <input type="file" class="sr-only" id="inputImage" name="file" accept="image/*">
-            <span class="docs-tooltip" data-toggle="tooltip" title="Upload New Image">
-              <span class="fa fa-upload"></span>
-            </span>
-          </label>
-        </div>
 
-        <!-- Buttons - Zoom -->
-        <div class="btn-group">
-          <button type="button" class="btn btn-primary" data-method="zoom" data-option="0.1" title="Zoom In">
-            <span class="docs-tooltip" data-toggle="tooltip" title="Zoom In">
-              <span class="fa fa-search-plus"></span>
-            </span>
-          </button>
-          <button type="button" class="btn btn-primary" data-method="zoom" data-option="-0.1" title="Zoom Out">
-            <span class="docs-tooltip" data-toggle="tooltip" title="Zoom Out">
-              <span class="fa fa-search-minus"></span>
-            </span>
-          </button>
-        </div>
-
-        <!-- Buttons - Moving Image -->
-        <div class="btn-group">
-          <button type="button" class="btn btn-primary" data-method="move" data-option="-10" data-second-option="0" title="Move Left">
-            <span class="docs-tooltip" data-toggle="tooltip" title="Move Image Left">
-              <span class="fa fa-arrow-left"></span>
-            </span>
-          </button>
-          <button type="button" class="btn btn-primary" data-method="move" data-option="10" data-second-option="0" title="Move Right">
-            <span class="docs-tooltip" data-toggle="tooltip" title="Move Image Right">
-              <span class="fa fa-arrow-right"></span>
-            </span>
-          </button>
-          <button type="button" class="btn btn-primary" data-method="move" data-option="0" data-second-option="-10" title="Move Up">
-            <span class="docs-tooltip" data-toggle="tooltip" title="Move Image Up">
-              <span class="fa fa-arrow-up"></span>
-            </span>
-          </button>
-          <button type="button" class="btn btn-primary" data-method="move" data-option="0" data-second-option="10" title="Move Down">
-            <span class="docs-tooltip" data-toggle="tooltip" title="Move Image Down">
-              <span class="fa fa-arrow-down"></span>
-            </span>
-          </button>
-        </div>
-
-        <!-- Buttons - Rotate Image -->
-        <div class="btn-group">
-          <button type="button" class="btn btn-primary" data-method="rotate" data-option="-45" title="Rotate Left">
-            <span class="docs-tooltip" data-toggle="tooltip" title="Rotate Image Left 45º">
-              <span class="fa fa-rotate-left"></span>
-            </span>
-          </button>
-          <button type="button" class="btn btn-primary" data-method="rotate" data-option="45" title="Rotate Right">
-            <span class="docs-tooltip" data-toggle="tooltip" title="Rotate Image Right 45º">
-              <span class="fa fa-rotate-right"></span>
-            </span>
-          </button>
-        </div>
-
-        <!-- Button - Flip Image -->
-        <div class="btn-group">
-          <button type="button" class="btn btn-primary" data-method="scaleX" data-option="-1" title="Flip Horizontal">
-            <span class="docs-tooltip" data-toggle="tooltip" title="Flip Image Horizontal">
-              <span class="fa fa-arrows-h"></span>
-            </span>
-          </button>
-          <button type="button" class="btn btn-primary" data-method="scaleY" data-option="-1" title="Flip Vertical">
-            <span class="docs-tooltip" data-toggle="tooltip" title="Flip Image Vertical">
-              <span class="fa fa-arrows-v"></span>
-            </span>
-          </button>
-        </div>
 
         <!-- Buttons - Crop Images -->
         <div class="btn-group btn-group-crop">
           <button type="button" class="btn btn-primary" data-method="getCroppedCanvas">
-            <span class="docs-tooltip" data-toggle="tooltip" title="Crop Current Canvas">
-              Crop canvas
+            <span class="docs-tooltip" data-toggle="tooltip" title="Export All Images">
+              <span class="fa fa-download"></span> Export All
             </span>
           </button>
-        </div>
-
-        <!-- Buttons - Crop Multiple Images -->
-        <div class="btn-group multiCrop">
-          <button type="button" class="btn btn-primary" data-method="getCroppedCanvas" data-multiple="many">
-            <span class="docs-tooltip" data-toggle="tooltip" title="Save Image">
-              Save Image
-            </span>
-          </button>
-          <button type="button" class="btn btn-primary" data-method="getCroppedCanvas" data-multiple="all">
-            <span class="docs-tooltip" data-toggle="tooltip" title="Crop Saved Images">
-              Crop All
-            </span>
-          </button>
-        </div>
-
-        <!-- Buttons - Crop Images to set Sizes -->
-        <div class="btn-group dropdown dropup docs-options selectCrop">
-          <button type="button" class="btn btn-primary" data-method="getCroppedCanvas" data-multiple="Yes">
-            <span class="docs-tooltip" data-toggle="tooltip" title="Crop Images">
-              Crop Images
-            </span>
-          </button>
-          <button type="button" class="btn btn-primary dropdown-toggle" id="imageSizes" data-toggle="dropdown" aria-expanded="true">
-            <span class="docs-tooltip" data-toggle="tooltip" title="Image Sizes">
-            Image Sizes
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="toggleOptions">
-            <li role="presentation">
-              <p class="sizesHeading">Website Images</p>
-            </li>
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="imageSize" value="feature Image" data-option="{ &quot;width&quot;: 572, &quot;height&quot;: 150 }">
-                Small Feature Image - 572&times;150
-              </label>
-            </li>
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="imageSize" value="MREC Image" data-option="{ &quot;width&quot;: 273, &quot;height&quot;: 227 }">
-                MREC Image - 273&times;227
-              </label>
-            </li>
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="imageSize" value="medium feature Image" data-option="{ &quot;width&quot;: 800, &quot;height&quot;: 210 }">
-                Medium Feature Image - 800&times;210
-              </label>
-            </li>
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="imageSize" value="homepage slideshow Image" data-option="{ &quot;width&quot;: 1200, &quot;height&quot;: 420 }">
-                Homepage Sildeshow Image - 1200&times;420
-              </label>
-            </li>
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="imageSize" value="focus zone Image" data-option="{ &quot;width&quot;: 390, &quot;height&quot;: 155 }">
-                Focus Zone Image - 390&times;155
-              </label>
-            </li>
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="imageSize" value="news/whats on Image" data-option="{ &quot;width&quot;: 572, &quot;height&quot;: 150 }">
-                Latest News/What's On Image - 572&times;150
-              </label>
-            </li>
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="imageSize" value="large feature Image" data-option="{ &quot;width&quot;: 870, &quot;height&quot;: 230 }">
-                Large Feature Image - 870&times;230
-              </label>
-            </li>
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="imageSize" value="support Image" data-option="{ &quot;width&quot;: 270, &quot;height&quot;: 230 }">
-                Support Image - 270&times;230
-              </label>
-            </li>
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="imageSize" value="event Image" data-option="{ &quot;width&quot;: 800, &quot;height&quot;: 370 }">
-                Event Image - 800&times;370
-              </label>
-            </li>
-            <li role="presentation">
-              <p class="sizesHeading">Email Images</p>
-            </li>
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="imageSize" value="full width Image" data-option="{ &quot;width&quot;: 580, &quot;height&quot;: 190 }">
-                Full Width Image - 580&times;190
-              </label>
-            </li>
-            <li role="presentation">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="imageSize" value="half width Image" data-option="{ &quot;width&quot;: 290, &quot;height&quot;: 150 }">
-                Half Width Image - 290&times;150
-              </label>
-            </li>
-          </ul>
         </div>
 
         <!-- Show the cropped image in modal -->
@@ -354,76 +192,26 @@
               </div>
               <div class="modal-body help-body">
                 <h1>Hi There!</h1>
-                <h3>What can we help you with</h3>
-                <br>
-                <p><span class="singleImage helpOption">Single Image</span> <span class="multipleImages helpOption">Multiple Images</span></p>
-                <div id="singleHelp" class="helpInfo" style="display:none;">
-                  <h2>Crop canvas</h2>
-                  <p >Crops what is currently selected in the display</p>
-                  <h2>Save Image</h2>
-                  <p>Saves what is in the display into memory</p>
-                  <h2>Crop All</h2>
-                  <p>Crops all images that have been saved into memory</p>
-                  <h2>Image Sizes</h2>
-                  <p>Select which sizes you want to crop too</p>
-                  <h2>Crop Images</h2>
-                  <p>Crops what is in the display into the sizes selected</p>
-                  <p><strong>NOTE:</strong> if the height of the display is more than the selected size, the width will be match to the selected and the height will scale</p>
-                </div>
-                <div id="multiHelp" class="helpInfo" style="display:none;">
-                  <h2>Crop canvas</h2>
-                  <p>Crops what is selected in each of the displays</p>
-                  <h2>Image Sizes</h2>
-                  <p>Select which sizes you want to crop each of the ratio's too</p>
-                  <h2>Crop Images</h2>
-                  <p>Crops what is displayed in each ratio into the sizes selected</p>
-                  <p><strong>NOTE:</strong> if the height of the display is more than the selected size, the width will be match to the selected and the height will scale</p>
-                </div>
+                
+                <h2>Sizes</h2>
+                <p>Select as many sizes as you need.</p>
+                <p>Each size option is exactly what the website/email template size is.</p>
+                <h2>Upload Image</h2>
+                <p>Uploades an image to each of the sizes that have been selected</p>
+                <p>NOTE: If you select a size after uploading an image, the new size won't have the uploaded image</p>
+                <h2>Export All</h2>
+                <p>Exports all the selected sizes</p>
+                
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>
-        </div><!-- /.modal -->
+        </div><!-- /.helper modal -->
 
 
       </div><!-- /.docs-buttons -->
-
-      <!-- Buttons - Crop Resolution -->
-      <div class="col-md-3 docs-toggles aspectRatio">
-        <div class="btn-group btn-group-justified" data-toggle="buttons">
-          <label class="btn btn-primary active">
-            <input type="radio" class="sr-only" id="aspectRatio0" name="aspectRatio" value="1.7777777777777777">
-            <span class="docs-tooltip" data-toggle="tooltip" title="aspectRatio: 16 / 9">
-              16:9
-            </span>
-          </label>
-          <label class="btn btn-primary">
-            <input type="radio" class="sr-only" id="aspectRatio1" name="aspectRatio" value="1.3333333333333333">
-            <span class="docs-tooltip" data-toggle="tooltip" title="aspectRatio: 4 / 3">
-              4:3
-            </span>
-          </label>
-          <label class="btn btn-primary">
-            <input type="radio" class="sr-only" id="aspectRatio2" name="aspectRatio" value="1">
-            <span class="docs-tooltip" data-toggle="tooltip" title="aspectRatio: 1 / 1">
-              1:1
-            </span>
-          </label>
-          <label class="btn btn-primary">
-            <input type="radio" class="sr-only" id="aspectRatio3" name="aspectRatio" value="0.6666666666666666">
-            <span class="docs-tooltip" data-toggle="tooltip" title="aspectRatio: 2 / 3">
-              2:3
-            </span>
-          </label>
-          <label class="btn btn-primary">
-            <input type="radio" class="sr-only" id="aspectRatio4" name="aspectRatio" value="NaN">
-            <span class="docs-tooltip" data-toggle="tooltip" title="aspectRatio: NaN">
-              Free
-            </span>
-          </label>
-        </div>
 
 
       </div><!-- /.docs-toggles -->
@@ -433,13 +221,12 @@
   <!-- Footer -->
   <footer class="docs-footer">
     <div class="container">
-      <p class="credit"><cite>built using <a href="https://fengyuanchen.github.io/cropperjs/">cropper.js</a></cite></p>
+      <p class="credit"><cite>built using <a href="https://github.com/fengyuanchen/cropperjs">cropper.js</a></cite></p>
     </div>
   </footer>
 
   <!-- Scripts -->
   <script src="js/jquery.min.js"></script>
-  <script src="js/jquery.sticky.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/sweetalert.min.js"></script>
   <script src="js/cropper.js"></script>

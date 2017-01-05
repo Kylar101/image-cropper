@@ -36,11 +36,28 @@
     </div>
   </div>
 
+  <!-- Upload -->
+  <div class="container">
+    <div class="uploadArea">
+      <label class="btn btn-primary btn-upload uploadBtn" for="inputImage" title="Upload image file">
+        <input type="file" class="sr-only" id="inputImage" name="file" accept="image/*">
+        <span class="docs-tooltip" data-toggle="tooltip" title="Upload New Image">
+          <span class="fa fa-upload"></span> Upload Image
+        </span>
+      </label>
+      <p class="uploadInstructions">Please upload the image that you wish to crop. This image will be scaled to fit into the cropper tool.  </p>
+    </div>
+  </div>
+
+  <div class="container">
+    <hr>
+  </div>
+
   <!-- Cropper Sizes -->
   <div class="container sizes">
     <form id="options">
       <h2>Sizes</h2>
-      <p class="sizeInstructions">Cookie cotton candy donut lemon drops cake jelly-o powder. Lemon drops fruitcake bonbon bear claw powder. Croissant tiramisu caramels fruitcake liquorice lollipop toffee halvah halvah. Croissant candy candy canes.</p>
+      <p class="sizeInstructions">Please select any of the following sizes to resize your image too. You can select as many as you need. All sizes listed below are used on either the CCQ website, or on CCQ EDMs. If you would like an aditional size added to this tool, please contact <a href="mailto:digital@cancerqld.org.au">Digital Services</a></p>
       <div class="sizeOptions">
         <label class="checkbox">
           <input type="checkbox" name="dynamicSizes" class="dynamicSizes" value="572x150" data-number="one" data-upper=572 data-lower=150 checked>
@@ -111,35 +128,24 @@
     <hr>
   </div>
 
-  <!-- Upload -->
   <div class="container">
-    <div class="uploadArea">
-      <label class="btn btn-primary btn-upload uploadBtn" for="inputImage" title="Upload image file">
-        <input type="file" class="sr-only" id="inputImage" name="file" accept="image/*">
-        <span class="docs-tooltip" data-toggle="tooltip" title="Upload New Image">
-          <span class="fa fa-upload"></span> Upload Image
-        </span>
-      </label>
-      <p class="uploadInstructions">Cookie cotton candy donut lemon drops cake jelly-o powder. Lemon drops fruitcake bonbon bear claw powder. Croissant tiramisu caramels fruitcake liquorice lollipop toffee halvah halvah. Croissant candy candy canes.</p>
-    </div>
-  </div>
-
-  <div class="container">
-    <hr>
+    <p class="cropperInstructions">Move the cropper tool around to get the right picture for the cropped image. Use the scroll tool on your mouse to resize the image. You can see a live preview on the right hand side. When you have each of your images looking how you want them, scroll down the page and click "Export."</p>
   </div>
 
   <!-- Cropper -->
   <div class="container">
     <div class="row">
       <div id="croppingArea" class="col-md-9" style="display:flex;flex-wrap:wrap;width:100%;">
-        <div class="sizeHeading dynamicImages">
-          <h2>572 &times; 150 px</h2>
-        </div>
-        <div id="one" class="img-w-preview dynamicImages" style="display:flex;flex-wrap:wrap;clear:both;">
-          <div class="img-container one">
-            <img id="image" src="img/cat-pouncing.jpg" alt="Picture">
+        <div id="one">
+          <div class="sizeHeading dynamicImages">
+            <h2>572 &times; 150 px</h2>
           </div>
-          <div class="dynamic-preview img-preview-one preview-lg"></div>
+          <div class="img-w-preview dynamicImages" style="display:flex;flex-wrap:wrap;clear:both;">
+            <div class="img-container one">
+              <img id="image" src="img/cat-pouncing.jpg" alt="Picture">
+            </div>
+            <div class="dynamic-preview img-preview-one preview-lg"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -149,7 +155,7 @@
     <!-- Buttons - Crop Tools -->
     <div class="row">
       <div class="container">
-        <p class="exportInstructions">Cookie cotton candy donut lemon drops cake jelly-o powder. Lemon drops fruitcake bonbon bear claw powder. Croissant tiramisu caramels fruitcake liquorice lollipop toffee halvah halvah. Croissant candy candy canes.</p>
+        <p class="exportInstructions">This will export all images that you have cropped above.</p>
       </div>
           
       <div class="col-md-9 docs-buttons">
@@ -157,7 +163,7 @@
 
         <!-- Buttons - Crop Images -->
         <div class="btn-group btn-group-crop">
-          <button type="button" class="btn btn-primary" data-method="getCroppedCanvas">
+          <button id="export" type="button" class="btn btn-primary" data-method="getCroppedCanvas">
             <span class="docs-tooltip" data-toggle="tooltip" title="Export All Images">
               <span class="fa fa-download"></span> Export All
             </span>
@@ -172,9 +178,9 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="getCroppedCanvasTitle">Cropped</h4>
               </div>
-              <div class="modal-body"></div>
+              <div id="modalBody" class="modal-body"></div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="closemodal" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <a class="btn btn-primary" id="download" href="javascript:void(0);" download="cropped.jpg">Download</a>
               </div>
             </div>
@@ -198,7 +204,6 @@
                 <p>Each size option is exactly what the website/email template size is.</p>
                 <h2>Upload Image</h2>
                 <p>Uploades an image to each of the sizes that have been selected</p>
-                <p>NOTE: If you select a size after uploading an image, the new size won't have the uploaded image</p>
                 <h2>Export All</h2>
                 <p>Exports all the selected sizes</p>
                 

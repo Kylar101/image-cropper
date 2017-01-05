@@ -115,6 +115,7 @@ $(function () {
         preview: '.img-preview-' + imageSize[0][i],
         minCropBoxWidth: imageSize[1][i],
         minCropBoxHeight: imageSize[2][i],
+        checkCrossOrigin: true,
         dragMode: 'move',
         // cropBoxMovable: false,
         cropBoxResizable: false
@@ -134,73 +135,29 @@ $(function () {
     
   });
 
+  // assigns download button on modal to jquery object
+  var $download = $('#download');
+
   // creates the initial cropper object
   var $image = $('.one > img');
-  var $download = $('#download');
   var options = {
         aspectRatio: 572 / 150,
         preview: '.img-preview-one',
         minCropBoxWidth: 572,
+        checkCrossOrigin: true,
         dragMode: 'move',
         cropBoxResizable: false,
         // cropBoxMovable: false
       };
-
-
-  // Tooltip
-  $('[data-toggle="tooltip"]').tooltip();
-
-
   // initialises first cropper
   $image.cropper(options);
-
-
-  // Buttons
-  if (!$.isFunction(document.createElement('canvas').getContext)) {
-    $('button[data-method="getCroppedCanvas"]').prop('disabled', true);
-  }
-
-  if (typeof document.createElement('cropper').style.transition === 'undefined') {
-    $('button[data-method="rotate"]').prop('disabled', true);
-    $('button[data-method="scale"]').prop('disabled', true);
-  }
-
+  // Tooltip
+  $('[data-toggle="tooltip"]').tooltip();
 
   // Download
   if (typeof $download[0].download === 'undefined') {
     $download.addClass('disabled');
   }
-
-
-  // Options
-  $('.docs-toggles').on('change', 'input', function () {
-    var $this = $(this);
-    var name = $this.attr('name');
-    var type = $this.prop('type');
-    var cropBoxData;
-    var canvasData;
-
-    if (!$image.data('cropper')) {
-      return;
-    }
-
-    if (type === 'checkbox') {
-      options[name] = $this.prop('checked');
-      cropBoxData = $image.cropper('getCropBoxData');
-      canvasData = $image.cropper('getCanvasData');
-
-      options.built = function () {
-        $image.cropper('setCropBoxData', cropBoxData);
-        $image.cropper('setCanvasData', canvasData);
-      };
-    } else if (type === 'radio') {
-      options[name] = $this.val();
-    }
-
-    $image.cropper('destroy').cropper(options);
-  });
-
-  var allResult = [];
 
   // Methods
   $('.docs-buttons').on('click', '[data-method]', function () {
@@ -210,12 +167,10 @@ $(function () {
     var result;
     var dynamicResult = [];
 
-    if ($this.prop('disabled') || $this.hasClass('disabled')) {
-      return;
-    }
+    if (data.method ) {
+      // data = $.extend({}, data); // Clone a new one
 
-    if ($image.data('cropper') && data.method) {
-      data = $.extend({}, data); // Clone a new one
+    // console.log('here');
 
       if (typeof data.target !== 'undefined') {
         $target = $(data.target);
@@ -228,21 +183,13 @@ $(function () {
           }
         }
       }
-
-      if (data.method === 'rotate') {
-        $image.cropper('clear');
-      }
-
       if (imageSize){
         for (var i = 0;i<imageSize[0].length;i++){
           dynamicResult.push(cropperSizeData[i].cropper(data.method, data.option, data.secondOption));
         }
+        console.log(imageSize[0].length);
       } else {
         result = $image.cropper(data.method, data.option, data.secondOption);
-      }
-
-      if (data.method === 'rotate') {
-        $image.cropper('crop');
       }
 
       switch (data.method) {
@@ -255,8 +202,21 @@ $(function () {
 
             if (imageSize){
               $('#getCroppedCanvasModal').modal().find('.modal-body').html(dynamicResult);
+                // downloadCanvas(this, 'cropped');
             } else {
               $('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
+                // downloadCanvas(this, 'cropped');
+            }
+
+            var numCanvas = document.getElementsByTagName('canvas');
+            for (var i = 0;i < numCanvas.length;i++){
+              var canvasContext = numCanvas[i].getContext('2d');
+              var brandImage = new Image();
+              brandImage.src = 'img/logo.png';
+              console.log(brandImage);
+              brandImage.onload = function(){
+                canvasContext.drawImage(brandImage,10,10);
+              }
             }
 
           break;
@@ -272,6 +232,19 @@ $(function () {
 
     }
   });
+
+  function downloadCanvas( link, filename ) {
+    $( '.modal-body canvas' ).each( function( i ) {
+        var dataUrl = this.toDataURL( 'image/jpeg' )
+        // console.log( dataUrl );
+        var temp = i + 1;
+        $( '#download' ).attr( {
+            href: this.toDataURL( 'image/jpeg' ),
+            download: filename + '-' + temp + ".jpg"
+        } )[0].click();
+    } );
+    $('#closemodal')[0].click();
+}
 
 
   // Import image

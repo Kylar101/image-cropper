@@ -202,22 +202,22 @@ $(function () {
 
             if (imageSize){
               $('#getCroppedCanvasModal').modal().find('.modal-body').html(dynamicResult);
-                // downloadCanvas(this, 'cropped');
+                downloadCanvas(this, 'cropped');
             } else {
               $('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
-                // downloadCanvas(this, 'cropped');
+                downloadCanvas(this, 'cropped');
             }
 
-            var numCanvas = document.getElementsByTagName('canvas');
-            for (var i = 0;i < numCanvas.length;i++){
-              var canvasContext = numCanvas[i].getContext('2d');
-              var brandImage = new Image();
-              brandImage.src = 'img/logo.png';
-              console.log(brandImage);
-              brandImage.onload = function(){
-                canvasContext.drawImage(brandImage,10,10);
-              }
-            }
+            // var numCanvas = document.getElementsByTagName('canvas');
+            // for (var i = 0;i < numCanvas.length;i++){
+            //   var canvasContext = numCanvas[i].getContext('2d');
+            //   var brandImage = new Image();
+            //   brandImage.src = 'img/logo.png';
+            //   console.log(brandImage);
+            //   brandImage.onload = function(){
+            //     canvasContext.drawImage(brandImage,10,10);
+            //   }
+            // }
 
           break;
       }

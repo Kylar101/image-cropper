@@ -10379,7 +10379,12 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
         __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].addBrandingOptions();
         var sizes = localStorage.getItem("imageCropperSizes")
         sizesValue.value = sizes
-        __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].addLocalSizingOptions(JSON.parse(sizes))
+        if (!sizes) {
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.sizeInstructions').append('<h2 class="select-message no-sizes">Please enter some sizes</h2>');
+        } else {
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.no-sizes').remove()
+            __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].addLocalSizingOptions(JSON.parse(sizes))
+        }
     }
 
     // ----------------------------------------------------------------------------------------------
@@ -10408,6 +10413,7 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
     let submitSizes = document.getElementById('submitSizes')
     submitSizes.addEventListener('click', () => {
         localStorage.setItem('imageCropperSizes', sizesValue.value)
+        __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.no-sizes').remove()
         __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.sizeOptions').remove()
         __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].addLocalSizingOptions(JSON.parse(sizesValue.value))
     })
@@ -15786,7 +15792,7 @@ module.exports = g;
                                 <span class="sizeUse"> Use: </span>${json[i].use}
                             </label>
                         </div>`
-            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.firstSize').after(option);
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.sizeInstructions').after(option);
         })
     },
 
@@ -15805,7 +15811,7 @@ module.exports = g;
                                     <span class="sizeUse"> Use: </span>${json[i].use}
                                 </label>
                             </div>`
-                __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.firstSize').after(option);
+                __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.sizeInstructions').after(option);
             });
         });
     },

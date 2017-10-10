@@ -38,7 +38,7 @@ export default {
                                 <span class="sizeUse"> Use: </span>${json[i].use}
                             </label>
                         </div>`
-            $('.firstSize').after(option);
+            $('.sizeInstructions').after(option);
         })
     },
 
@@ -57,7 +57,7 @@ export default {
                                     <span class="sizeUse"> Use: </span>${json[i].use}
                                 </label>
                             </div>`
-                $('.firstSize').after(option);
+                $('.sizeInstructions').after(option);
             });
         });
     },

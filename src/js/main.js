@@ -16,7 +16,12 @@ $(function () {
         utils.addBrandingOptions();
         var sizes = localStorage.getItem("imageCropperSizes")
         sizesValue.value = sizes
-        utils.addLocalSizingOptions(JSON.parse(sizes))
+        if (!sizes) {
+            $('.sizeInstructions').append('<h2 class="select-message no-sizes">Please enter some sizes</h2>');
+        } else {
+            $('.no-sizes').remove()
+            utils.addLocalSizingOptions(JSON.parse(sizes))
+        }
     }
 
     // ----------------------------------------------------------------------------------------------
@@ -45,6 +50,7 @@ $(function () {
     let submitSizes = document.getElementById('submitSizes')
     submitSizes.addEventListener('click', () => {
         localStorage.setItem('imageCropperSizes', sizesValue.value)
+        $('.no-sizes').remove()
         $('.sizeOptions').remove()
         utils.addLocalSizingOptions(JSON.parse(sizesValue.value))
     })

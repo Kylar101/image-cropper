@@ -13,7 +13,7 @@ const webpackStream = require('webpack-stream');
 //   gulp.watch('index.js', electron.restart);
  
 //   // Reload renderer process 
-//   gulp.watch(['./src/app.js', './src/js/*.js'], ['pack', electron.reload])
+//   gulp.watch(['./src/docs.js', './src/js/*.js'], ['pack', electron.reload])
 //   gulp.watch(['./src/index.html'],['copy-html', electron.reload])
 //   gulp.watch(['./src/json/*.json'],['copy-json',electron.reload])
 //   gulp.watch(['./src/css/*.css', './src/css/*.scss'],['pack', electron.reload])
@@ -22,26 +22,26 @@ const webpackStream = require('webpack-stream');
 gulp.task('pack', function() {
 	  return gulp.src('./src/app.js')
 	    .pipe(webpackStream(require('./webpack.config.js'), webpack))
-	    .pipe(gulp.dest('./app/'));
+	    .pipe(gulp.dest('./docs/'));
 	});
 
 gulp.task('copy-html', ()=> {
   return gulp.src(['./src/*.html'])
-	    .pipe(gulp.dest('./app'));
+	    .pipe(gulp.dest('./docs'));
 })
 
 gulp.task('copy-images', ()=> {
   return gulp.src('./src/img/**/*.{jpg,png,gif,jpeg}')
-	    .pipe(gulp.dest('./app/img'))
+	    .pipe(gulp.dest('./docs/img'))
 })
 
 gulp.task('copy-json', ()=> {
   return gulp.src('./src/json/*.json')
-      .pipe(gulp.dest('./app/json'))
+      .pipe(gulp.dest('./docs/json'))
 })
 
 gulp.task('watch', () => {
-  gulp.watch(['./src/app.js', './src/js/*.js'], ['pack'])
+  gulp.watch(['./src/docs.js', './src/js/*.js'], ['pack'])
   gulp.watch(['./src/index.html'],['copy-html'])
   gulp.watch(['./src/json/*.json'],['copy-json'])
   gulp.watch(['./src/css/*.css', './src/css/*.scss'],['pack'])

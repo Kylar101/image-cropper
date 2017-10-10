@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The CCQ Image Cropping Tool">
+  <meta name="keywords" content="HTML, CSS, JavaScript, jQuery plugin, image cropping, image crop, image scale, front-end, frontend, web development">
+  <meta name="author" content="CCQ Digital">
+
+  <link rel='shortcut icon' type='image/x-icon' href='img/icon.ico' />
+  <title>CCQ Image Cropper</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <!--<link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/cropper.min.css">
+  <link rel="stylesheet" href="css/sweetalert.css">-->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- requried for development -->
+
+  <!-- Header -->
+  <header class="navbar navbar-static-top docs-header" id="top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="javascript:window.location.reload();">Cropper</a>
+        <a class="navbar-brand helpButton">Help</a> 
+      </div>
+    </div>
+  </header>
+
+   <!--Jumbotron -->
+   <div class="jumbotron docs-jumbotron">
+    <div class="container">
+      <h1>Image Cropper</h1>
+    </div>
+  </div>
+
+  <!-- Cropper Sizes -->
+  <div class="container sizes">
+    <form id="options">
+      <h2>Sizes</h2>
+      <p class="sizeInstructions firstSize">Please select any of the following sizes to resize your image too. You can select as many as you need. All sizes listed below are used on either the CCQ website, or on CCQ EDMs. If you would like an aditional size added to this tool, please contact <a href="mailto:digital@cancerqld.org.au">Digital Services</a></p>
+    </form>
+  </div>
+
+   <div class="container">
+    <hr>
+  </div>
+
+  <!-- Cropper Branding -->
+  <div class="container sizes">
+    <form id="options">
+      <h2>Branding</h2>
+      <p class="brandingInstructions sizeInstructions">Please select any of the following branding to add to your image. <strong>You can only select one.</strong> All branding options listed below are used through out various campaigns. If you would like an aditional branding options added to this tool, please contact <a href="mailto:digital@cancerqld.org.au">Digital Services</a> and <a href="mailto:creative@cancerqld.org.au">Creative Services</a></p>
+      
+    </form>
+  </div>
+  
+  <div class="container">
+    <hr>
+  </div> 
+
+  <!-- Upload -->
+  <div class="container">
+    <div class="uploadArea">
+      <label class="btn btn-primary btn-upload uploadBtn" for="inputImage" title="Upload image file">
+        <input type="file" class="sr-only" id="inputImage" name="file" accept="image/*">
+        <!--<span class="docs-tooltip" data-toggle="tooltip" title="Upload New Image">-->
+          <span class="fa fa-upload"></span> Upload Image
+      </label>
+      <p class="uploadInstructions">Please upload the image that you wish to crop. This image will be scaled to fit into the cropper tool.  </p>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <hr>
+  </div>
+
+  <div class="container">
+    <p class="cropperInstructions">Move the cropper tool around to get the right picture for the cropped image. Use the scroll tool on your mouse to resize the image. You can see a live preview on the right hand side. When you have each of your images looking how you want them, scroll down the page and click "Export."</p>
+  </div>  
+
+  <!-- Cropper -->
+  <div class="container">
+    <div class="row">
+      <div id="croppingArea" class="col-md-9" style="display:flex;flex-wrap:wrap;width:100%;">
+        <h2 class="select-message">Please select an image size</h2>
+        <!--<div id="one" class="dynamicImages img-w-preview" style="display:flex;flex-wrap:wrap;clear:both;">
+          <div class="sizeHeading">
+            <h2>572 &times; 150 px</h2>
+          </div>
+            <div class="img-container one">
+              <img id="image" src="img/starter.png" alt="Picture">
+            </div>
+            <div class="preview">
+              <img class="branding-preview" src="">
+              <div class="dynamic-preview img-preview-one preview-lg"></div>
+            </div>
+        </div>-->
+      </div>
+    </div> 
+
+    <hr>
+
+    <!-- Buttons - Crop Tools -->
+    <div class="row">
+      <div class="container">
+        <p class="exportInstructions">This will export all images that you have cropped above.</p>
+      </div>
+          
+      <div class="col-md-9 docs-buttons">
+
+
+        <!-- Buttons - Crop Images -->
+        <div class="btn-group btn-group-crop">
+          <button id="export" type="button" class="btn btn-primary" data-method="getCroppedCanvas">
+            <!--<span class="docs-tooltip" data-toggle="tooltip" title="Export All Images">-->
+              <span class="fa fa-download"></span> Export All
+            </span>
+          </button>
+        </div>
+
+        <!-- Show the cropped image in modal -->
+        <div class="modal fade docs-cropped" id="getCroppedCanvasModal" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" role="dialog" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="getCroppedCanvasTitle">Cropped</h4>
+              </div>
+              <div id="modalBody" class="modal-body"></div>
+              <div class="modal-footer">
+                <button id="closemodal" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <a class="btn btn-primary" id="download" href="javascript:void(0);" download="cropped.jpg">Download</a>
+              </div>
+            </div>
+          </div>
+        </div><!-- /.modal -->
+
+
+        <!-- Show help in modal -->
+        <div class="modal fade docs-cropped" id="helpModal" aria-hidden="true" role="dialog" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="getCroppedCanvasTitle">Help</h4>
+              </div>
+              <div class="modal-body help-body">
+                <h1>Hi There!</h1>
+                
+                <h2>Sizes</h2>
+                <p>Select as many sizes as you need.</p>
+                <p>Each size option is exactly what the website/email template size is.</p>
+                <h2>Upload Image</h2>
+                <p>Uploades an image to each of the sizes that have been selected</p>
+                <h2>Export All</h2>
+                <p>Exports all the selected sizes</p>
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div><!-- /.helper modal -->
+
+
+      </div><!-- /.docs-buttons -->
+
+
+      </div><!-- /.docs-toggles -->
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="docs-footer">
+    <div class="container">
+      <p class="credit"><cite>built using <a href="https://github.com/fengyuanchen/cropper" target="_blank">cropper.js</a></cite></p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="./cropper-bundle.js"></script>
+</body>
+</html>

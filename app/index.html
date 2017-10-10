@@ -8,16 +8,17 @@
   <meta name="keywords" content="HTML, CSS, JavaScript, jQuery plugin, image cropping, image crop, image scale, front-end, frontend, web development">
   <meta name="author" content="CCQ Digital">
 
-  <link rel='shortcut icon' type='image/x-icon' href='img/favicon.ico' />
+  <link rel='shortcut icon' type='image/x-icon' href='img/icon.ico' />
   <title>CCQ Image Cropper</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!--<link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/cropper.min.css">
-  <link rel="stylesheet" href="css/sweetalert.css">
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/sweetalert.css">-->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <!-- requried for development -->
 
   <!-- Header -->
   <header class="navbar navbar-static-top docs-header" id="top">
@@ -36,93 +37,43 @@
     </div>
   </div>
 
+  <!-- Cropper Sizes -->
+  <div class="container sizes">
+    <form id="options">
+      <h2>Sizes</h2>
+      <p class="sizeInstructions firstSize">Please select any of the following sizes to resize your image too. You can select as many as you need. All sizes listed below are used on either the CCQ website, or on CCQ EDMs. If you would like an aditional size added to this tool, please contact <a href="mailto:digital@cancerqld.org.au">Digital Services</a></p>
+    </form>
+  </div>
+
+   <div class="container">
+    <hr>
+  </div>
+
+  <!-- Cropper Branding -->
+  <div class="container sizes">
+    <form id="options">
+      <h2>Branding</h2>
+      <p class="brandingInstructions sizeInstructions">Please select any of the following branding to add to your image. <strong>You can only select one.</strong> All branding options listed below are used through out various campaigns. If you would like an aditional branding options added to this tool, please contact <a href="mailto:digital@cancerqld.org.au">Digital Services</a> and <a href="mailto:creative@cancerqld.org.au">Creative Services</a></p>
+      
+    </form>
+  </div>
+  
+  <div class="container">
+    <hr>
+  </div> 
+
   <!-- Upload -->
   <div class="container">
     <div class="uploadArea">
       <label class="btn btn-primary btn-upload uploadBtn" for="inputImage" title="Upload image file">
         <input type="file" class="sr-only" id="inputImage" name="file" accept="image/*">
-        <span class="docs-tooltip" data-toggle="tooltip" title="Upload New Image">
+        <!--<span class="docs-tooltip" data-toggle="tooltip" title="Upload New Image">-->
           <span class="fa fa-upload"></span> Upload Image
-        </span>
       </label>
       <p class="uploadInstructions">Please upload the image that you wish to crop. This image will be scaled to fit into the cropper tool.  </p>
     </div>
   </div>
 
-  <div class="container">
-    <hr>
-  </div>
-
-  <!-- Cropper Sizes -->
-  <div class="container sizes">
-    <form id="options">
-      <h2>Sizes</h2>
-      <p class="sizeInstructions">Please select any of the following sizes to resize your image too. You can select as many as you need. All sizes listed below are used on either the CCQ website, or on CCQ EDMs. If you would like an aditional size added to this tool, please contact <a href="mailto:digital@cancerqld.org.au">Digital Services</a></p>
-      <div class="sizeOptions">
-        <label class="checkbox">
-          <input type="checkbox" name="dynamicSizes" class="dynamicSizes" value="572x150" data-number="one" data-upper=572 data-lower=150 checked>
-          572&times;150px &mdash; Small Feature Image
-          <span class="sizeUse">USE:</span> On the website with both left and right sidebars
-        </label>
-      </div>
-      <div class="sizeOptions">
-        <label class="checkbox">
-          <input type="checkbox" name="dynamicSizes" class="dynamicSizes" value="800x210" data-number="two" data-upper=800 data-lower=210>
-          800&times;210px &mdash; Medium Feature Image
-          <span class="sizeUse">USE:</span> As a webpage feature image with no left sidebar
-        </label>
-      </div>
-      <div class="sizeOptions">
-        <label class="checkbox">
-          <input type="checkbox" name="dynamicSizes" class="dynamicSizes" value="870x230" data-number="three" data-upper=870 data-lower=230>
-          870&times;230px &mdash; Large Feature Image
-          <span class="sizeUse">USE:</span> As a webpage feature image with no left sidebar
-        </label>
-      </div>
-      <div class="sizeOptions">
-        <label class="checkbox">
-          <input type="checkbox" name="dynamicSizes" class="dynamicSizes" value="273x227" data-number="four" data-upper=273 data-lower=227>
-          273&times;227px &mdash; MREC Image
-          <span class="sizeUse">USE:</span> As a Promotional Image on the left handside of the website
-        </label>
-      </div>
-      <div class="sizeOptions">
-        <label class="checkbox">
-          <input type="checkbox" name="dynamicSizes" class="dynamicSizes" value="390x155" data-number="five" data-upper=390 data-lower=155>
-          390&times;155px &mdash; Focus Zone Image
-          <span class="sizeUse">USE:</span> On the homepage on the CCQ website under the sliding banner
-        </label>
-      </div>
-      <div class="sizeOptions">
-        <label class="checkbox">
-          <input type="checkbox" name="dynamicSizes" class="dynamicSizes" value="270x230" data-number="six" data-upper=270 data-lower=230>
-          270&times;230px &mdash; Support Image
-          <span class="sizeUse">USE:</span> Within page content on webpages
-        </label>
-      </div>
-      <div class="sizeOptions">
-        <label class="checkbox">
-          <input type="checkbox" name="dynamicSizes" class="dynamicSizes" value="800x370" data-number="seven" data-upper=800 data-lower=370>
-          800&times;370px &mdash; Featured Event Image
-          <span class="sizeUse">USE:</span> As a Featured Event Image
-        </label>
-      </div>
-      <div class="sizeOptions">
-        <label class="checkbox">
-          <input type="checkbox" name="dynamicSizes" class="dynamicSizes" value="520x190" data-number="eight" data-upper=520 data-lower=190>
-          520&times;190px &mdash; EDM Hero Image
-          <span class="sizeUse">USE:</span> A hero image for an EDM 
-        </label>
-      </div>
-      <div class="sizeOptions">
-        <label class="checkbox">
-          <input type="checkbox" name="dynamicSizes" class="dynamicSizes" value="290x150" data-number="nine" data-upper=290 data-lower=150>
-          290&times;150px &mdash; EDM Support Image
-          <span class="sizeUse">USE:</span> A support image for an EDM 
-        </label>
-      </div>
-    </form>
-  </div>
 
   <div class="container">
     <hr>
@@ -130,25 +81,27 @@
 
   <div class="container">
     <p class="cropperInstructions">Move the cropper tool around to get the right picture for the cropped image. Use the scroll tool on your mouse to resize the image. You can see a live preview on the right hand side. When you have each of your images looking how you want them, scroll down the page and click "Export."</p>
-  </div>
+  </div>  
 
   <!-- Cropper -->
   <div class="container">
     <div class="row">
       <div id="croppingArea" class="col-md-9" style="display:flex;flex-wrap:wrap;width:100%;">
-        <div id="one">
-          <div class="sizeHeading dynamicImages">
+        <h2 class="select-message">Please select an image size</h2>
+        <!--<div id="one" class="dynamicImages img-w-preview" style="display:flex;flex-wrap:wrap;clear:both;">
+          <div class="sizeHeading">
             <h2>572 &times; 150 px</h2>
           </div>
-          <div class="img-w-preview dynamicImages" style="display:flex;flex-wrap:wrap;clear:both;">
             <div class="img-container one">
-              <img id="image" src="img/cat-pouncing.jpg" alt="Picture">
+              <img id="image" src="img/starter.png" alt="Picture">
             </div>
-            <div class="dynamic-preview img-preview-one preview-lg"></div>
-          </div>
-        </div>
+            <div class="preview">
+              <img class="branding-preview" src="">
+              <div class="dynamic-preview img-preview-one preview-lg"></div>
+            </div>
+        </div>-->
       </div>
-    </div>
+    </div> 
 
     <hr>
 
@@ -164,7 +117,7 @@
         <!-- Buttons - Crop Images -->
         <div class="btn-group btn-group-crop">
           <button id="export" type="button" class="btn btn-primary" data-method="getCroppedCanvas">
-            <span class="docs-tooltip" data-toggle="tooltip" title="Export All Images">
+            <!--<span class="docs-tooltip" data-toggle="tooltip" title="Export All Images">-->
               <span class="fa fa-download"></span> Export All
             </span>
           </button>
@@ -226,15 +179,11 @@
   <!-- Footer -->
   <footer class="docs-footer">
     <div class="container">
-      <p class="credit"><cite>built using <a href="https://github.com/fengyuanchen/cropperjs">cropper.js</a></cite></p>
+      <p class="credit"><cite>built using <a href="https://github.com/fengyuanchen/cropper" target="_blank">cropper.js</a></cite></p>
     </div>
   </footer>
 
   <!-- Scripts -->
-  <script src="js/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/sweetalert.min.js"></script>
-  <script src="js/cropper.js"></script>
-  <script src="js/main.js"></script>
+  <script src="./cropper-bundle.js"></script>
 </body>
 </html>

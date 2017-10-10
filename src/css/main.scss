@@ -151,13 +151,13 @@ body {
 
 .uploadInstructions {
   width:85%;
-  margin: 10px 10px;
+  margin: 0 10px;
   font-weight: 300;
 }
 
 /* Export */
 
-.exportInstructions, .cropperInstructions {
+.exportInstructions {
   font-weight: 300;
 }
 
@@ -348,9 +348,19 @@ img {
   top: 50%; left: 0; right: 0; bottom: 0;
   width: 100%;
   z-index: -1;
-  }
+}
 
 .credit cite { 
   background: #fff; 
   padding: 0 10px; 
-  }
+}
+
+/* branding preview */
+.preview {
+  position: relative;
+  overflow: hidden;
+}
+.preview > .branding-preview {
+  position: absolute;
+  z-index: 1;
+}

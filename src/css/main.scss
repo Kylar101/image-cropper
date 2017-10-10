@@ -365,8 +365,11 @@ img {
 
 .modal-body {
     pre {
-        width: 50%;
+        width: 60%;
         margin: 0 auto;
         margin-bottom: 10px;
+    }
+    textarea {
+        margin: 0 auto;
     }
 }

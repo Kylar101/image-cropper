@@ -10373,17 +10373,27 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
 
 
     let sizesValue = document.getElementById('sizesValue')
+    let brandsValue = document.getElementById('brandsValue')
 
     function pageLoad() {
         // utils.addSizingOptions();
-        __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].addBrandingOptions();
-        var sizes = localStorage.getItem("imageCropperSizes")
+        // utils.addBrandingOptions();
+        let sizes = localStorage.getItem("imageCropperSizes")
+        let brands = localStorage.getItem("imageCropperBrands")
         sizesValue.value = sizes
+        brandsValue.value = brands
         if (!sizes) {
             __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.sizeInstructions').append('<h2 class="select-message no-sizes">Please enter some sizes</h2>');
         } else {
             __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.no-sizes').remove()
             __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].addLocalSizingOptions(JSON.parse(sizes))
+        }
+
+        if (!brands) {
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.brandingInstructions').append('<h2 class="select-message no-brands">Please enter some sizes</h2>');
+        } else {
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.no-brands').remove()
+            __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].addLocalBrandingOptions(JSON.parse(brands))
         }
     }
 
@@ -10416,6 +10426,22 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
         __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.no-sizes').remove()
         __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.sizeOptions').remove()
         __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].addLocalSizingOptions(JSON.parse(sizesValue.value))
+    })
+
+    let brandModalID = document.getElementById('brandModal')
+    let brandModal = new __WEBPACK_IMPORTED_MODULE_2_bootstrap_native___default.a.Modal(brandModalID)
+
+    // opens the helper Modal
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.newBrandingButton').click(function () {
+        brandModal.show()
+    })
+
+      let submitBrands = document.getElementById('submitBrands')
+        submitBrands.addEventListener('click', () => {
+        localStorage.setItem('imageCropperBrands', brandsValue.value)
+        __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.no-brands').remove()
+        __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.brandingOptions').remove()
+        __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].addLocalBrandingOptions(JSON.parse(brandsValue.value))
     })
 
     // dynamic variables
@@ -15794,6 +15820,27 @@ module.exports = g;
                         </div>`
             __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.sizeInstructions').after(option);
         })
+    },
+
+    
+
+    /**
+   * Adds branding objects from json file
+   *
+   */
+    addLocalBrandingOptions: (json) => {
+        // $.getJSON('json/branding.json', function (json) {
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.each(json, function (i) {
+                let option = `<div class="brandingOptions">
+                                <label class="checkbox">
+                                    <input type="checkbox" name="dynamicBrands" class="dynamicBrands" data-location="${json[i].location}" data-number="${json[i].number}">
+                                    ${json[i].name} &mdash; 
+                                    <span class="sizeUse">Description: </span>${json[i].description}
+                                </label>
+                            </div>`
+                __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.brandingInstructions').after(option);
+            });
+        // });
     },
 
     /**

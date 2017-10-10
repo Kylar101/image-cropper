@@ -6974,8 +6974,11 @@ img {
   z-index: 1; }
 
 .modal-body pre {
-  width: 50%;
+  width: 60%;
   margin: 0 auto;
   margin-bottom: 10px; }
+
+.modal-body textarea {
+  margin: 0 auto; }
 
 /*# sourceMappingURL=style.css.map*/

@@ -10,17 +10,27 @@ $(function () {
 
 
     let sizesValue = document.getElementById('sizesValue')
+    let brandsValue = document.getElementById('brandsValue')
 
     function pageLoad() {
         // utils.addSizingOptions();
-        utils.addBrandingOptions();
-        var sizes = localStorage.getItem("imageCropperSizes")
+        // utils.addBrandingOptions();
+        let sizes = localStorage.getItem("imageCropperSizes")
+        let brands = localStorage.getItem("imageCropperBrands")
         sizesValue.value = sizes
+        brandsValue.value = brands
         if (!sizes) {
             $('.sizeInstructions').append('<h2 class="select-message no-sizes">Please enter some sizes</h2>');
         } else {
             $('.no-sizes').remove()
             utils.addLocalSizingOptions(JSON.parse(sizes))
+        }
+
+        if (!brands) {
+            $('.brandingInstructions').append('<h2 class="select-message no-brands">Please enter some sizes</h2>');
+        } else {
+            $('.no-brands').remove()
+            utils.addLocalBrandingOptions(JSON.parse(brands))
         }
     }
 
@@ -53,6 +63,22 @@ $(function () {
         $('.no-sizes').remove()
         $('.sizeOptions').remove()
         utils.addLocalSizingOptions(JSON.parse(sizesValue.value))
+    })
+
+    let brandModalID = document.getElementById('brandModal')
+    let brandModal = new bsn.Modal(brandModalID)
+
+    // opens the helper Modal
+    $('.newBrandingButton').click(function () {
+        brandModal.show()
+    })
+
+      let submitBrands = document.getElementById('submitBrands')
+        submitBrands.addEventListener('click', () => {
+        localStorage.setItem('imageCropperBrands', brandsValue.value)
+        $('.no-brands').remove()
+        $('.brandingOptions').remove()
+        utils.addLocalBrandingOptions(JSON.parse(brandsValue.value))
     })
 
     // dynamic variables

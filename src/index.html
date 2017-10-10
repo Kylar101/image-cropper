@@ -25,7 +25,8 @@
     <div class="container">
       <div class="navbar-header">
         <a class="navbar-brand" href="javascript:window.location.reload();">Cropper</a>
-        <a class="navbar-brand helpButton">Help</a> 
+        <a class="navbar-brand helpButton">Help</a>
+        <a class="navbar-brand newSizeButton">Upload Sizes</a>
       </div>
     </div>
   </header>
@@ -41,7 +42,7 @@
   <div class="container sizes">
     <form id="options">
       <h2>Sizes</h2>
-      <p class="sizeInstructions firstSize">Please select any of the following sizes to resize your image too. You can select as many as you need. All sizes listed below are used on either the CCQ website, or on CCQ EDMs. If you would like an aditional size added to this tool, please contact <a href="mailto:digital@cancerqld.org.au">Digital Services</a></p>
+      <p class="sizeInstructions firstSize">Please select any of the following sizes to resize your image too. You can select as many as you need.</p>
     </form>
   </div>
 
@@ -53,7 +54,7 @@
   <div class="container sizes">
     <form id="options">
       <h2>Branding</h2>
-      <p class="brandingInstructions sizeInstructions">Please select any of the following branding to add to your image. <strong>You can only select one.</strong> All branding options listed below are used through out various campaigns. If you would like an aditional branding options added to this tool, please contact <a href="mailto:digital@cancerqld.org.au">Digital Services</a> and <a href="mailto:creative@cancerqld.org.au">Creative Services</a></p>
+      <p class="brandingInstructions sizeInstructions">Please select any of the following branding to add to your image. <strong>You can only select one.</strong></p>
       
     </form>
   </div>
@@ -159,6 +160,55 @@
                 <p>Uploades an image to each of the sizes that have been selected</p>
                 <h2>Export All</h2>
                 <p>Exports all the selected sizes</p>
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div><!-- /.helper modal -->
+
+
+        <!-- Show upload sizes in modal -->
+        <div class="modal fade docs-cropped" id="sizeModal" aria-hidden="true" role="dialog" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="getCroppedCanvasTitle">New Sizes</h4>
+              </div>
+              <div class="modal-body help-body">
+                <h1>Hi There!</h1>
+                
+                <p>Add your new sizes here in the following format</p>
+
+                <pre>
+                  <code>
+                    {
+                      "290x150": {
+                          "name": "Some title",
+                          "identifier": "nine",
+                          "upper": "290",
+                          "lower": "150",
+                          "use": "Some use",
+                          "value": "290x150"
+                      },
+                      "520x190": {
+                          "name": "Another title",
+                          "identifier": "eight",
+                          "upper": "520",
+                          "lower": "190",
+                          "use": "Some use",
+                          "value": "520x190"
+                      }
+                    }
+                  </code>
+                </pre>
+                
+                <textarea id="sizesValue" rows="6" cols="60"></textarea>
+
+                <button id="submitSizes" type="button" class="btn btn-primary" data-dismiss="modal">Submit Sizes</button>
                 
               </div>
               <div class="modal-footer">

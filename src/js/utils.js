@@ -28,12 +28,30 @@ export default {
    * Adds sizes from json file
    * 
    */
+    addLocalSizingOptions: (json) => {
+        $.each(json, function (i) {
+            let option = `<div class="sizeOptions">
+                            <label class="checkbox">
+                                <input type="checkbox" name="dynamicSizes" class="dynamicSizes" value="${json[i].value}" data-number="${json[i].identifier}" data-upper="${json[i].upper}" 
+                                    data-lower="${json[i].lower}">
+                                ${json[i].upper} &times; ${json[i].lower}px &mdash; ${json[i].name}
+                                <span class="sizeUse"> Use: </span>${json[i].use}
+                            </label>
+                        </div>`
+            $('.firstSize').after(option);
+        })
+    },
+
+    /**
+   * Adds sizes from json file
+   * 
+   */
     addSizingOptions: () => {
         $.getJSON('json/sizes.json', function (json) {
             $.each(json, function (i) {
                 let option = `<div class="sizeOptions">
                                 <label class="checkbox">
-                                    <input type="checkbox" name="dynamicSizes" class="dynamicSizes" value="${json[i].value}" data-number="${json[i].number}" data-upper="${json[i].upper}" 
+                                    <input type="checkbox" name="dynamicSizes" class="dynamicSizes" value="${json[i].value}" data-number="${json[i].identifier}" data-upper="${json[i].upper}" 
                                         data-lower="${json[i].lower}">
                                     ${json[i].upper} &times; ${json[i].lower}px &mdash; ${json[i].name}
                                     <span class="sizeUse"> Use: </span>${json[i].use}
@@ -51,7 +69,7 @@ export default {
     addBrandingOptions: () => {
         $.getJSON('json/branding.json', function (json) {
             $.each(json, function (i) {
-                let option = `<div class="sizeOptions">
+                let option = `<div class="brandingOptions">
                                 <label class="checkbox">
                                     <input type="checkbox" name="dynamicBrands" class="dynamicBrands" data-location="${json[i].location}" data-number="${json[i].number}">
                                     ${json[i].name} &mdash; 

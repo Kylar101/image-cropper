@@ -6739,18 +6739,15 @@ body.stop-scrolling {
   padding-right: 40px;
   padding: 10px 0; }
 
-.sizeOptions {
+.sizeOptions, .brandingOptions {
   padding: 5px 5px;
   background: #ccc; }
-
-.sizeOptions:hover {
-  background: #adadad; }
-
-.sizeOptions:nth-of-type(2n) {
-  background: #eee; }
-
-.sizeOptions:nth-of-type(2n):hover {
-  background: #ddd; }
+  .sizeOptions:hover, .brandingOptions:hover {
+    background: #adadad; }
+  .sizeOptions:nth-of-type(2n), .brandingOptions:nth-of-type(2n) {
+    background: #eee; }
+  .sizeOptions:nth-of-type(2n):hover, .brandingOptions:nth-of-type(2n):hover {
+    background: #ddd; }
 
 .checkbox {
   font-weight: 300 !important;

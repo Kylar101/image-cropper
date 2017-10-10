@@ -49,18 +49,16 @@ export default {
    *
    */
     addLocalBrandingOptions: (json) => {
-        // $.getJSON('json/branding.json', function (json) {
-            $.each(json, function (i) {
-                let option = `<div class="brandingOptions">
-                                <label class="checkbox">
-                                    <input type="checkbox" name="dynamicBrands" class="dynamicBrands" data-location="${json[i].location}" data-number="${json[i].number}">
-                                    ${json[i].name} &mdash; 
-                                    <span class="sizeUse">Description: </span>${json[i].description}
-                                </label>
-                            </div>`
-                $('.brandingInstructions').after(option);
-            });
-        // });
+        $.each(json, function (i) {
+            let option = `<div class="brandingOptions">
+                            <label class="checkbox">
+                                <input type="checkbox" name="dynamicBrands" class="dynamicBrands" data-location="${json[i].location}" data-number="${json[i].number}">
+                                ${json[i].name} &mdash; 
+                                <span class="sizeUse">Description: </span>${json[i].description}
+                            </label>
+                        </div>`
+            $('.brandingInstructions').after(option);
+        });
     },
 
     /**

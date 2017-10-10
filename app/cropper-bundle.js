@@ -15829,18 +15829,16 @@ module.exports = g;
    *
    */
     addLocalBrandingOptions: (json) => {
-        // $.getJSON('json/branding.json', function (json) {
-            __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.each(json, function (i) {
-                let option = `<div class="brandingOptions">
-                                <label class="checkbox">
-                                    <input type="checkbox" name="dynamicBrands" class="dynamicBrands" data-location="${json[i].location}" data-number="${json[i].number}">
-                                    ${json[i].name} &mdash; 
-                                    <span class="sizeUse">Description: </span>${json[i].description}
-                                </label>
-                            </div>`
-                __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.brandingInstructions').after(option);
-            });
-        // });
+        __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.each(json, function (i) {
+            let option = `<div class="brandingOptions">
+                            <label class="checkbox">
+                                <input type="checkbox" name="dynamicBrands" class="dynamicBrands" data-location="${json[i].location}" data-number="${json[i].number}">
+                                ${json[i].name} &mdash; 
+                                <span class="sizeUse">Description: </span>${json[i].description}
+                            </label>
+                        </div>`
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.brandingInstructions').after(option);
+        });
     },
 
     /**

@@ -40,7 +40,7 @@ gulp.task('copy-json', ()=> {
       .pipe(gulp.dest('./app/json'))
 })
 
-gulp.task('watch', () => {
+gulp.task('watch', ['build'], () => {
   gulp.watch(['./src/app.js', './src/js/*.js'], ['pack'])
   gulp.watch(['./src/index.html'],['copy-html'])
   gulp.watch(['./src/json/*.json'],['copy-json'])

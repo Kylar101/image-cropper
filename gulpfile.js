@@ -48,3 +48,5 @@ gulp.task('watch', ['build'], () => {
 })
 
 gulp.task('build', ['pack', 'copy-html','copy-json','copy-images'])
+
+gulp.task('default', ['watch'])

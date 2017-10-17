@@ -81,6 +81,20 @@ $(function () {
         utils.addLocalBrandingOptions(JSON.parse(brandsValue.value))
     })
 
+    // first, we reference the .nav component that holds all tabs
+    var myTabs = document.getElementById('helpTabs');
+
+    // let's give the initialization a JavaScript reference for the "target" option
+    var myTabsCollection = myTabs.getElementsByTagName('A');
+
+    // initialize the component for all items in the collection
+    for (var i = 0; i < myTabsCollection.length; i++) {
+        new Tab(myTabsCollection[i], // our target
+        { // our options
+            height: true
+        });
+    }
+
     // dynamic variables
     var imageSize;
     var cropperSizeData = [];

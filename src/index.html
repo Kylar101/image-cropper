@@ -158,15 +158,26 @@
                                 <h4 class="modal-title" id="getCroppedCanvasTitle">Help</h4>
                             </div>
                             <div class="modal-body help-body">
-                                <h1>Hi There!</h1>
+                                <!-- for better usage, wrap the tabs and contents -->
+                                <div id="myTabsWrapper">
 
-                                <h2>Sizes</h2>
-                                <p>Select as many sizes as you need.</p>
-                                <p>Each size option is exactly what the website/email template size is.</p>
-                                <h2>Upload Image</h2>
-                                <p>Uploades an image to each of the sizes that have been selected</p>
-                                <h2>Export All</h2>
-                                <p>Exports all the selected sizes</p>
+                                <!-- Nav tabs -->
+                                    <ul id="helpTabs" class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="active">
+                                        <a href="#sizes" data-toggle="tab" data-height="true" aria-controls="sizes" role="tab">Sizes</a>
+                                        </li>
+                                        <li role="presentation">
+                                        <a href="#branding" data-toggle="tab" data-height="true" aria-controls="branding" role="tab">Branding</a>
+                                        </li>
+                                    </ul>
+
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane active" id="sizes"><h1>Size</h1></div>
+                                        <div role="tabpanel" class="tab-pane" id="branding"><h1>Branding</h1></div>
+                                    </div>
+
+                                </div>
 
                             </div>
                             <div class="modal-footer">

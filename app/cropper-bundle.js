@@ -10371,26 +10371,29 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
 
     'use strict';
 
+    // ----------------------------------------------------------------------------------------------
+    // ---------------------------------- LOADING CODE ---------------------------------------------
+    // ----------------------------------------------------------------------------------------------
 
     let sizesValue = document.getElementById('sizesValue')
     let brandsValue = document.getElementById('brandsValue')
 
     function pageLoad() {
-        // utils.addSizingOptions();
-        // utils.addBrandingOptions();
+        // utils.addSizingOptions()
+        // utils.addBrandingOptions()
         let sizes = localStorage.getItem("imageCropperSizes")
         let brands = localStorage.getItem("imageCropperBrands")
         sizesValue.value = sizes
         brandsValue.value = brands
         if (!sizes) {
-            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.sizeInstructions').append('<h2 class="select-message no-sizes">Please enter some sizes</h2>');
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.sizeInstructions').append('<h2 class="select-message no-sizes">Please enter some sizes</h2>')
         } else {
             __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.no-sizes').remove()
             __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].addLocalSizingOptions(JSON.parse(sizes))
         }
 
         if (!brands) {
-            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.brandingInstructions').append('<h2 class="select-message no-brands">Please enter some sizes</h2>');
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.brandingInstructions').append('<h2 class="select-message no-brands">Please enter some brands</h2>')
         } else {
             __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.no-brands').remove()
             __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].addLocalBrandingOptions(JSON.parse(brands))
@@ -10401,14 +10404,14 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
     // ---------------------------------- BACKBONE CODE ---------------------------------------------
     // ----------------------------------------------------------------------------------------------
 
-    window.onload = pageLoad();
+    window.onload = pageLoad()
 
     let helpModalID = document.getElementById('helpModal')
     let helpModal = new __WEBPACK_IMPORTED_MODULE_2_bootstrap_native___default.a.Modal(helpModalID)
 
     // opens the helper Modal
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.helpButton').click(function () {
-        // $('#helpModal').modal();
+        // $('#helpModal').modal()
         helpModal.show()
     })
 
@@ -10445,45 +10448,45 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
     })
 
     // first, we reference the .nav component that holds all tabs
-    var myTabs = document.getElementById('helpTabs');
+    var myTabs = document.getElementById('helpTabs')
 
     // let's give the initialization a JavaScript reference for the "target" option
-    var myTabsCollection = myTabs.getElementsByTagName('A');
+    var myTabsCollection = myTabs.getElementsByTagName('A')
 
     // initialize the component for all items in the collection
     for (var i = 0; i < myTabsCollection.length; i++) {
-        new Tab(myTabsCollection[i], // our target
+        new __WEBPACK_IMPORTED_MODULE_2_bootstrap_native___default.a.Tab(myTabsCollection[i], // our target
         { // our options
             height: true
-        });
+        })
     }
 
     // dynamic variables
-    var imageSize;
-    var cropperSizeData = [];
-    var cropperSizeOptions = [];
-    var branding = false;
-    var brandingImage = '';
-    var brandingDetails = [];
+    var imageSize
+    var cropperSizeData = []
+    var cropperSizeOptions = []
+    var branding = false
+    var brandingImage = ''
+    var brandingDetails = []
     // var ratioList = ['one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve'];
-    var ratioList;
+    var ratioList
 
     // checks for new sizes and adds it to html
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).on('change', 'input[name="dynamicSizes"]', function () {
-        console.log('changed');
+        console.log('changed')
 
         // gets identifiers from sizes
         ratioList = __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].getSizeIdentifiers('dynamicSizes')
 
         var checking = [];
-        imageSize = __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].getCheckBoxesSize('dynamicSizes');
+        imageSize = __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].getCheckBoxesSize('dynamicSizes')
 
         // checks if size already on screen
         for (var i = 0; i < imageSize[0].length; i++) {
             if (__WEBPACK_IMPORTED_MODULE_0_jquery___default()('.' + imageSize[0][i]).length < 1) {
-                __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].addCropperHTMLSize(imageSize[0][i], imageSize[1][i], imageSize[2][i]);
+                __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].addCropperHTMLSize(imageSize[0][i], imageSize[1][i], imageSize[2][i])
             } else {
-                console.log(`element number ${imageSize[0][i]} exists`);
+                console.log(`element number ${imageSize[0][i]} exists`)
             }
         }
 
@@ -10491,9 +10494,9 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
         for (var x = 0; x < ratioList.length; x++) {
             if (document.getElementById(ratioList[x])) {
                 if (checking.includes(ratioList[x])) {
-                    console.log('already in array');
+                    console.log('already in array')
                 } else {
-                    checking.push(ratioList[x]);
+                    checking.push(ratioList[x])
                 }
             }
         }
@@ -10501,31 +10504,31 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
         // removes sizes if no longer selected
         for (var t = 0; t < checking.length; t++) {
             if (!imageSize[0].includes(checking[t])) {
-                __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#' + checking[t]).remove();
+                __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#' + checking[t]).remove()
             }
         }
 
         // removes all remaining sizes if none selected
         if (imageSize[0].length == 0) {
-            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.dynamicImages').remove();
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.dynamicImages').remove()
         }
 
         // checks if there are any cropper objects. Displays Select message if false
         if (__WEBPACK_IMPORTED_MODULE_0_jquery___default()(".dynamicImages").length < 1) {
-            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#croppingArea').append('<h2 class="select-message">Please select an image size</h2>');
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#croppingArea').append('<h2 class="select-message">Please select an image size</h2>')
         } else {
-            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.select-message').remove();
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.select-message').remove()
         }
 
 
-    });
+    })
 
     var $image;
     // adds cropper objects onto the html
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).on('change', 'input[name="dynamicSizes"]', function () {
         $image = imageSize[3][0];
         for (var i = 0; i < imageSize[0].length; i++) {
-            cropperSizeData[i] = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(imageSize[3][i]);
+            cropperSizeData[i] = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(imageSize[3][i])
             cropperSizeOptions[i] = {
                 aspectRatio: imageSize[1][i] / imageSize[2][i],
                 preview: `.img-preview-${imageSize[0][i]}`,
@@ -10542,13 +10545,13 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
 
             // keeps the image the same accross all sizes
             if (blobURL) {
-                var new_blobURL = URL.createObjectURL(file);
+                var new_blobURL = URL.createObjectURL(file)
                 cropperSizeData[i].one('built.cropper', function () {
-                }).cropper('reset').cropper('replace', new_blobURL);
+                }).cropper('reset').cropper('replace', new_blobURL)
             }
         }
 
-    });
+    })
 
     // zooms image into the correct dimensions
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).on('change', 'input[name="dynamicSizes"]', function () {
@@ -10567,7 +10570,7 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
     })
     // adds branding
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).on('change', 'input[name="dynamicBrands"],input[name="dynamicSizes"]', function () {
-        var brandingDetails = __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].getBrandingOptions('dynamicBrands');
+        var brandingDetails = __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].getBrandingOptions('dynamicBrands')
 
         brandingImage = brandingDetails[0][0];
 
@@ -10602,15 +10605,15 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
             __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.branding-preview').remove()
         }
 
-    });
+    })
 
 
 
     // assigns download button on modal to jquery object
-    var $download = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#download');
+    var $download = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#download')
 
     // creates the initial cropper object
-    // var $image = $('.one > img');
+    // var $image = $('.one > img')
     // var options = {
     //   aspectRatio: 572 / 150,
     //   preview: '.img-preview-one',
@@ -10621,17 +10624,17 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
     //   // cropBoxMovable: false
     // };
     // // initialises first cropper
-    // $image.cropper(options);
+    // $image.cropper(options)
 
     // Download
     if (typeof $download[0].download === 'undefined') {
-        $download.addClass('disabled');
+        $download.addClass('disabled')
     }
 
     // export button click
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.docs-buttons').on('click', '[data-method]', function () {
-        var $this = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this);
-        var data = $this.data();
+        var $this = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this)
+        var data = $this.data()
         var $target;
         var result;
         var dynamicResult = [];
@@ -10640,13 +10643,13 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
 
             // some error checking
             if (typeof data.target !== 'undefined') {
-                $target = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(data.target);
+                $target = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(data.target)
 
                 if (typeof data.option === 'undefined') {
                     try {
-                        data.option = JSON.parse($target.val());
+                        data.option = JSON.parse($target.val())
                     } catch (e) {
-                        console.log(e.message);
+                        console.log(e.message)
                     }
                 }
             }
@@ -10654,17 +10657,17 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
             // adds each of the selected sizes to array of canvas
             if (imageSize) {
                 for (var i = 0; i < imageSize[0].length; i++) {
-                    dynamicResult.push(cropperSizeData[i].cropper(data.method, data.option, data.secondOption));
+                    dynamicResult.push(cropperSizeData[i].cropper(data.method, data.option, data.secondOption))
                 }
             } else {
-                result = $image.cropper(data.method, data.option, data.secondOption);
+                result = $image.cropper(data.method, data.option, data.secondOption)
             }
 
             switch (data.method) {
                 // for rotating image - not applicable atm
                 case 'scaleX':
                 case 'scaleY':
-                    __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).data('option', -data.option);
+                    __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).data('option', -data.option)
                     break;
 
                 // brings up download modal
@@ -10677,17 +10680,17 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
 
                     // adds images to modal and downloads
                     if (imageSize) {
-                        __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#getCroppedCanvasModal').find('.modal-body').html(dynamicResult);
+                        __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#getCroppedCanvasModal').find('.modal-body').html(dynamicResult)
                         // downloadModal.show()
                     } else {
-                        __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#getCroppedCanvasModal').find('.modal-body').html(result);
+                        __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#getCroppedCanvasModal').find('.modal-body').html(result)
                         // downloadModal.show()
                     }
 
                     if (branding) {
-                        __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].addBrandingAndDownload(brandingImage);
+                        __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].addBrandingAndDownload(brandingImage)
                     } else {
-                        __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].downloadCanvas(this, 'cropper');
+                        __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].downloadCanvas(this, 'cropper')
                     }
 
                     break;
@@ -10696,14 +10699,14 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
             // more error checking
             if (__WEBPACK_IMPORTED_MODULE_0_jquery___default.a.isPlainObject(result) && $target) {
                 try {
-                    $target.val(JSON.stringify(result));
+                    $target.val(JSON.stringify(result))
                 } catch (e) {
-                    console.log(e.message);
+                    console.log(e.message)
                 }
             }
 
         }
-    });
+    })
 
 
     // ----------------------------------------------------------------------------------------------
@@ -10712,7 +10715,7 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
 
 
     // Import image
-    var $inputImage = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#inputImage');
+    var $inputImage = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#inputImage')
     var URL = window.URL || window.webkitURL;
     var blobURL;
     var files;
@@ -10729,7 +10732,7 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
                 // checks file type
                 if (/^image\/\w+$/.test(file.type)) {
                     // gets uploaded image
-                    blobURL = URL.createObjectURL(file);
+                    blobURL = URL.createObjectURL(file)
 
                     // adds image to all croppers on screen
                     if (imageSize) {
@@ -10737,29 +10740,29 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
                             cropperSizeData[i].one('built.cropper', function () {
 
                                 // Revoke when load complete
-                                URL.revokeObjectURL(blobURL);
-                            }).cropper('replace', blobURL);
+                                URL.revokeObjectURL(blobURL)
+                            }).cropper('replace', blobURL)
                         }
                     } else {
                         $image.one('built.cropper', function () {
 
                             // Revoke when load complete
-                            URL.revokeObjectURL(blobURL);
-                        }).cropper('replace', blobURL);
+                            URL.revokeObjectURL(blobURL)
+                        }).cropper('replace', blobURL)
                     }
 
-                    $inputImage.val('');
+                    $inputImage.val('')
                 } else {
                     // error message for wrong file type
-                    swal('Whoops!', 'Please choose an image file', 'error');
+                    swal('Whoops!', 'Please choose an image file', 'error')
                 }
             }
-        });
+        })
     } else {
-        $inputImage.prop('disabled', true).parent().addClass('disabled');
+        $inputImage.prop('disabled', true).parent().addClass('disabled')
     }
 
-});
+})
 
 
 /***/ }),

@@ -10452,7 +10452,7 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
 
     // initialize the component for all items in the collection
     for (var i = 0; i < myTabsCollection.length; i++) {
-        new Tab(myTabsCollection[i], // our target
+        new __WEBPACK_IMPORTED_MODULE_2_bootstrap_native___default.a.Tab(myTabsCollection[i], // our target
         { // our options
             height: true
         });

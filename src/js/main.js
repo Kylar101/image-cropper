@@ -89,7 +89,7 @@ $(function () {
 
     // initialize the component for all items in the collection
     for (var i = 0; i < myTabsCollection.length; i++) {
-        new Tab(myTabsCollection[i], // our target
+        new bsn.Tab(myTabsCollection[i], // our target
         { // our options
             height: true
         });

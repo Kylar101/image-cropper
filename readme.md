@@ -1,4 +1,4 @@
-# Image Cropper
+# Image Cropper [![Build Status](https://travis-ci.org/Kylar101/image-cropper.svg?branch=master)](https://travis-ci.org/Kylar101/image-cropper)
 > A tool that helps users get the images that they want to CCQ Standard Sizes
 
 ## Project Owner

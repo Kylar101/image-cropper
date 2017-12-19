@@ -10410,25 +10410,25 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
     let brandsValue = document.getElementById('brandsValue')
 
     function pageLoad() {
-        __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].addSizingOptions()
-        __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].addBrandingOptions()
-        // let sizes = localStorage.getItem("imageCropperSizes")
-        // let brands = localStorage.getItem("imageCropperBrands")
-        // sizesValue.value = sizes
-        // brandsValue.value = brands
-        // if (!sizes) {
-        //     $('.sizeInstructions').append('<h2 class="select-message no-sizes">Please enter some sizes</h2>')
-        // } else {
-        //     $('.no-sizes').remove()
-        //     utils.addLocalSizingOptions(JSON.parse(sizes))
-        // }
+        // utils.addSizingOptions()
+        // utils.addBrandingOptions()
+        let sizes = localStorage.getItem("imageCropperSizes")
+        let brands = localStorage.getItem("imageCropperBrands")
+        sizesValue.value = sizes
+        brandsValue.value = brands
+        if (!sizes) {
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.sizeInstructions').append('<h2 class="select-message no-sizes">Please enter some sizes</h2>')
+        } else {
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.no-sizes').remove()
+            __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].addLocalSizingOptions(JSON.parse(sizes))
+        }
 
-        // if (!brands) {
-        //     $('.brandingInstructions').append('<h2 class="select-message no-brands">Please enter some brands</h2>')
-        // } else {
-        //     $('.no-brands').remove()
-        //     utils.addLocalBrandingOptions(JSON.parse(brands))
-        // }
+        if (!brands) {
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.brandingInstructions').append('<h2 class="select-message no-brands">Please enter some brands</h2>')
+        } else {
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.no-brands').remove()
+            __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].addLocalBrandingOptions(JSON.parse(brands))
+        }
     }
 
     // ----------------------------------------------------------------------------------------------

@@ -318,7 +318,7 @@ $(function () {
             // adds each of the selected sizes to array of canvas
             if (imageSize) {
                 for (var i = 0; i < imageSize[0].length; i++) {
-                    dynamicResult.push(cropperSizeData[i].cropper(data.method, data.option, data.secondOption))
+                    dynamicResult.push(cropperSizeData[i][data.method](data.option, data.secondOption))
                 }
             } else {
                 result = $image.cropper(data.method, data.option, data.secondOption)

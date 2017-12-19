@@ -26,6 +26,7 @@
   "dependencies": {
     "bootstrap.native": "^2.0.12",
     "cropper": "^3.0.0-rc.3",
+    "cropperjs": "^1.2.1",
     "jquery": "^3.2.1"
   }
 }

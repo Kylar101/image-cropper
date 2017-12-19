@@ -20,25 +20,25 @@ $(function () {
     let brandsValue = document.getElementById('brandsValue')
 
     function pageLoad() {
-        utils.addSizingOptions()
-        utils.addBrandingOptions()
-        // let sizes = localStorage.getItem("imageCropperSizes")
-        // let brands = localStorage.getItem("imageCropperBrands")
-        // sizesValue.value = sizes
-        // brandsValue.value = brands
-        // if (!sizes) {
-        //     $('.sizeInstructions').append('<h2 class="select-message no-sizes">Please enter some sizes</h2>')
-        // } else {
-        //     $('.no-sizes').remove()
-        //     utils.addLocalSizingOptions(JSON.parse(sizes))
-        // }
+        // utils.addSizingOptions()
+        // utils.addBrandingOptions()
+        let sizes = localStorage.getItem("imageCropperSizes")
+        let brands = localStorage.getItem("imageCropperBrands")
+        sizesValue.value = sizes
+        brandsValue.value = brands
+        if (!sizes) {
+            $('.sizeInstructions').append('<h2 class="select-message no-sizes">Please enter some sizes</h2>')
+        } else {
+            $('.no-sizes').remove()
+            utils.addLocalSizingOptions(JSON.parse(sizes))
+        }
 
-        // if (!brands) {
-        //     $('.brandingInstructions').append('<h2 class="select-message no-brands">Please enter some brands</h2>')
-        // } else {
-        //     $('.no-brands').remove()
-        //     utils.addLocalBrandingOptions(JSON.parse(brands))
-        // }
+        if (!brands) {
+            $('.brandingInstructions').append('<h2 class="select-message no-brands">Please enter some brands</h2>')
+        } else {
+            $('.no-brands').remove()
+            utils.addLocalBrandingOptions(JSON.parse(brands))
+        }
     }
 
     // ----------------------------------------------------------------------------------------------

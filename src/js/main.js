@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import 'cropper'
+// import 'cropper'
 import Cropper from 'cropperjs'
 import bsn from 'bootstrap.native'
 import utils from './utils'

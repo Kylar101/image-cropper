@@ -4,7 +4,9 @@ import Cropper from 'cropperjs'
 import bsn from 'bootstrap.native'
 import utils from './utils'
 import './sweetalert.min'
-import { setTimeout } from 'timers';
+import {
+    setTimeout
+} from 'timers';
 
 $(function () {
 
@@ -188,7 +190,6 @@ $(function () {
             //     cropperSizeData[i].one('built.cropper', function () {
             //     }).cropper('reset').cropper('replace', new_blobURL)
             // }
-            let test = imageSize[3][i]
             cropperSizeData[i] = document.querySelector(imageSize[3][i])
             cropperSizeData[i] = new Cropper(cropperSizeData[i], {
                 aspectRatio: imageSize[1][i] / imageSize[2][i],
@@ -204,12 +205,13 @@ $(function () {
             if (blobURL) {
                 var new_blobURL = URL.createObjectURL(file)
                 cropperSizeData[i].reset().replace(new_blobURL)
-                setTimeout( ()=> {
-                    let selector = test.replace(/ > img/g, '')
-                    $(`${selector} > .cropper-container.cropper-bg:nth-of-type(2n)`).remove()
-                    console.log(selector)
-                }, 50 )
             }
+            let test = imageSize[3][i]
+            setTimeout(() => {
+                let selector = test.replace(/ > img/g, '')
+                $(`${selector} > .cropper-container.cropper-bg:nth-of-type(2n)`).remove()
+                console.log(selector)
+            }, 50)
         }
 
     })
@@ -402,12 +404,19 @@ $(function () {
                             // cropperSizeData[i].one('built.cropper', function () {
 
                             //     // Revoke when load complete
-                                // URL.revokeObjectURL(blobURL)
+                            // URL.revokeObjectURL(blobURL)
                             // }).replace(blobURL)
                             cropperSizeData[i].replace(blobURL)
-                            setTimeout( ()=> {
+                            setTimeout(() => {
                                 URL.revokeObjectURL(blobURL)
-                            }, 50 )
+                            }, 50)
+
+                            let test = imageSize[3][i]
+                            setTimeout(() => {
+                                let selector = test.replace(/ > img/g, '')
+                                $(`${selector} > .cropper-container.cropper-bg:nth-of-type(2n)`).remove()
+                                console.log(selector)
+                            }, 50)
                         }
                     } else {
                         $image.one('built.cropper', function () {

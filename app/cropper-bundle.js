@@ -10582,7 +10582,6 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
             //     cropperSizeData[i].one('built.cropper', function () {
             //     }).cropper('reset').cropper('replace', new_blobURL)
             // }
-            let test = imageSize[3][i]
             cropperSizeData[i] = document.querySelector(imageSize[3][i])
             cropperSizeData[i] = new __WEBPACK_IMPORTED_MODULE_2_cropperjs___default.a(cropperSizeData[i], {
                 aspectRatio: imageSize[1][i] / imageSize[2][i],
@@ -10598,12 +10597,13 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
             if (blobURL) {
                 var new_blobURL = URL.createObjectURL(file)
                 cropperSizeData[i].reset().replace(new_blobURL)
-                Object(__WEBPACK_IMPORTED_MODULE_6_timers__["setTimeout"])( ()=> {
-                    let selector = test.replace(/ > img/g, '')
-                    __WEBPACK_IMPORTED_MODULE_0_jquery___default()(`${selector} > .cropper-container.cropper-bg:nth-of-type(2n)`).remove()
-                    console.log(selector)
-                }, 50 )
             }
+            let test = imageSize[3][i]
+            Object(__WEBPACK_IMPORTED_MODULE_6_timers__["setTimeout"])(() => {
+                let selector = test.replace(/ > img/g, '')
+                __WEBPACK_IMPORTED_MODULE_0_jquery___default()(`${selector} > .cropper-container.cropper-bg:nth-of-type(2n)`).remove()
+                console.log(selector)
+            }, 50)
         }
 
     })
@@ -10796,12 +10796,19 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
                             // cropperSizeData[i].one('built.cropper', function () {
 
                             //     // Revoke when load complete
-                                // URL.revokeObjectURL(blobURL)
+                            // URL.revokeObjectURL(blobURL)
                             // }).replace(blobURL)
                             cropperSizeData[i].replace(blobURL)
-                            Object(__WEBPACK_IMPORTED_MODULE_6_timers__["setTimeout"])( ()=> {
+                            Object(__WEBPACK_IMPORTED_MODULE_6_timers__["setTimeout"])(() => {
                                 URL.revokeObjectURL(blobURL)
-                            }, 50 )
+                            }, 50)
+
+                            let test = imageSize[3][i]
+                            Object(__WEBPACK_IMPORTED_MODULE_6_timers__["setTimeout"])(() => {
+                                let selector = test.replace(/ > img/g, '')
+                                __WEBPACK_IMPORTED_MODULE_0_jquery___default()(`${selector} > .cropper-container.cropper-bg:nth-of-type(2n)`).remove()
+                                console.log(selector)
+                            }, 50)
                         }
                     } else {
                         $image.one('built.cropper', function () {

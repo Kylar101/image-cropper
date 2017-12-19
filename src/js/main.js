@@ -1,8 +1,12 @@
 import $ from 'jquery'
-import 'cropper'
+// import 'cropper'
+import Cropper from 'cropperjs'
 import bsn from 'bootstrap.native'
 import utils from './utils'
 import './sweetalert.min'
+import {
+    setTimeout
+} from 'timers';
 
 $(function () {
 
@@ -16,25 +20,25 @@ $(function () {
     let brandsValue = document.getElementById('brandsValue')
 
     function pageLoad() {
-        // utils.addSizingOptions()
-        // utils.addBrandingOptions()
-        let sizes = localStorage.getItem("imageCropperSizes")
-        let brands = localStorage.getItem("imageCropperBrands")
-        sizesValue.value = sizes
-        brandsValue.value = brands
-        if (!sizes) {
-            $('.sizeInstructions').append('<h2 class="select-message no-sizes">Please enter some sizes</h2>')
-        } else {
-            $('.no-sizes').remove()
-            utils.addLocalSizingOptions(JSON.parse(sizes))
-        }
+        utils.addSizingOptions()
+        utils.addBrandingOptions()
+        // let sizes = localStorage.getItem("imageCropperSizes")
+        // let brands = localStorage.getItem("imageCropperBrands")
+        // sizesValue.value = sizes
+        // brandsValue.value = brands
+        // if (!sizes) {
+        //     $('.sizeInstructions').append('<h2 class="select-message no-sizes">Please enter some sizes</h2>')
+        // } else {
+        //     $('.no-sizes').remove()
+        //     utils.addLocalSizingOptions(JSON.parse(sizes))
+        // }
 
-        if (!brands) {
-            $('.brandingInstructions').append('<h2 class="select-message no-brands">Please enter some brands</h2>')
-        } else {
-            $('.no-brands').remove()
-            utils.addLocalBrandingOptions(JSON.parse(brands))
-        }
+        // if (!brands) {
+        //     $('.brandingInstructions').append('<h2 class="select-message no-brands">Please enter some brands</h2>')
+        // } else {
+        //     $('.no-brands').remove()
+        //     utils.addLocalBrandingOptions(JSON.parse(brands))
+        // }
     }
 
     // ----------------------------------------------------------------------------------------------
@@ -76,8 +80,8 @@ $(function () {
         brandModal.show()
     })
 
-      let submitBrands = document.getElementById('submitBrands')
-        submitBrands.addEventListener('click', () => {
+    let submitBrands = document.getElementById('submitBrands')
+    submitBrands.addEventListener('click', () => {
         localStorage.setItem('imageCropperBrands', brandsValue.value)
         $('.no-brands').remove()
         $('.brandingOptions').remove()
@@ -93,9 +97,9 @@ $(function () {
     // initialize the component for all items in the collection
     for (var i = 0; i < myTabsCollection.length; i++) {
         new bsn.Tab(myTabsCollection[i], // our target
-        { // our options
-            height: true
-        })
+            { // our options
+                height: true
+            })
     }
 
     // dynamic variables
@@ -165,8 +169,29 @@ $(function () {
     $(document).on('change', 'input[name="dynamicSizes"]', function () {
         $image = imageSize[3][0];
         for (var i = 0; i < imageSize[0].length; i++) {
-            cropperSizeData[i] = $(imageSize[3][i])
-            cropperSizeOptions[i] = {
+            // cropperSizeData[i] = $(imageSize[3][i])
+            // cropperSizeOptions[i] = {
+            //     aspectRatio: imageSize[1][i] / imageSize[2][i],
+            //     preview: `.img-preview-${imageSize[0][i]}`,
+            //     minCropBoxWidth: imageSize[1][i],
+            //     minCropBoxHeight: imageSize[2][i],
+            //     checkCrossOrigin: true,
+            //     dragMode: 'move',
+            //     // cropBoxMovable: false,
+            //     cropBoxResizable: false
+            // }
+
+            // // initialises cropper objects
+            // cropperSizeData[i].cropper(cropperSizeOptions[i])
+
+            // // keeps the image the same accross all sizes
+            // if (blobURL) {
+            //     var new_blobURL = URL.createObjectURL(file)
+            //     cropperSizeData[i].one('built.cropper', function () {
+            //     }).cropper('reset').cropper('replace', new_blobURL)
+            // }
+            cropperSizeData[i] = document.querySelector(imageSize[3][i])
+            cropperSizeData[i] = new Cropper(cropperSizeData[i], {
                 aspectRatio: imageSize[1][i] / imageSize[2][i],
                 preview: `.img-preview-${imageSize[0][i]}`,
                 minCropBoxWidth: imageSize[1][i],
@@ -175,32 +200,33 @@ $(function () {
                 dragMode: 'move',
                 // cropBoxMovable: false,
                 cropBoxResizable: false
-            }
+            })
 
-            // initialises cropper objects
-            cropperSizeData[i].cropper(cropperSizeOptions[i])
-
-            // keeps the image the same accross all sizes
             if (blobURL) {
                 var new_blobURL = URL.createObjectURL(file)
-                cropperSizeData[i].one('built.cropper', function () {
-                }).cropper('reset').cropper('replace', new_blobURL)
+                cropperSizeData[i].reset().replace(new_blobURL)
             }
+            let test = imageSize[3][i]
+            setTimeout(() => {
+                let selector = test.replace(/ > img/g, '')
+                $(`${selector} > .cropper-container.cropper-bg:nth-of-type(2n)`).remove()
+                console.log(selector)
+            }, 50)
         }
 
     })
 
     // zooms image into the correct dimensions
     $(document).on('change', 'input[name="dynamicSizes"]', function () {
-    // $(document).on('scroll', function () {
+        // $(document).on('scroll', function () {
         setTimeout(function () {
             for (let i = 0; i < imageSize[0].length; i++) {
                 // getting cropper data 
-                let cropBoxData = cropperSizeData[i].cropper('getCropBoxData')
+                let cropBoxData = cropperSizeData[i].getCropBoxData()
                 // calculate zoom distance and zooms
-                cropperSizeData[i].cropper('zoomTo', cropBoxData.width / imageSize[1][i])
+                cropperSizeData[i].zoomTo(cropBoxData.width / imageSize[1][i])
                 // disables zoom, so users can't break dimensions
-                cropperSizeData[i].cropper('zoomable', false)
+                // cropperSizeData[i].setDefaults({ zoomable: false })
 
             }
         }, 50)
@@ -294,7 +320,7 @@ $(function () {
             // adds each of the selected sizes to array of canvas
             if (imageSize) {
                 for (var i = 0; i < imageSize[0].length; i++) {
-                    dynamicResult.push(cropperSizeData[i].cropper(data.method, data.option, data.secondOption))
+                    dynamicResult.push(cropperSizeData[i][data.method](data.option, data.secondOption))
                 }
             } else {
                 result = $image.cropper(data.method, data.option, data.secondOption)
@@ -307,12 +333,13 @@ $(function () {
                     $(this).data('option', -data.option)
                     break;
 
-                // brings up download modal
+                    // brings up download modal
                 case 'getCroppedCanvas':
 
                     // var branding = true;
                     let downloadModalID = document.getElementById('getCroppedCanvasModal')
                     let downloadModal = new bsn.Modal(downloadModalID)
+                    console.log($('#getCroppedCanvasModal').find('.modal-body'))
 
 
                     // adds images to modal and downloads
@@ -374,18 +401,29 @@ $(function () {
                     // adds image to all croppers on screen
                     if (imageSize) {
                         for (var i = 0; i < imageSize[0].length; i++) {
-                            cropperSizeData[i].one('built.cropper', function () {
+                            // cropperSizeData[i].one('built.cropper', function () {
 
-                                // Revoke when load complete
+                            //     // Revoke when load complete
+                            // URL.revokeObjectURL(blobURL)
+                            // }).replace(blobURL)
+                            cropperSizeData[i].replace(blobURL)
+                            setTimeout(() => {
                                 URL.revokeObjectURL(blobURL)
-                            }).cropper('replace', blobURL)
+                            }, 50)
+
+                            let test = imageSize[3][i]
+                            setTimeout(() => {
+                                let selector = test.replace(/ > img/g, '')
+                                $(`${selector} > .cropper-container.cropper-bg:nth-of-type(2n)`).remove()
+                                console.log(selector)
+                            }, 50)
                         }
                     } else {
                         $image.one('built.cropper', function () {
 
                             // Revoke when load complete
                             URL.revokeObjectURL(blobURL)
-                        }).cropper('replace', blobURL)
+                        }).replace(blobURL)
                     }
 
                     $inputImage.val('')

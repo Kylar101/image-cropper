@@ -6900,9 +6900,6 @@ body {
 .navbar-toggle:focus {
   border-color: #0074d9; }
 
-.navbar-toggle .icon-bar {
-  background-color: #0074d9; }
-
 /* Jumbotron */
 .docs-jumbotron {
   background-color: #0074d9;

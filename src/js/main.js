@@ -160,7 +160,6 @@ $(function () {
             $('.select-message').remove()
         }
 
-
     })
 
     var $image;
@@ -168,7 +167,7 @@ $(function () {
     $(document).on('change', 'input[name="dynamicSizes"]', function () {
         $image = imageSize[3][0];
         for (var i = 0; i < imageSize[0].length; i++) {
-            
+
             cropperSizeData[i] = document.querySelector(imageSize[3][i])
             cropperSizeData[i] = new Cropper(cropperSizeData[i], {
                 aspectRatio: imageSize[1][i] / imageSize[2][i],
@@ -189,7 +188,6 @@ $(function () {
             setTimeout(() => {
                 let selector = test.replace(/ > img/g, '')
                 $(`${selector} > .cropper-container.cropper-bg:nth-of-type(2n)`).remove()
-                console.log(selector)
             }, 50)
         }
 
@@ -283,13 +281,13 @@ $(function () {
             }
 
             // adds each of the selected sizes to array of canvas
-            if (imageSize) {
-                for (var i = 0; i < imageSize[0].length; i++) {
-                    dynamicResult.push(cropperSizeData[i][data.method](data.option, data.secondOption))
-                }
-            } else {
-                result = $image.cropper(data.method, data.option, data.secondOption)
+            // if (imageSize) {
+            for (var i = 0; i < imageSize[0].length; i++) {
+                dynamicResult.push(cropperSizeData[i][data.method](data.option, data.secondOption))
             }
+            // } else {
+            //     result = $image.cropper(data.method, data.option, data.secondOption)
+            // }
 
             switch (data.method) {
                 // for rotating image - not applicable atm
@@ -364,31 +362,30 @@ $(function () {
                     blobURL = URL.createObjectURL(file)
 
                     // adds image to all croppers on screen
-                    if (imageSize) {
-                        for (var i = 0; i < imageSize[0].length; i++) {
+                    // if (imageSize) {
+                    for (var i = 0; i < imageSize[0].length; i++) {
 
-                            // console.log(imageSize[1][i])
-                            let cropBoxData = cropperSizeData[i].getCropBoxData()
+                        let cropBoxData = cropperSizeData[i].getCropBoxData()
 
-                            cropperSizeData[i].replace(blobURL)
-                            setTimeout(() => {
-                                cropperSizeData[i].zoomTo(cropBoxData.width / imageSize[1][i])
-                                URL.revokeObjectURL(blobURL)
-                            }, 50)
-
-                            let test = imageSize[3][i]
-                            setTimeout(() => {
-                                let selector = test.replace(/ > img/g, '')
-                                $(`${selector} > .cropper-container.cropper-bg:nth-of-type(2n)`).remove()
-                            }, 50)
-                        }
-                    } else {
-                        $image.one('built.cropper', function () {
-
-                            // Revoke when load complete
+                        cropperSizeData[i].replace(blobURL)
+                        setTimeout(() => {
+                            cropperSizeData[i].zoomTo(cropBoxData.width / imageSize[1][i])
                             URL.revokeObjectURL(blobURL)
-                        }).replace(blobURL)
+                        }, 50)
+
+                        let test = imageSize[3][i]
+                        setTimeout(() => {
+                            let selector = test.replace(/ > img/g, '')
+                            $(`${selector} > .cropper-container.cropper-bg:nth-of-type(2n)`).remove()
+                        }, 50)
                     }
+                    // } else {
+                    //     $image.one('built.cropper', function () {
+
+                    //         // Revoke when load complete
+                    //         URL.revokeObjectURL(blobURL)
+                    //     }).replace(blobURL)
+                    // }
 
                     $inputImage.val('')
                 } else {

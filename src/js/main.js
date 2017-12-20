@@ -196,8 +196,8 @@ $(function () {
     // zooms image into the correct dimensions
     $(document).on('change', 'input[name="dynamicSizes"]', function () {
         // $(document).on('scroll', function () {
-        setTimeout(function () {
-            for (let i = 0; i < imageSize[0].length; i++) {
+        for (let i = 0; i < imageSize[0].length; i++) {
+            setTimeout(function () {
                 // getting cropper data 
                 let cropBoxData = cropperSizeData[i].getCropBoxData()
                 // calculate zoom distance and zooms
@@ -205,8 +205,8 @@ $(function () {
                 // disables zoom, so users can't break dimensions
                 // cropperSizeData[i].setDefaults({ zoomable: false })
 
-            }
-        }, 50)
+            }, 50)
+        }
     })
     // adds branding
     $(document).on('change', 'input[name="dynamicBrands"],input[name="dynamicSizes"]', function () {

@@ -1,5 +1,6 @@
 // import js
 import './js/main'
+import './js/individual'
 
 // import css
 import './css/bootstrap.min.css'

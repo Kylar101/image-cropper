@@ -41,20 +41,35 @@
         </div>
     </div>
 
-    <!-- Cropper Sizes -->
-    <div class="container sizes">
-        <form id="options">
-            <h2>Sizes</h2>
-            <p class="sizeInstructions firstSize">Please select any of the following sizes to resize your image too. You can select as many as you need.</p>
-        </form>
-    </div>
+    <div id="cropperTabsWrapper">
 
-    <div class="container">
-        <hr>
-    </div>
+        <ul id="cropperTabs" class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#home" data-toggle="tab" data-height="true" aria-controls="home" role="tab">Home</a>
+            </li>
+            <li role="presentation">
+                <a href="#single" data-toggle="tab" data-height="true" aria-controls="home" role="tab">Single</a>
+            </li>
+        </ul>
 
-    <!-- Cropper Branding -->
-    <!-- <div class="container sizes">
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="home">
+
+                <!-- Cropper Sizes -->
+                <div class="container sizes">
+                    <form id="options">
+                        <h2>Sizes</h2>
+                        <p class="sizeInstructions firstSize">Please select any of the following sizes to resize your image too. You can select as many as you
+                            need.</p>
+                    </form>
+                </div>
+
+                <div class="container">
+                    <hr>
+                </div>
+
+                <!-- Cropper Branding -->
+                <!-- <div class="container sizes">
         <form id="options">
             <h2>Branding</h2>
             <p class="brandingInstructions">Please select any of the following branding to add to your image.
@@ -68,229 +83,222 @@
         <hr>
     </div> -->
 
-    <!-- Upload -->
-    <div class="container">
-        <div class="uploadArea">
-            <label class="btn btn-primary btn-upload uploadBtn" for="inputImage" title="Upload image file">
-                <input type="file" class="sr-only" id="inputImage" name="file" accept="image/*">
-                <!--<span class="docs-tooltip" data-toggle="tooltip" title="Upload New Image">-->
-                <span class="fa fa-upload"></span> Upload Image
-            </label>
-            <p class="uploadInstructions">Please upload the image that you wish to crop. This image will be scaled to fit into the cropper tool. </p>
-        </div>
-    </div>
-
-
-    <div class="container">
-        <hr>
-    </div>
-
-    <div class="container">
-        <p class="cropperInstructions">Move the cropper tool around to get the right picture for the cropped image. Use the scroll tool on your mouse to
-            resize the image. You can see a live preview on the right hand side. When you have each of your images looking
-            how you want them, scroll down the page and click "Export."</p>
-    </div>
-
-    <!-- Cropper -->
-    <div class="container">
-        <div class="row">
-            <div id="croppingArea" class="col-md-9" style="display:flex;flex-wrap:wrap;width:100%;">
-                <h2 class="select-message">Please select an image size</h2>
-                <!--<div id="one" class="dynamicImages img-w-preview" style="display:flex;flex-wrap:wrap;clear:both;">
-<div class="sizeHeading">
-<h2>572 &times; 150 px</h2>
-</div>
-<div class="img-container one">
-<img id="image" src="img/starter.png" alt="Picture">
-</div>
-<div class="preview">
-<img class="branding-preview" src="">
-<div class="dynamic-preview img-preview-one preview-lg"></div>
-</div>
-</div>-->
-            </div>
-        </div>
-
-        <hr>
-
-        <!-- Buttons - Crop Tools -->
-        <div class="row">
-            <div class="container">
-                <p class="exportInstructions">This will export all images that you have cropped above.</p>
-            </div>
-
-            <div class="col-md-9 docs-buttons">
-
-
-                <!-- Buttons - Crop Images -->
-                <div class="btn-group btn-group-crop">
-                    <button id="export" type="button" class="btn btn-primary" data-method="getCroppedCanvas">
-                        <!--<span class="docs-tooltip" data-toggle="tooltip" title="Export All Images">-->
-                        <span class="fa fa-download"></span> Export All
-                        </span>
-                    </button>
-                </div>
-
-                <!-- Show the cropped image in modal -->
-                <div class="modal fade docs-cropped" id="getCroppedCanvasModal" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle"
-                    role="dialog" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title" id="getCroppedCanvasTitle">Cropped</h4>
-                            </div>
-                            <div id="modalBody" class="modal-body"></div>
-                            <div class="modal-footer">
-                                <button id="closemodal" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <a class="btn btn-primary" id="download" href="javascript:void(0);" download="cropped.jpg">Download</a>
-                            </div>
-                        </div>
+                <!-- Upload -->
+                <div class="container">
+                    <div class="uploadArea">
+                        <label class="btn btn-primary btn-upload uploadBtn" for="inputImage" title="Upload image file">
+                            <input type="file" class="sr-only" id="inputImage" name="file" accept="image/*">
+                            <!--<span class="docs-tooltip" data-toggle="tooltip" title="Upload New Image">-->
+                            <span class="fa fa-upload"></span> Upload Image
+                        </label>
+                        <p class="uploadInstructions">Please upload the image that you wish to crop. This image will be scaled to fit into the cropper
+                            tool.
+                        </p>
                     </div>
                 </div>
-                <!-- /.modal -->
 
 
-                <!-- Show help in modal -->
-                <div class="modal fade docs-cropped" id="helpModal" aria-hidden="true" role="dialog" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title" id="getCroppedCanvasTitle">Help</h4>
+                <div class="container">
+                    <hr>
+                </div>
+
+                <div class="container">
+                    <p class="cropperInstructions">Move the cropper tool around to get the right picture for the cropped image. Use the scroll tool on your
+                        mouse to resize the image. You can see a live preview on the right hand side. When you have each
+                        of your images looking how you want them, scroll down the page and click "Export."</p>
+                </div>
+
+                <!-- Cropper -->
+                <div class="container">
+                    <div class="row">
+                        <div id="croppingArea" class="col-md-9" style="display:flex;flex-wrap:wrap;width:100%;">
+                            <h2 class="select-message">Please select an image size</h2>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Buttons - Crop Tools -->
+                    <div class="row">
+                        <div class="container">
+                            <p class="exportInstructions">This will export all images that you have cropped above.</p>
+                        </div>
+
+                        <div class="col-md-9 docs-buttons">
+
+
+                            <!-- Buttons - Crop Images -->
+                            <div class="btn-group btn-group-crop">
+                                <button id="export" type="button" class="btn btn-primary" data-method="getCroppedCanvas">
+                                    <!--<span class="docs-tooltip" data-toggle="tooltip" title="Export All Images">-->
+                                    <span class="fa fa-download"></span> Export All
+                                </button>
                             </div>
-                            <div class="modal-body help-body">
-                                <!-- for better usage, wrap the tabs and contents -->
-                                <div id="myTabsWrapper">
 
-                                    <!-- Nav tabs -->
-                                    <ul id="helpTabs" class="nav nav-tabs" role="tablist">
-                                        <li role="presentation" class="active">
-                                            <a href="#sizes" data-toggle="tab" data-height="true" aria-controls="sizes" role="tab">Sizes</a>
-                                        </li>
-                                        <li role="presentation">
-                                            <a href="#branding" data-toggle="tab" data-height="true" aria-controls="branding" role="tab">Branding</a>
-                                        </li>
-                                    </ul>
-
-                                    <!-- Tab panes -->
-                                    <div class="tab-content">
-                                        <div role="tabpanel" class="tab-pane active" id="sizes">
-                                            <h1>Size</h1>
+                            <!-- Show the cropped image in modal -->
+                            <div class="modal fade docs-cropped" id="getCroppedCanvasModal" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle"
+                                role="dialog" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="getCroppedCanvasTitle">Cropped</h4>
                                         </div>
-                                        <div role="tabpanel" class="tab-pane" id="branding">
-                                            <h1>Branding</h1>
+                                        <div id="modalBody" class="modal-body"></div>
+                                        <div class="modal-footer">
+                                            <button id="closemodal" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <a class="btn btn-primary" id="download" href="javascript:void(0);" download="cropped.jpg">Download</a>
                                         </div>
                                     </div>
-
                                 </div>
+                            </div>
+                            <!-- /.modal -->
 
+
+                            <!-- Show help in modal -->
+                            <div class="modal fade docs-cropped" id="helpModal" aria-hidden="true" role="dialog" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="getCroppedCanvasTitle">Help</h4>
+                                        </div>
+                                        <div class="modal-body help-body">
+                                            <!-- for better usage, wrap the tabs and contents -->
+                                            <div id="myTabsWrapper">
+
+                                                <!-- Nav tabs -->
+                                                <ul id="helpTabs" class="nav nav-tabs" role="tablist">
+                                                    <li role="presentation" class="active">
+                                                        <a href="#sizes" data-toggle="tab" data-height="true" aria-controls="sizes" role="tab">Sizes</a>
+                                                    </li>
+                                                    <li role="presentation">
+                                                        <a href="#branding" data-toggle="tab" data-height="true" aria-controls="branding" role="tab">Branding</a>
+                                                    </li>
+                                                </ul>
+
+                                                <!-- Tab panes -->
+                                                <div class="tab-content">
+                                                    <div role="tabpanel" class="tab-pane active" id="sizes">
+                                                        <h1>Size</h1>
+                                                    </div>
+                                                    <div role="tabpanel" class="tab-pane" id="branding">
+                                                        <h1>Branding</h1>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                            <!-- /.helper modal -->
+
+
+                            <!-- Show upload sizes in modal -->
+                            <div class="modal fade docs-cropped" id="sizeModal" aria-hidden="true" role="dialog" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="getCroppedCanvasTitle">Edit Sizes</h4>
+                                        </div>
+                                        <div class="modal-body help-body">
+                                            <h1>Hi There!</h1>
+
+                                            <p>Add your new sizes here in the following format</p>
+
+                                            <pre>
+                                        {
+                                            "290x150": {
+                                                "name": "Some title",
+                                                "identifier": "nine",
+                                                "upper": "290",
+                                                "lower": "150",
+                                                "use": "Some use",
+                                                "value": "290x150"
+                                            },
+                                            "520x190": {
+                                                "name": "Another title",
+                                                "identifier": "eight",
+                                                "upper": "520",
+                                                "lower": "190",
+                                                "use": "Some use",
+                                                "value": "520x190"
+                                            }
+                                        }
+                                    </pre>
+
+                                            <textarea id="sizesValue" rows="6" cols="60"></textarea>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button id="submitSizes" type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            <!-- /.sizes modal -->
+
+                            <!-- Show upload brand in modal -->
+                            <div class="modal fade docs-cropped" id="brandModal" aria-hidden="true" role="dialog" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="getCroppedCanvasTitle">Edit Branding Options</h4>
+                                        </div>
+                                        <div class="modal-body help-body">
+                                            <h1>Hi There!</h1>
+
+                                            <p>Add your branding options here in the following format</p>
+
+                                            <pre>
+                                        {
+                                            "BrandOne": {
+                                                "name": "Brand One",
+                                                "location": "https://goo.gl/2KjKu9",
+                                                "number": "brandingOne",
+                                                "description":"Branding option"
+                                            },
+                                            "BrandTwo" : {
+                                                "name": "Brand Two",
+                                                "location" : "https://goo.gl/keL3C9",
+                                                "number" : "brandingOne",
+                                                "description" : "Branding Option"
+                                            }
+                                        }
+                                    </pre>
+
+                                            <textarea id="brandsValue" rows="6" cols="60"></textarea>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button id="submitBrands" type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.brand modal -->
+
+
                         </div>
+                        <!-- /.docs-buttons -->
+
+
                     </div>
+
                 </div>
-                <!-- /.helper modal -->
-
-
-                <!-- Show upload sizes in modal -->
-                <div class="modal fade docs-cropped" id="sizeModal" aria-hidden="true" role="dialog" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title" id="getCroppedCanvasTitle">Edit Sizes</h4>
-                            </div>
-                            <div class="modal-body help-body">
-                                <h1>Hi There!</h1>
-
-                                <p>Add your new sizes here in the following format</p>
-
-                                <pre>
-{
-    "290x150": {
-        "name": "Some title",
-        "identifier": "nine",
-        "upper": "290",
-        "lower": "150",
-        "use": "Some use",
-        "value": "290x150"
-    },
-    "520x190": {
-        "name": "Another title",
-        "identifier": "eight",
-        "upper": "520",
-        "lower": "190",
-        "use": "Some use",
-        "value": "520x190"
-    }
-}
-                                </pre>
-
-                                <textarea id="sizesValue" rows="6" cols="60"></textarea>
-
-                            </div>
-                            <div class="modal-footer">
-                                <button id="submitSizes" type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.sizes modal -->
-
-                <!-- Show upload brand in modal -->
-                <div class="modal fade docs-cropped" id="brandModal" aria-hidden="true" role="dialog" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title" id="getCroppedCanvasTitle">Edit Branding Options</h4>
-                            </div>
-                            <div class="modal-body help-body">
-                                <h1>Hi There!</h1>
-
-                                <p>Add your branding options here in the following format</p>
-
-                                <pre>
-{
-    "BrandOne": {
-        "name": "Brand One",
-        "location": "https://goo.gl/2KjKu9",
-        "number": "brandingOne",
-        "description":"Branding option"
-    },
-    "BrandTwo" : {
-        "name": "Brand Two",
-        "location" : "https://goo.gl/keL3C9",
-        "number" : "brandingOne",
-        "description" : "Branding Option"
-    }
-}
-                                </pre>
-
-                                <textarea id="brandsValue" rows="6" cols="60"></textarea>
-
-                            </div>
-                            <div class="modal-footer">
-                                <button id="submitBrands" type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.brand modal -->
-
-
+            </div> <!-- end content panel ===== Home -->
+            <div role="tabpanel" class="tab-pane" id="single">
+                <h1>second</h1>
             </div>
-            <!-- /.docs-buttons -->
-
-
-        </div>
-        <!-- /.docs-toggles -->
-    </div>
-    </div>
-
+        </div> <!-- end tab-content -->
+    </div> <!-- end cropperTabWrapper -->
     <!-- Footer -->
     <footer class="docs-footer">
         <div class="container">

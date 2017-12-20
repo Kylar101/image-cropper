@@ -1,0 +1,36 @@
+
+@media (min-width: 768px) {
+    .img-container {
+        min-height: 516px;
+    }
+}
+
+.img-container > img {
+    max-width: 100%;
+}
+
+.docs-preview {
+    margin-right: -15px;
+}
+
+.img-preview, .dynamic-preview {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    display:block;
+}
+
+.img-preview > img, .dynamic-preview > img {
+    max-width: 100%;
+}
+
+.preview-lg {
+    width: 400px;
+    height: 224px;
+}
+
+
+.docs-cropped .modal-body > img,
+.docs-cropped .modal-body > canvas {
+    max-width: 100%;
+}

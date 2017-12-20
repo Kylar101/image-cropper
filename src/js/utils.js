@@ -199,8 +199,8 @@ export default {
     addBrandingAndDownload: (imagePath) => {
         $('.modal-body canvas').each(function (i) {
             var brandImage = new Image();
-
             brandImage.src = imagePath;
+
             var canvasContext = this.getContext('2d');
             var currentCanvas = this;
 

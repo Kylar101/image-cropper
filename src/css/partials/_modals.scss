@@ -1,0 +1,30 @@
+.helpOption {
+    font-size: 15px;
+    padding: 10px 15px;
+    background-color: #0074d9;
+    border-radius: 4px;
+    color: #fff;
+    margin-left: 96px;
+}
+
+.helpOption:hover {
+    background-color: #286090;
+}
+
+.sizesHeading {
+    font-size: 20px;
+    margin: 5px 0 -5px -7px;
+}
+
+.helpInfo {
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.helpInfo h2 {
+    font-size: 25px;
+}
+
+.navbar-brand, .helpOption {
+    cursor: pointer;
+}

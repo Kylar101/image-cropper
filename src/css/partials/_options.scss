@@ -1,0 +1,85 @@
+
+/* Content */
+
+/* Sizes */
+
+.sizeInstructions {
+    font-weight: 300;
+}
+
+/* Upload */
+
+.uploadArea {
+    padding: 10px;
+    background: #ccc;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.uploadBtn {
+    margin-right: 10px;
+    height: 35px;
+    margin-top: 3px;
+} 
+
+.uploadInstructions {
+    width:85%;
+    margin: 0 10px;
+    font-weight: 300;
+}
+
+/* Export */
+
+.exportInstructions {
+    font-weight: 300;
+}
+
+@media (max-width: 768px) {
+    .uploadBtn {
+        margin-top: 20px;
+    }
+    .uploadInstructions{
+        width: 70%;
+    }
+}
+
+/* Size Options */
+
+.sizes {
+    margin-bottom: 10px;
+}
+
+.sizeUse {
+    font-weight: 400;
+}
+
+.sizeHeading {
+    padding: 10px 0;
+    width: 100%;
+}
+
+.sizeHeading h3 {
+    width:185px;
+    padding-right:40px;
+    padding: 10px 0;
+}
+
+.sizeOptions, .brandingOptions {
+    padding: 5px 5px;
+    background: #ccc;
+    &:hover {
+        background: #adadad;
+    }
+    &:nth-of-type(2n) {
+        background: #eee;
+    }
+    &:nth-of-type(2n):hover {
+        background: #ddd;
+    }
+}
+
+
+.checkbox {
+    font-weight: 300 !important;
+    margin-left:20px;
+}

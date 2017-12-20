@@ -1,0 +1,21 @@
+
+/* branding preview */
+.preview {
+    position: relative;
+    overflow: hidden;
+}
+.preview > .branding-preview {
+    position: absolute;
+    z-index: 1;
+}
+
+.modal-body {
+    pre {
+        width: 60%;
+        margin: 0 auto;
+        margin-bottom: 10px;
+    }
+    textarea {
+        margin: 0 auto;
+    }
+}

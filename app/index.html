@@ -29,7 +29,7 @@
                 <a class="navbar-brand" href="javascript:window.location.reload();">Cropper</a>
                 <a class="navbar-brand helpButton">Help</a>
                 <a class="navbar-brand newSizeButton">Sizes</a>
-                <a class="navbar-brand newBrandingButton">Branding</a>
+                <!-- <a class="navbar-brand newBrandingButton">Branding</a> -->
             </div>
         </div>
     </header>
@@ -54,26 +54,28 @@
     </div>
 
     <!-- Cropper Branding -->
-    <div class="container sizes">
+    <!-- <div class="container sizes">
         <form id="options">
             <h2>Branding</h2>
-            <p class="brandingInstructions">Please select any of the following branding to add to your image. <strong>You can only select one.</strong></p>
+            <p class="brandingInstructions">Please select any of the following branding to add to your image.
+                <strong>You can only select one.</strong>
+            </p>
 
         </form>
-    </div>
+    </div> 
 
     <div class="container">
         <hr>
-    </div>
+    </div> -->
 
     <!-- Upload -->
     <div class="container">
         <div class="uploadArea">
             <label class="btn btn-primary btn-upload uploadBtn" for="inputImage" title="Upload image file">
-<input type="file" class="sr-only" id="inputImage" name="file" accept="image/*">
-<!--<span class="docs-tooltip" data-toggle="tooltip" title="Upload New Image">-->
-<span class="fa fa-upload"></span> Upload Image
-</label>
+                <input type="file" class="sr-only" id="inputImage" name="file" accept="image/*">
+                <!--<span class="docs-tooltip" data-toggle="tooltip" title="Upload New Image">-->
+                <span class="fa fa-upload"></span> Upload Image
+            </label>
             <p class="uploadInstructions">Please upload the image that you wish to crop. This image will be scaled to fit into the cropper tool. </p>
         </div>
     </div>
@@ -123,10 +125,10 @@
                 <!-- Buttons - Crop Images -->
                 <div class="btn-group btn-group-crop">
                     <button id="export" type="button" class="btn btn-primary" data-method="getCroppedCanvas">
-<!--<span class="docs-tooltip" data-toggle="tooltip" title="Export All Images">-->
-<span class="fa fa-download"></span> Export All
-</span>
-</button>
+                        <!--<span class="docs-tooltip" data-toggle="tooltip" title="Export All Images">-->
+                        <span class="fa fa-download"></span> Export All
+                        </span>
+                    </button>
                 </div>
 
                 <!-- Show the cropped image in modal -->
@@ -173,8 +175,12 @@
 
                                     <!-- Tab panes -->
                                     <div class="tab-content">
-                                        <div role="tabpanel" class="tab-pane active" id="sizes"><h1>Size</h1></div>
-                                        <div role="tabpanel" class="tab-pane" id="branding"><h1>Branding</h1></div>
+                                        <div role="tabpanel" class="tab-pane active" id="sizes">
+                                            <h1>Size</h1>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane" id="branding">
+                                            <h1>Branding</h1>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -234,7 +240,7 @@
                 </div>
                 <!-- /.sizes modal -->
 
-                <!-- Show upload sizes in modal -->
+                <!-- Show upload brand in modal -->
                 <div class="modal fade docs-cropped" id="brandModal" aria-hidden="true" role="dialog" tabindex="-1">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -273,7 +279,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- /.helper modal -->
+                <!-- /.brand modal -->
 
 
             </div>
@@ -288,7 +294,11 @@
     <!-- Footer -->
     <footer class="docs-footer">
         <div class="container">
-            <p class="credit"><cite>built using <a href="https://github.com/fengyuanchen/cropper" target="_blank">cropper.js</a></cite></p>
+            <p class="credit">
+                <cite>built using
+                    <a href="https://github.com/fengyuanchen/cropper" target="_blank">cropper.js</a>
+                </cite>
+            </p>
         </div>
     </footer>
 

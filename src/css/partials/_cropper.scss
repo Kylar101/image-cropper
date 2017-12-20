@@ -1,0 +1,26 @@
+/* Cropping Area */
+
+img {
+    max-width:100%;
+}
+
+.img-container {
+    max-width:720px;
+}
+
+.cropperImg {
+    width: 47% !important;
+}
+
+.img-container,
+.img-preview, .dynamic-preview {
+    background-color: #f7f7f7;
+    text-align: center;
+}
+
+.img-container {
+    min-height: 200px;
+    max-height: 516px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+}

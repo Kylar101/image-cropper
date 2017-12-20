@@ -10391,7 +10391,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_timers__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_timers___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_timers__);
 
-// import 'cropper'
 
 
 
@@ -10551,7 +10550,6 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
             __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.select-message').remove()
         }
 
-
     })
 
     var $image;
@@ -10559,27 +10557,7 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).on('change', 'input[name="dynamicSizes"]', function () {
         $image = imageSize[3][0];
         for (var i = 0; i < imageSize[0].length; i++) {
-            // cropperSizeData[i] = $(imageSize[3][i])
-            // cropperSizeOptions[i] = {
-            //     aspectRatio: imageSize[1][i] / imageSize[2][i],
-            //     preview: `.img-preview-${imageSize[0][i]}`,
-            //     minCropBoxWidth: imageSize[1][i],
-            //     minCropBoxHeight: imageSize[2][i],
-            //     checkCrossOrigin: true,
-            //     dragMode: 'move',
-            //     // cropBoxMovable: false,
-            //     cropBoxResizable: false
-            // }
 
-            // // initialises cropper objects
-            // cropperSizeData[i].cropper(cropperSizeOptions[i])
-
-            // // keeps the image the same accross all sizes
-            // if (blobURL) {
-            //     var new_blobURL = URL.createObjectURL(file)
-            //     cropperSizeData[i].one('built.cropper', function () {
-            //     }).cropper('reset').cropper('replace', new_blobURL)
-            // }
             cropperSizeData[i] = document.querySelector(imageSize[3][i])
             cropperSizeData[i] = new __WEBPACK_IMPORTED_MODULE_1_cropperjs___default.a(cropperSizeData[i], {
                 aspectRatio: imageSize[1][i] / imageSize[2][i],
@@ -10600,7 +10578,6 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
             Object(__WEBPACK_IMPORTED_MODULE_5_timers__["setTimeout"])(() => {
                 let selector = test.replace(/ > img/g, '')
                 __WEBPACK_IMPORTED_MODULE_0_jquery___default()(`${selector} > .cropper-container.cropper-bg:nth-of-type(2n)`).remove()
-                console.log(selector)
             }, 50)
         }
 
@@ -10665,20 +10642,6 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
     // assigns download button on modal to jquery object
     var $download = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#download')
 
-    // creates the initial cropper object
-    // var $image = $('.one > img')
-    // var options = {
-    //   aspectRatio: 572 / 150,
-    //   preview: '.img-preview-one',
-    //   minCropBoxWidth: 572,
-    //   checkCrossOrigin: true,
-    //   dragMode: 'move',
-    //   cropBoxResizable: false,
-    //   // cropBoxMovable: false
-    // };
-    // // initialises first cropper
-    // $image.cropper(options)
-
     // Download
     if (typeof $download[0].download === 'undefined') {
         $download.addClass('disabled')
@@ -10708,13 +10671,13 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
             }
 
             // adds each of the selected sizes to array of canvas
-            if (imageSize) {
-                for (var i = 0; i < imageSize[0].length; i++) {
-                    dynamicResult.push(cropperSizeData[i][data.method](data.option, data.secondOption))
-                }
-            } else {
-                result = $image.cropper(data.method, data.option, data.secondOption)
+            // if (imageSize) {
+            for (var i = 0; i < imageSize[0].length; i++) {
+                dynamicResult.push(cropperSizeData[i][data.method](data.option, data.secondOption))
             }
+            // } else {
+            //     result = $image.cropper(data.method, data.option, data.secondOption)
+            // }
 
             switch (data.method) {
                 // for rotating image - not applicable atm
@@ -10729,7 +10692,7 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
                     // var branding = true;
                     let downloadModalID = document.getElementById('getCroppedCanvasModal')
                     let downloadModal = new __WEBPACK_IMPORTED_MODULE_2_bootstrap_native___default.a.Modal(downloadModalID)
-                    console.log(__WEBPACK_IMPORTED_MODULE_0_jquery___default()('#getCroppedCanvasModal').find('.modal-body'))
+                    // console.log($('#getCroppedCanvasModal').find('.modal-body'))
 
 
                     // adds images to modal and downloads
@@ -10789,32 +10752,30 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
                     blobURL = URL.createObjectURL(file)
 
                     // adds image to all croppers on screen
-                    if (imageSize) {
-                        for (var i = 0; i < imageSize[0].length; i++) {
-                            // cropperSizeData[i].one('built.cropper', function () {
+                    // if (imageSize) {
+                    for (var i = 0; i < imageSize[0].length; i++) {
 
-                            //     // Revoke when load complete
-                            // URL.revokeObjectURL(blobURL)
-                            // }).replace(blobURL)
-                            cropperSizeData[i].replace(blobURL)
-                            Object(__WEBPACK_IMPORTED_MODULE_5_timers__["setTimeout"])(() => {
-                                URL.revokeObjectURL(blobURL)
-                            }, 50)
+                        let cropBoxData = cropperSizeData[i].getCropBoxData()
 
-                            let test = imageSize[3][i]
-                            Object(__WEBPACK_IMPORTED_MODULE_5_timers__["setTimeout"])(() => {
-                                let selector = test.replace(/ > img/g, '')
-                                __WEBPACK_IMPORTED_MODULE_0_jquery___default()(`${selector} > .cropper-container.cropper-bg:nth-of-type(2n)`).remove()
-                                console.log(selector)
-                            }, 50)
-                        }
-                    } else {
-                        $image.one('built.cropper', function () {
-
-                            // Revoke when load complete
+                        cropperSizeData[i].replace(blobURL)
+                        Object(__WEBPACK_IMPORTED_MODULE_5_timers__["setTimeout"])(() => {
+                            cropperSizeData[i].zoomTo(cropBoxData.width / imageSize[1][i])
                             URL.revokeObjectURL(blobURL)
-                        }).replace(blobURL)
+                        }, 50)
+
+                        let test = imageSize[3][i]
+                        Object(__WEBPACK_IMPORTED_MODULE_5_timers__["setTimeout"])(() => {
+                            let selector = test.replace(/ > img/g, '')
+                            __WEBPACK_IMPORTED_MODULE_0_jquery___default()(`${selector} > .cropper-container.cropper-bg:nth-of-type(2n)`).remove()
+                        }, 50)
                     }
+                    // } else {
+                    //     $image.one('built.cropper', function () {
+
+                    //         // Revoke when load complete
+                    //         URL.revokeObjectURL(blobURL)
+                    //     }).replace(blobURL)
+                    // }
 
                     $inputImage.val('')
                 } else {
@@ -16734,8 +16695,8 @@ return Cropper;
     addBrandingAndDownload: (imagePath) => {
         __WEBPACK_IMPORTED_MODULE_0_jquery___default()('.modal-body canvas').each(function (i) {
             var brandImage = new Image();
-
             brandImage.src = imagePath;
+
             var canvasContext = this.getContext('2d');
             var currentCanvas = this;
 

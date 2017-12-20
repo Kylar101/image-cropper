@@ -1,0 +1,20 @@
+{
+    "GetMoving": {
+        "name": "Get Moving",
+        "location": "img/get-moving.png",
+        "number": "brandingTwo",
+        "description":"The diamond pattern of Get Moving"
+    },
+    "RFL" : {
+        "name": "Relay for Life",
+        "location" : "img/rfl-logo.png",
+        "number" : "brandingThree",
+        "description" : "The Relay for Life logo"
+    },
+    "CCQ": {
+        "name": "CCQ",
+        "location": "img/small-logo.png",
+        "number": "brandingOne",
+        "description":"The CCQ Logo"
+    }
+}

@@ -1,0 +1,66 @@
+{
+    "290x150": {
+        "name": "EDM Support Image",
+        "identifier": "nine",
+        "upper": "290",
+        "lower": "150",
+        "use": "A support image for an EDM",
+        "value": "290x150"
+    },
+    "520x190": {
+        "name": "EDM Hero Image",
+        "identifier": "eight",
+        "upper": "520",
+        "lower": "190",
+        "use": "A hero image for an EDM ",
+        "value": "520x190"
+    },
+    "800x370": {
+        "name": "Featured Event Image",
+        "identifier": "seven",
+        "upper": "800",
+        "lower": "370",
+        "use": "As a Featured Event Image",
+        "value": "800x370"
+    },
+    "270x230": {
+        "name": "Support Image",
+        "identifier": "six",
+        "upper": "270",
+        "lower": "230",
+        "use": "Within page content on webpages",
+        "value": "270x230"
+    },
+    "390x155": {
+        "name": "Focus Zone Image",
+        "identifier": "five",
+        "upper": "390",
+        "lower": "155",
+        "use": "On the homepage on the CCQ website under the sliding banner",
+        "value": "390x155"
+    },
+    "870x230": {
+        "name": "Large Feature Image",
+        "identifier": "three",
+        "upper": "870",
+        "lower": "230",
+        "use": "As a webpage feature image with no left sidebar",
+        "value": "870x230"
+    },
+    "800x210": {
+        "name": "Medium Feature Image",
+        "identifier": "two",
+        "upper": "800",
+        "lower": "210",
+        "use": "As a webpage feature image with no left sidebar",
+        "value": "800x210"
+    },
+    "572x150": {
+        "name": "Small Feature Image",
+        "identifier": "one",
+        "upper": "572",
+        "lower": "150",
+        "use": "On the website with both left and right sidebars",
+        "value": "572x150"
+    }
+}

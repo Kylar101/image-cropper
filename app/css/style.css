@@ -5445,6 +5445,8 @@ button.close {
 @media print {
   .hidden-print {
     display: none !important; } }
+
+/*# sourceMappingURL=bootstrap.min.css.map */
 /*!
  * Cropper v2.3.4
  * https://github.com/fengyuanchen/cropper
@@ -6692,242 +6694,22 @@ body.stop-scrolling {
     -moz-transform: translateY(145%);
     -o-transform: translateY(145%);
     transform: translateY(145%); } }
-.navbar-brand, .helpOption {
-  cursor: pointer; }
+/* branding preview */
+.preview {
+  position: relative;
+  overflow: hidden; }
 
-.navbar {
-  background: #fff; }
+.preview > .branding-preview {
+  position: absolute;
+  z-index: 1; }
 
-.helpOption {
-  font-size: 15px;
-  padding: 10px 15px;
-  background-color: #0074d9;
-  border-radius: 4px;
-  color: #fff;
-  margin-left: 96px; }
-
-.helpOption:hover {
-  background-color: #286090; }
-
-.sizesHeading {
-  font-size: 20px;
-  margin: 5px 0 -5px -7px; }
-
-.helpInfo {
-  font-size: 15px;
-  font-weight: 300; }
-
-.helpInfo h2 {
-  font-size: 25px; }
-
-.lead {
-  font-weight: 400; }
-
-/* Size Options */
-.sizes {
+.modal-body pre {
+  width: 60%;
+  margin: 0 auto;
   margin-bottom: 10px; }
 
-.sizeUse {
-  font-weight: 400; }
-
-.sizeHeading {
-  padding: 10px 0;
-  width: 100%; }
-
-.sizeHeading h3 {
-  width: 185px;
-  padding-right: 40px;
-  padding: 10px 0; }
-
-.sizeOptions, .brandingOptions {
-  padding: 5px 5px;
-  background: #ccc; }
-  .sizeOptions:hover, .brandingOptions:hover {
-    background: #adadad; }
-  .sizeOptions:nth-of-type(2n), .brandingOptions:nth-of-type(2n) {
-    background: #eee; }
-  .sizeOptions:nth-of-type(2n):hover, .brandingOptions:nth-of-type(2n):hover {
-    background: #ddd; }
-
-.checkbox {
-  font-weight: 300 !important;
-  margin-left: 20px; }
-
-/* Basic */
-body {
-  margin: 0;
-  overflow-x: hidden; }
-
-.browserupgrade {
-  margin: 0;
-  padding: .5em 1em;
-  background-color: #fcfcfc;
-  text-align: center; }
-
-/* Header */
-.docs-header {
-  margin-bottom: 0; }
-
-.navbar-toggle:hover,
-.navbar-toggle:focus {
-  border-color: #0074d9; }
-
-.navbar-toggle .icon-bar {
-  background-color: #0074d9; }
-
-/* Jumbotron */
-.docs-jumbotron {
-  background-color: #0074d9;
-  color: #fff; }
-
-.logo {
-  width: 300px;
-  height: 127px; }
-
-/* Content */
-/* Sizes */
-.sizeInstructions {
-  font-weight: 300; }
-
-/* Upload */
-.uploadArea {
-  padding: 10px;
-  background: #ccc;
-  display: flex;
-  flex-wrap: wrap; }
-
-.uploadBtn {
-  margin-right: 10px;
-  height: 35px;
-  margin-top: 3px; }
-
-.uploadInstructions {
-  width: 85%;
-  margin: 0 10px;
-  font-weight: 300; }
-
-/* Export */
-.exportInstructions {
-  font-weight: 300; }
-
-/* Cropping Area */
-img {
-  max-width: 100%; }
-
-.img-container {
-  max-width: 720px; }
-
-.cropperImg {
-  width: 47% !important; }
-
-.img-container,
-.img-preview, .dynamic-preview {
-  background-color: #f7f7f7;
-  text-align: center; }
-
-.img-container {
-  min-height: 200px;
-  max-height: 516px;
-  margin-bottom: 20px;
-  margin-right: 10px; }
-
-@media (max-width: 768px) {
-  .uploadBtn {
-    margin-top: 20px; }
-  .uploadInstructions {
-    width: 70%; } }
-
-@media (min-width: 768px) {
-  .img-container {
-    min-height: 516px; } }
-
-.img-container > img {
-  max-width: 100%; }
-
-.docs-preview {
-  margin-right: -15px; }
-
-.img-preview, .dynamic-preview {
-  margin-right: 10px;
-  margin-bottom: 10px;
-  overflow: hidden;
-  display: block; }
-
-.img-preview > img, .dynamic-preview > img {
-  max-width: 100%; }
-
-.preview-lg {
-  width: 400px;
-  height: 224px; }
-
-.docs-data > .input-group {
-  margin-bottom: 10px; }
-
-.docs-data > .input-group > label {
-  min-width: 80px; }
-
-.docs-data > .input-group > span {
-  min-width: 50px; }
-
-.docs-buttons > .btn,
-.docs-buttons > .btn-group,
-.docs-buttons > .form-control {
-  margin-right: 5px;
-  margin-bottom: 10px; }
-
-.docs-toggles > .btn,
-.docs-toggles > .btn-group,
-.docs-toggles > .dropdown {
-  margin-bottom: 10px; }
-
-.docs-tooltip {
-  display: block;
-  margin: -6px -12px;
-  padding: 6px 12px; }
-
-.docs-tooltip > .icon {
-  margin: 0 -3px;
-  vertical-align: top; }
-
-.tooltip-inner {
-  white-space: normal; }
-
-.btn-upload .tooltip-inner {
-  white-space: nowrap; }
-
-@media (max-width: 400px) {
-  .btn-group-crop {
-    margin-right: -15px !important; }
-  .btn-group-crop > .btn {
-    padding-left: 5px;
-    padding-right: 5px; }
-  .btn-group-crop .docs-tooltip {
-    margin-left: -5px;
-    margin-right: -5px;
-    padding-left: 5px;
-    padding-right: 5px; } }
-
-.docs-options .dropdown-menu {
-  width: 100%; }
-
-.docs-options .dropdown-menu > li {
-  padding: 3px 20px; }
-
-.docs-options .dropdown-menu > li:hover {
-  background-color: #f7f7f7; }
-
-.docs-options .dropdown-menu > li > label {
-  display: block; }
-
-.docs-cropped .modal-body {
-  text-align: center; }
-
-.docs-cropped .help-body {
-  text-align: left; }
-
-.docs-cropped .modal-body > img,
-.docs-cropped .modal-body > canvas {
-  max-width: 100%; }
+.modal-body textarea {
+  margin: 0 auto; }
 
 /* Footer */
 .docs-footer {
@@ -6964,21 +6746,170 @@ img {
   background: #fff;
   padding: 0 10px; }
 
-/* branding preview */
-.preview {
-  position: relative;
-  overflow: hidden; }
+@media (min-width: 768px) {
+  .img-container {
+    min-height: 516px; } }
 
-.preview > .branding-preview {
-  position: absolute;
-  z-index: 1; }
+.img-container > img {
+  max-width: 100%; }
 
-.modal-body pre {
-  width: 60%;
-  margin: 0 auto;
+.docs-preview {
+  margin-right: -15px; }
+
+.img-preview, .dynamic-preview {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  display: block; }
+
+.img-preview > img, .dynamic-preview > img {
+  max-width: 100%; }
+
+.preview-lg {
+  width: 400px;
+  height: 224px; }
+
+.docs-cropped .modal-body > img,
+.docs-cropped .modal-body > canvas {
+  max-width: 100%; }
+
+/* Cropping Area */
+img {
+  max-width: 100%; }
+
+.img-container {
+  max-width: 720px; }
+
+.cropperImg {
+  width: 47% !important; }
+
+.img-container,
+.img-preview, .dynamic-preview {
+  background-color: #f7f7f7;
+  text-align: center; }
+
+.img-container {
+  min-height: 200px;
+  max-height: 516px;
+  margin-bottom: 20px;
+  margin-right: 10px; }
+
+/* Content */
+/* Sizes */
+.sizeInstructions {
+  font-weight: 300; }
+
+/* Upload */
+.uploadArea {
+  padding: 10px;
+  background: #ccc;
+  display: flex;
+  flex-wrap: wrap; }
+
+.uploadBtn {
+  margin-right: 10px;
+  height: 35px;
+  margin-top: 3px; }
+
+.uploadInstructions {
+  width: 85%;
+  margin: 0 10px;
+  font-weight: 300; }
+
+/* Export */
+.exportInstructions {
+  font-weight: 300; }
+
+@media (max-width: 768px) {
+  .uploadBtn {
+    margin-top: 20px; }
+  .uploadInstructions {
+    width: 70%; } }
+
+/* Size Options */
+.sizes {
   margin-bottom: 10px; }
 
-.modal-body textarea {
-  margin: 0 auto; }
+.sizeUse {
+  font-weight: 400; }
+
+.sizeHeading {
+  padding: 10px 0;
+  width: 100%; }
+
+.sizeHeading h3 {
+  width: 185px;
+  padding-right: 40px;
+  padding: 10px 0; }
+
+.sizeOptions, .brandingOptions {
+  padding: 5px 5px;
+  background: #ccc; }
+  .sizeOptions:hover, .brandingOptions:hover {
+    background: #adadad; }
+  .sizeOptions:nth-of-type(2n), .brandingOptions:nth-of-type(2n) {
+    background: #eee; }
+  .sizeOptions:nth-of-type(2n):hover, .brandingOptions:nth-of-type(2n):hover {
+    background: #ddd; }
+
+.checkbox {
+  font-weight: 300 !important;
+  margin-left: 20px; }
+
+.helpOption {
+  font-size: 15px;
+  padding: 10px 15px;
+  background-color: #0074d9;
+  border-radius: 4px;
+  color: #fff;
+  margin-left: 96px; }
+
+.helpOption:hover {
+  background-color: #286090; }
+
+.sizesHeading {
+  font-size: 20px;
+  margin: 5px 0 -5px -7px; }
+
+.helpInfo {
+  font-size: 15px;
+  font-weight: 300; }
+
+.helpInfo h2 {
+  font-size: 25px; }
+
+.navbar-brand, .helpOption {
+  cursor: pointer; }
+
+.navbar {
+  background: #fff; }
+
+.lead {
+  font-weight: 400; }
+
+/* Basic */
+body {
+  margin: 0;
+  overflow-x: hidden; }
+
+/* Header */
+.docs-header {
+  margin-bottom: 0; }
+
+.navbar-toggle:hover,
+.navbar-toggle:focus {
+  border-color: #0074d9; }
+
+.navbar-toggle .icon-bar {
+  background-color: #0074d9; }
+
+/* Jumbotron */
+.docs-jumbotron {
+  background-color: #0074d9;
+  color: #fff; }
+
+.logo {
+  width: 300px;
+  height: 127px; }
 
 /*# sourceMappingURL=style.css.map*/

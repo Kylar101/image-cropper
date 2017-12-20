@@ -42,7 +42,7 @@ gulp.task('serve', ['pack'], function() {
     gulp.watch(['./src/app.js', './src/js/*.js'], ['pack', browserSync.reload])
     gulp.watch(['./src/index.html'], ['copy-html', browserSync.reload])
     gulp.watch(['./src/json/*.json'], ['copy-json', browserSync.reload])
-    gulp.watch(['./src/css/*.css', './src/css/*.scss'], ['pack', browserSync.reload])
+    gulp.watch(['./src/css/*.css', './src/css/**/*.scss'], ['pack', browserSync.reload])
     // gulp.watch("app/*.html").on('change', browserSync.reload);
 });
 

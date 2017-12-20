@@ -10791,13 +10791,13 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
                     // adds image to all croppers on screen
                     if (imageSize) {
                         for (var i = 0; i < imageSize[0].length; i++) {
-                            // cropperSizeData[i].one('built.cropper', function () {
 
-                            //     // Revoke when load complete
-                            // URL.revokeObjectURL(blobURL)
-                            // }).replace(blobURL)
+                            // console.log(imageSize[1][i])
+                            let cropBoxData = cropperSizeData[i].getCropBoxData()
+
                             cropperSizeData[i].replace(blobURL)
                             Object(__WEBPACK_IMPORTED_MODULE_5_timers__["setTimeout"])(() => {
+                                cropperSizeData[i].zoomTo(cropBoxData.width / imageSize[1][i])
                                 URL.revokeObjectURL(blobURL)
                             }, 50)
 

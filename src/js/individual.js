@@ -26,6 +26,11 @@ utils.addIndividualCropperHTML("test")
 var cropperTest = document.querySelector('.test img')
 cropperTest = new Cropper( cropperTest, {
     aspectRatio: 16 / 9,
-    preview: `.image-preview-test`,
+    preview: `.img-preview-test`,
     dragMode: 'move',
 })
+setTimeout(function() {
+    $('.test img + .cropper-container.cropper-bg').css('width', '720px').css('height', '516px')   
+    cropperTest.zoomTo(0.7)
+    cropperTest.moveTo(0)
+}, 100)

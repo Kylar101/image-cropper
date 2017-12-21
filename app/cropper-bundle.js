@@ -17262,9 +17262,15 @@ __WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].addIndividualCropperHTML
 var cropperTest = document.querySelector('.test img')
 cropperTest = new __WEBPACK_IMPORTED_MODULE_0_cropperjs___default.a( cropperTest, {
     aspectRatio: 16 / 9,
-    preview: `.image-preview-test`,
+    preview: `.img-preview-test`,
     dragMode: 'move',
 })
+setTimeout(function() {
+    __WEBPACK_IMPORTED_MODULE_2_jquery___default()('.test img + .cropper-container.cropper-bg').css('width', '720px').css('height', '516px')   
+    cropperTest.zoomTo(0.7)
+    cropperTest.moveTo(0)
+}, 100)
+
 
 /***/ }),
 /* 12 */

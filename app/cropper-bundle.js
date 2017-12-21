@@ -16060,11 +16060,11 @@ module.exports = g;
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     /**
-  * Appends cropper html into the page
-  * @param {string} number
-  * @param {int} width
-  * @param {int} height
-  */
+     * Appends cropper html into the page
+     * @param {string} number
+     * @param {int} width
+     * @param {int} height
+     */
     addCropperHTMLSize: (number, width, height) => {
         let html = `<div id="${number}" class="dynamicImages" style="display:flex;flex-wrap:wrap;clear:both;">
                         <div class="sizeHeading">
@@ -16081,9 +16081,9 @@ module.exports = g;
     },
 
     /**
-   * Adds sizes from json file
-   * 
-   */
+     * Adds sizes from json file
+     * 
+     */
     addLocalSizingOptions: (json) => {
         __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.each(json, function (i) {
             let option = `<div class="sizeOptions">
@@ -16098,12 +16098,12 @@ module.exports = g;
         })
     },
 
-    
+
 
     /**
-   * Adds branding objects from json file
-   *
-   */
+     * Adds branding objects from json file
+     *
+     */
     addLocalBrandingOptions: (json) => {
         __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.each(json, function (i) {
             let option = `<div class="brandingOptions">
@@ -16118,9 +16118,9 @@ module.exports = g;
     },
 
     /**
-   * Adds sizes from json file
-   * 
-   */
+     * Adds sizes from json file
+     * 
+     */
     addSizingOptions: () => {
         __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.getJSON('json/sizes.json', function (json) {
             __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.each(json, function (i) {
@@ -16138,9 +16138,9 @@ module.exports = g;
     },
 
     /**
-   * Adds branding objects from json file
-   *
-   */
+     * Adds branding objects from json file
+     *
+     */
     addBrandingOptions: () => {
         __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.getJSON('json/branding.json', function (json) {
             __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.each(json, function (i) {
@@ -16174,13 +16174,13 @@ module.exports = g;
 
 
     /**
-    * Searchs through selected size options
-    * @param {string} chkboxName
-    * @returns {string array} checkboxesNumber
-    * @returns {int array} checkBoxesUpper
-    * @returns {int array} checkBoxesLower
-    * @returns {string array} cropperObjects
-    */
+     * Searchs through selected size options
+     * @param {string} chkboxName
+     * @returns {string array} checkboxesNumber
+     * @returns {int array} checkBoxesUpper
+     * @returns {int array} checkBoxesLower
+     * @returns {string array} cropperObjects
+     */
     getCheckBoxesSize: (chkboxName) => {
         var checkboxes = document.getElementsByName(chkboxName);
         var checkboxesNumber = [];
@@ -16265,7 +16265,7 @@ module.exports = g;
             brandImage.onload = () => {
 
                 canvasContext.drawImage(brandImage, 0, 0, brandImage.width, brandImage.height);
-                downloadBrandedCanvas( currentCanvas, 'cropper', i );
+                downloadBrandedCanvas(currentCanvas, 'cropper', i);
             }
         });
     },
@@ -16284,32 +16284,52 @@ module.exports = g;
 
         image.onload = () => {
 
-            let widthCalc = Math.ceil( (image.width / cropperWidth) * 100 )
+            let widthCalc = Math.ceil((image.width / cropperWidth) * 100)
             __WEBPACK_IMPORTED_MODULE_0_jquery___default()(`#${identifier} .preview`).prepend(`<img class="branding-preview" src=${image.src} style="width:${widthCalc}%!important;max-width:none;">`)
         }
         image.onerror = () => {
             console.log(`can't load image`)
         }
-    }
-});
+    },
 
 
 
     /**
-     * Filters through images on modal and downloads them in jpg format
-     * @param {canvas} canvas
-     * @param {string} filename
-     * @param {int} currentCanvas
+     * Appends cropper html into the page
+     * @param {string} identifier
      */
-    function downloadBrandedCanvas (canvas, filename, currentCanvas) {
-        var dataUrl = canvas.toDataURL('image/jpeg')
-        var cropperNumber = currentCanvas + 1;
-        __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#download').attr({
-            href: canvas.toDataURL('image/jpeg'),
-            download: `${filename}-${cropperNumber}.jpg`
-        })[0].click();
-        __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#closemodal')[0].click();
-    }
+    addIndividualCropperHTML: (identifier) => {
+        let html = `<div class="row">
+                        <div id="${identifier}" class="dynamicImages" style="display:flex;flex-wrap:wrap;clear:both;">
+                            <div class="img-container ${identifier}"><img id="image" src="img/starter.png" alt="Picture"></div>
+                            <div class="preview">
+                                <div class="dynamic-preview img-preview-${identifier} preview-lg"></div>
+                            </div>
+                        </div>
+                    </div>`
+        if (identifier) {
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#singleCropper').prepend(html);
+        }
+    },
+});
+
+
+
+/**
+ * Filters through images on modal and downloads them in jpg format
+ * @param {canvas} canvas
+ * @param {string} filename
+ * @param {int} currentCanvas
+ */
+function downloadBrandedCanvas(canvas, filename, currentCanvas) {
+    var dataUrl = canvas.toDataURL('image/jpeg')
+    var cropperNumber = currentCanvas + 1;
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#download').attr({
+        href: canvas.toDataURL('image/jpeg'),
+        download: `${filename}-${cropperNumber}.jpg`
+    })[0].click();
+    __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#closemodal')[0].click();
+}
 
 /***/ }),
 /* 5 */
@@ -17219,15 +17239,32 @@ process.umask = function() { return 0; };
 
 
 
+// ----------------------------------------------------
+//              Different options Tabs
+// ----------------------------------------------------
+
 let tabs = document.getElementById('cropperTabsWrapper')
 let tabsCollection = tabs.getElementsByTagName('A')
 
 for (var i = 0; i < tabsCollection.length; i++) {
     new __WEBPACK_IMPORTED_MODULE_1_bootstrap_native___default.a.Tab(tabsCollection[i], // our target
-    { // our options
-      height: true
-    });
-  }
+        { // our options
+            height: true
+        });
+}
+
+// ----------------------------------------------------
+//                  Cropper Code
+// ----------------------------------------------------
+
+__WEBPACK_IMPORTED_MODULE_3__utils__["a" /* default */].addIndividualCropperHTML("test")
+
+var cropperTest = document.querySelector('.test img')
+cropperTest = new __WEBPACK_IMPORTED_MODULE_0_cropperjs___default.a( cropperTest, {
+    aspectRatio: 16 / 9,
+    preview: `.image-preview-test`,
+    dragMode: 'move',
+})
 
 /***/ }),
 /* 12 */

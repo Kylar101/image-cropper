@@ -6881,6 +6881,9 @@ img {
 .navbar-brand, .helpOption {
   cursor: pointer; }
 
+.optionTabs:first-of-type {
+  margin-left: 390px; }
+
 .navbar {
   background: #fff; }
 

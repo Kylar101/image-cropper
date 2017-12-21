@@ -4,11 +4,11 @@ import $ from 'jquery'
 
 export default {
     /**
-  * Appends cropper html into the page
-  * @param {string} number
-  * @param {int} width
-  * @param {int} height
-  */
+     * Appends cropper html into the page
+     * @param {string} number
+     * @param {int} width
+     * @param {int} height
+     */
     addCropperHTMLSize: (number, width, height) => {
         let html = `<div id="${number}" class="dynamicImages" style="display:flex;flex-wrap:wrap;clear:both;">
                         <div class="sizeHeading">
@@ -25,9 +25,9 @@ export default {
     },
 
     /**
-   * Adds sizes from json file
-   * 
-   */
+     * Adds sizes from json file
+     * 
+     */
     addLocalSizingOptions: (json) => {
         $.each(json, function (i) {
             let option = `<div class="sizeOptions">
@@ -42,12 +42,12 @@ export default {
         })
     },
 
-    
+
 
     /**
-   * Adds branding objects from json file
-   *
-   */
+     * Adds branding objects from json file
+     *
+     */
     addLocalBrandingOptions: (json) => {
         $.each(json, function (i) {
             let option = `<div class="brandingOptions">
@@ -62,9 +62,9 @@ export default {
     },
 
     /**
-   * Adds sizes from json file
-   * 
-   */
+     * Adds sizes from json file
+     * 
+     */
     addSizingOptions: () => {
         $.getJSON('json/sizes.json', function (json) {
             $.each(json, function (i) {
@@ -82,9 +82,9 @@ export default {
     },
 
     /**
-   * Adds branding objects from json file
-   *
-   */
+     * Adds branding objects from json file
+     *
+     */
     addBrandingOptions: () => {
         $.getJSON('json/branding.json', function (json) {
             $.each(json, function (i) {
@@ -118,13 +118,13 @@ export default {
 
 
     /**
-    * Searchs through selected size options
-    * @param {string} chkboxName
-    * @returns {string array} checkboxesNumber
-    * @returns {int array} checkBoxesUpper
-    * @returns {int array} checkBoxesLower
-    * @returns {string array} cropperObjects
-    */
+     * Searchs through selected size options
+     * @param {string} chkboxName
+     * @returns {string array} checkboxesNumber
+     * @returns {int array} checkBoxesUpper
+     * @returns {int array} checkBoxesLower
+     * @returns {string array} cropperObjects
+     */
     getCheckBoxesSize: (chkboxName) => {
         var checkboxes = document.getElementsByName(chkboxName);
         var checkboxesNumber = [];
@@ -209,7 +209,7 @@ export default {
             brandImage.onload = () => {
 
                 canvasContext.drawImage(brandImage, 0, 0, brandImage.width, brandImage.height);
-                downloadBrandedCanvas( currentCanvas, 'cropper', i );
+                downloadBrandedCanvas(currentCanvas, 'cropper', i);
             }
         });
     },
@@ -228,29 +228,49 @@ export default {
 
         image.onload = () => {
 
-            let widthCalc = Math.ceil( (image.width / cropperWidth) * 100 )
+            let widthCalc = Math.ceil((image.width / cropperWidth) * 100)
             $(`#${identifier} .preview`).prepend(`<img class="branding-preview" src=${image.src} style="width:${widthCalc}%!important;max-width:none;">`)
         }
         image.onerror = () => {
             console.log(`can't load image`)
         }
-    }
-}
+    },
 
 
 
     /**
-     * Filters through images on modal and downloads them in jpg format
-     * @param {canvas} canvas
-     * @param {string} filename
-     * @param {int} currentCanvas
+     * Appends cropper html into the page
+     * @param {string} identifier
      */
-    function downloadBrandedCanvas (canvas, filename, currentCanvas) {
-        var dataUrl = canvas.toDataURL('image/jpeg')
-        var cropperNumber = currentCanvas + 1;
-        $('#download').attr({
-            href: canvas.toDataURL('image/jpeg'),
-            download: `${filename}-${cropperNumber}.jpg`
-        })[0].click();
-        $('#closemodal')[0].click();
-    }
+    addIndividualCropperHTML: (identifier) => {
+        let html = `<div class="row">
+                        <div id="${identifier}" class="dynamicImages" style="display:flex;flex-wrap:wrap;clear:both;">
+                            <div class="img-container ${identifier}"><img id="image" src="img/starter.png" alt="Picture"></div>
+                            <div class="preview">
+                                <div class="dynamic-preview img-preview-${identifier} preview-lg"></div>
+                            </div>
+                        </div>
+                    </div>`
+        if (identifier) {
+            $('#singleCropper').prepend(html);
+        }
+    },
+}
+
+
+
+/**
+ * Filters through images on modal and downloads them in jpg format
+ * @param {canvas} canvas
+ * @param {string} filename
+ * @param {int} currentCanvas
+ */
+function downloadBrandedCanvas(canvas, filename, currentCanvas) {
+    var dataUrl = canvas.toDataURL('image/jpeg')
+    var cropperNumber = currentCanvas + 1;
+    $('#download').attr({
+        href: canvas.toDataURL('image/jpeg'),
+        download: `${filename}-${cropperNumber}.jpg`
+    })[0].click();
+    $('#closemodal')[0].click();
+}

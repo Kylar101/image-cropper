@@ -44,10 +44,10 @@
     <div id="cropperTabsWrapper">
 
         <ul id="cropperTabs" class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active">
+            <li role="presentation" class="active optionTabs">
                 <a href="#home" data-toggle="tab" data-height="true" aria-controls="home" role="tab">Home</a>
             </li>
-            <li role="presentation">
+            <li role="presentation" class="optionTabs">
                 <a href="#single" data-toggle="tab" data-height="true" aria-controls="home" role="tab">Single</a>
             </li>
         </ul>
@@ -295,8 +295,18 @@
                 </div>
             </div> <!-- end content panel ===== Home -->
             <div role="tabpanel" class="tab-pane" id="single">
-                <h1>second</h1>
-            </div>
+                
+                <div class="container" id="singleCropper">
+
+
+
+                    <button type="button" class="btn btn-primary" id="newCropper">
+                        <span class="fa fa-plus"></span> New Cropper
+                    </button>
+
+                </div>
+
+            </div><!-- end content panel ===== Single -->
         </div> <!-- end tab-content -->
     </div> <!-- end cropperTabWrapper -->
     <!-- Footer -->
@@ -304,7 +314,7 @@
         <div class="container">
             <p class="credit">
                 <cite>built using
-                    <a href="https://github.com/fengyuanchen/cropper" target="_blank">cropper.js</a>
+                    <a href="https://github.com/fengyuanchen/cropperjs" target="_blank">cropper.js</a>
                 </cite>
             </p>
         </div>

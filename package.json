@@ -4,7 +4,8 @@
   "description": "A tool that crops images to certain sizes",
   "main": "index.js",
   "scripts": {
-    "build": "gulp build"
+    "build": "gulp build",
+    "dev": "gulp serve"
   },
   "keywords": [
     "image",
